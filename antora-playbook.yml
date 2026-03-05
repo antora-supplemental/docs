@@ -1,0 +1,35 @@
+# Antora Supplemental documentation site
+# Aggregates antora-supplemental org repos (Root Strategy)
+
+site:
+  title: Antora Supplemental
+  start_page: antora-dark-theme:guide:index.adoc
+content:
+  sources:
+    - url: https://github.com/antora-supplemental/antora-dark-theme.git
+      branches: [main, master]
+      start_path: docs
+    - url: https://github.com/antora-supplemental/antora-demo-template.git
+      branches: [main, master]
+      start_path: docs
+    - url: https://github.com/antora-supplemental/antora-extensions-registry.git
+      branches: [main, master]
+      start_path: docs
+    - url: https://github.com/antora-supplemental/antora-themes-site.git
+      branches: [main, master]
+      start_path: docs
+    - url: .
+      branches: HEAD
+      start_path: docs
+      worktrees: true
+ui:
+  bundle:
+    url: https://github.com/antora-supplemental/antora-dark-theme/releases/latest/download/ui-bundle.zip
+    snapshot: true
+output:
+  dir: ./build/site
+
+asciidoc:
+  attributes:
+    source-highlighter: highlight.js
+    icons: font

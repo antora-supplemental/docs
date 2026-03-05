@@ -1,0 +1,12 @@
+{
+  "name": "@antora-supplemental/docs",
+  "private": true,
+  "scripts": {
+    "build": "antora antora-playbook.yml",
+    "build:local": "antora local-antora-playbook.yml"
+  },
+  "packageManager": "pnpm@10.28.1",
+  "devDependencies": {
+    "antora": "^3.1.14"
+  }
+}

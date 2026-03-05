@@ -1,0 +1,11 @@
+= Antora Supplemental Documentation
+:navtitle: Portal
+
+This site aggregates documentation for projects in the antora-supplemental organization.
+
+== Components
+
+* xref:antora-dark-theme:guide:index.adoc[Antora Dark Theme] — Dark UI theme for Antora
+* xref:samples:ROOT:index.adoc[Antora Samples Template]
+* xref:registry:ROOT:index.adoc[Antora Extensions Registry]
+* xref:antora-themes-site:user:index.adoc[Antora Themes Gallery]

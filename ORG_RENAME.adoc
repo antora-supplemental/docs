@@ -1,0 +1,13 @@
+= Organization Rename: asciidoc-supplemental → antora-supplemental
+
+**Completed.** The GitHub organization has been renamed to `antora-supplemental`.
+
+All references were updated in:
+
+* URLs (GitHub, package.json, README, docs)
+* Antora playbook content sources and UI bundle URLs
+* Git remotes in each repo (origin → `https://github.com/antora-supplemental/<repo>.git`)
+
+== Optional: rename local folder
+
+To match the new org name locally: rename `Z:\code\github.com\asciidoc-supplemental` to `Z:\code\github.com\antora-supplemental`. Reopen the folder in your editor after renaming.

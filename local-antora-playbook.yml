@@ -1,0 +1,25 @@
+# Local development playbook (sibling repos)
+
+extends: ./antora-playbook.yml
+content:
+  sources:
+    - url: ../antora-dark-theme
+      branches: HEAD
+      start_path: docs
+      worktrees: true
+    - url: ../antora-demo-template
+      branches: HEAD
+      start_path: docs
+      worktrees: true
+    - url: ../antora-extensions-registry
+      branches: HEAD
+      start_path: docs
+      worktrees: true
+    - url: ../antora-themes-site
+      branches: HEAD
+      start_path: docs
+      worktrees: true
+    - url: .
+      branches: HEAD
+      start_path: docs
+      worktrees: true

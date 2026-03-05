@@ -1,0 +1,19 @@
+= Antora Supplemental Docs
+
+Documentation hub for the antora-supplemental organization, built with Antora and antora-dark-theme.
+
+== Build
+
+* Production (fetch from GitHub): `pnpm build`
+* Local (sibling repos): `pnpm run build:local`
+
+== Content sources
+
+Docs are pulled from:
+
+* antora-dark-theme
+* antora-demo-template
+* antora-extensions-registry
+* antora-themes-site
+
+This repo's own content is under `docs/` (portal and nav).
