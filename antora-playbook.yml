@@ -18,6 +18,9 @@ content:
     - url: https://github.com/antora-supplemental/antora-themes-site.git
       branches: [main, master]
       start_path: docs
+    - url: https://github.com/antora-supplemental/dprint-plugin-asciidoc.git
+      branches: [main, master]
+      start_path: docs
     - url: .
       branches: HEAD
       start_path: docs

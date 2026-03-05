@@ -15,5 +15,6 @@ Docs are pulled from:
 * antora-demo-template
 * antora-extensions-registry
 * antora-themes-site
+* dprint-plugin-asciidoc
 
 This repo's own content is under `docs/` (portal and nav).
