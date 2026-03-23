@@ -16,5 +16,8 @@ Docs are pulled from:
 * antora-extensions-registry
 * antora-themes-site
 * dprint-plugin-asciidoc
+* asciidoc-interactive (instruction-flow component)
 
 This repo's own content is under `docs/` (portal and nav).
+
+The `package.json` file dependency `file:../asciidoc-interactive` supplies the `@antora-supplemental/instruction-flow` Asciidoctor extension (registered in `antora-playbook.yml`). GitHub Actions clones that repository next to this one before `pnpm install` so the path resolves on CI.

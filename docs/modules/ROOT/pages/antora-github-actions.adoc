@@ -1,0 +1,147 @@
+=== Antora on GitHub: Actions, Templates, and GitHub Pages
+
+This page explains how the Antora Supplemental organization structures GitHub Actions, templates, and workflows for building and deploying Antora documentation, with a focus on GitHub Pages.
+
+It is written to answer these questions:
+
+* *Which repository should I use for my use case?*
+* *What is the difference between an action, a workflow template, and a template repository?*
+* *How do I deploy Antora to GitHub Pages in the recommended way?*
+
+==== Vocabulary: actions vs templates
+
+* **GitHub Action**: A reusable building block you reference in a workflow using `uses: org/repo@ref`. Think of it as a *function* that a workflow calls.
+* **Workflow template**: A starter workflow file (YAML) that appears in the GitHub Actions editor when you create a new workflow in a repository.
+* **Template repository**: A full repository you can clone via *Use this template*. It usually includes a workflow, an Antora playbook, and a docs layout.
+
+This page uses “action” for the reusable step, “workflow template” for the YAML snippet GitHub offers in the editor, and “template repo” for a full Antora example project.
+
+==== Overview of the Antora Supplemental repositories
+
+The Antora Supplemental organization provides three key building blocks for GitHub Actions:
+
+* **`antora-github-action`** – A *general-purpose* Antora build action.
+** Type: GitHub Action (composite).
+** Purpose: Build an Antora site as one step in your workflow. You choose how and where to deploy (GitHub Pages, Netlify, S3, etc.).
+** Requirements: Local Antora install via `package.json` and lockfile.
+** Strengths: Multi-repo, multi-host (GitHub, GitLab, Bitbucket) credentials and flexible logging and fetch options.
+
+* **`antora-build-action`** – A *GitHub Pages–oriented* Antora build action.
+** Type: GitHub Action (composite, Marketplace-friendly).
+** Purpose: Build an Antora site and expose its output path so you can pair it with `actions/upload-pages-artifact` and `actions/deploy-pages` for GitHub Pages.
+** Requirements: No `package.json` required; uses `pnpm dlx antora`.
+** Strengths: Minimal inputs and configuration; tuned for the official GitHub Pages deploy flow.
+
+* **`antora-github-deploy-template`** – A full *template repository*.
+** Type: Template repo (and example project).
+** Purpose: Give you a complete Antora docs repository with `.github/workflows/docs.yml`, `antora-playbook.yml`, and a minimal `docs/` tree.
+** Strengths: You can copy or template the repo to get a working build+deploy pipeline without reading every action’s documentation first.
+
+In short:
+
+* **Use a template repo** when you want a runnable example you can adapt.
+* **Use a build action** when you already have a workflow and just need “the Antora step.”
+
+==== GitHub Pages deployment strategies
+
+When you “deploy Antora on GitHub,” there are two main GitHub Pages patterns:
+
+* **Branch-based GitHub Pages**:
+** Build the site in CI.
+** Push the generated static site to a branch such as `gh-pages`.
+** Configure *Settings → Pages* to “Deploy from a branch.”
+** Example: `peaceiris/actions-gh-pages` pushes `build/site` to `gh-pages`.
+
+* **Actions-based GitHub Pages** (recommended modern pattern):
+** Build the site in CI.
+** Upload the `build/site` directory using `actions/upload-pages-artifact`.
+** Deploy that artifact with `actions/deploy-pages`.
+** Configure *Settings → Pages* to “GitHub Actions” as the source.
+
+The Antora build action (`antora-build-action`) and template repo (`antora-github-deploy-template`) are designed for the *Actions-based* GitHub Pages flow.
+
+==== Choosing the right building block
+
+Use this guide to choose:
+
+* **“I just want Antora docs on GitHub Pages quickly.”**
+** Start from the **`antora-github-deploy-template`** repository.
+** Either click *Use this template* or copy:
+*** `.github/workflows/docs.yml`
+*** `antora-playbook.yml`
+*** a minimal `docs/` layout with `antora.yml` and `modules/ROOT/pages/index.adoc`.
+** Set *Settings → Pages* → *Source* to **GitHub Actions**.
+
+* **“I have an existing repo and want a simple build step for GitHub Pages.”**
+** Use the **`antora-build-action`** action in your own workflow.
+** Typical pattern:
+*** checkout
+*** `antora-build-action` to produce a site
+*** `actions/upload-pages-artifact` with the output path
+*** a `deploy` job with `actions/deploy-pages`.
+
+* **“I need multi-repo, multi-host, or non–GitHub Pages deploy (Netlify, S3, etc.).”**
+** Use **`antora-github-action`**.
+** It expects Antora in `package.json`, supports `git_credentials` for multiple hosts, and works with any deployment action you choose.
+
+==== Recommended GitHub Pages workflow (actions-based)
+
+The recommended high-level structure using `antora-build-action` looks like this:
+
+* Build job:
+** `actions/checkout`
+** `antora-supplemental/antora-build-action` (composite action)
+** `actions/upload-pages-artifact` with the path from the action output.
+* Deploy job:
+** Needs the build job.
+** Runs `actions/deploy-pages` with appropriate permissions and environment.
+
+This pattern:
+
+* Uses the GitHub Pages “GitHub Actions” source.
+* Avoids managing a `gh-pages` branch manually.
+* Keeps the Antora build encapsulated inside the build action.
+
+==== Relationship between actions, templates, and workflow templates
+
+To help users move between levels of abstraction:
+
+* **Actions should point to templates**:
+** Each build action readme should link to a template repo that shows a complete, opinionated configuration.
+** This helps users “see the whole picture” (playbook, docs layout, permissions, secret names).
+
+* **Templates should point back to actions**:
+** Each template repo should mention that the inline Antora build steps can be replaced by the `antora-build-action` (or the more general `antora-github-action`), with example YAML.
+** This helps users upgrade from “copy/paste example” to “clean, reusable action call.”
+
+* **Organization workflow templates**:
+** The `.github` repo in the organization provides workflow templates (for example, `antora-pages.yml`) that appear in the *Actions → New workflow* screen.
+** These templates should mirror the recommended GitHub Pages pattern and can refer both to `antora-build-action` and to the template repo.
+
+This cross-linking makes it easier for new users to start with a template, then learn to recognize and re-use the underlying actions.
+
+==== Naming and decision points
+
+Repository names in the Antora Supplemental organization follow these ideas:
+
+* **Artifact type**: action vs template.
+* **Scope**: build-only vs build+deploy.
+* **Target**: generic vs GitHub Pages vs other hosts.
+
+Examples:
+
+* `antora-github-action` – Build action, generic deploy target, runs on GitHub Actions.
+* `antora-build-action` – Build action, tuned for GitHub Pages (Actions-based) deploy.
+* `antora-github-deploy-template` – Template repo that builds and deploys to GitHub Pages.
+
+When deciding where a new repository fits:
+
+* For **build-only steps** you call from workflows, prefer names that include **build** and optionally the **target** (for example, `github-pages`).
+* For **end-to-end templates** that include deploy, prefer names that include **deploy** and the **target** (for example, `github-deploy-template`).
+
+This makes it easier for users to scan the repository list and immediately see which project is:
+
+* A low-level building block (action).
+* A starter workflow template (YAML).
+* A full template repo they can copy.
+

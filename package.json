@@ -6,6 +6,9 @@
     "build:local": "antora local-antora-playbook.yml"
   },
   "packageManager": "pnpm@10.28.1",
+  "dependencies": {
+    "@antora-supplemental/instruction-flow": "file:../asciidoc-interactive"
+  },
   "devDependencies": {
     "antora": "^3.1.14"
   }

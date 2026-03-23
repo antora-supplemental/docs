@@ -1,1 +1,3 @@
 * xref:index.adoc[Portal]
+* xref:antora-deployment.adoc[Antora Deployment]
+* xref:antora-github-actions.adoc[Antora on GitHub]

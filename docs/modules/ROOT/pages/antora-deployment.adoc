@@ -1,0 +1,287 @@
+= Antora Deployment Strategies: Root vs. Docs
+:navtitle: Antora Deployment
+
+When documenting a single repository, there are two common ways to structure your Antora project: the **Root Strategy** and the **Subfolder Strategy**.
+
+Both work, but they have different trade-offs for local development and CI/CD.
+
+== 1. The Root Strategy (Recommended)
+
+In this setup, the `antora-playbook.yml` lives at the **repository root**, even if the content is in `docs/`.
+
+*   **Structure**:
+    ```text
+    my-repo/
+    ├── antora-playbook.yml  <-- Root
+    ├── .github/workflows/docs.yml
+    └── docs/
+        └── antora.yml
+    ```
+*   **Playbook Config**:
+    ```yaml
+    content:
+      sources:
+        - url: .            # Points to the root (current dir)
+          start_path: docs  # Tells Antora to look inside docs/
+    ```
+*   **Pros**:
+    *   **CI Simplicity**: In GitHub Actions, the checkout root is `.` . The command `antora antora-playbook.yml` just works. No path overrides needed.
+    *   **Clarity**: The playbook clearly defines the site for the *entire repo*.
+*   **Cons**:
+    *   Adds one file to your root directory.
+
+== 2. The Subfolder Strategy (Legacy)
+
+In this setup, everything lives inside `docs/`, including the playbook.
+
+*   **Structure**:
+    ```text
+    my-repo/
+    └── docs/
+        ├── antora-playbook.yml  <-- Inside docs/
+        └── antora.yml
+    ```
+*   **Playbook Config**:
+    ```yaml
+    content:
+      sources:
+        - url: ..           # MUST point to parent (git root)
+          start_path: docs
+    ```
+*   **Pros**:
+    *   Keeps the repository root clean.
+*   **Cons**:
+    *   **CI Complexity**: When running in CI, you are usually at the repo root.
+        Running `antora docs/antora-playbook.yml` causes relative path resolution specific to where the command is *run* vs where the file *is*.
+        *   If `url: .`, Antora thinks the git root is `docs/` (Wrong).
+        *   If `url: ..`, Antora tries to resolve the parent of the checkout (Restricted).
+    *   **Fix**: You often have to force correct paths with `--url .` CLI flags.
+
+== Recommendation
+
+**Use the Root Strategy.**
+
+It aligns with how CI systems view your repository (as a unit). The slight "clutter" of one file at the root is worth the stability in deployment pipelines.
+
+== Multi-Repository Handling
+
+Your question is: *Does this hold up when referencing other git repositories?*
+
+**Yes, and it actually makes local development easier.**
+
+In a multi-repo site (like the main Dev Center), you have two distinct needs:
+
+=== 1. The Production/CI Need (Remote URLs)
+In your main production playbook (e.g., `dev-centr/docs/antora-playbook.yml`), you should use **Full GitHub URLs**. This is the only way for GitHub Actions to fetch all the pieces.
+
+[source,yaml]
+----
+content:
+  sources:
+    - url: https://github.com/dev-centr/msi-installer-generator.git
+      branches: HEAD
+      start_path: docs
+----
+
+=== 2. The Local Development Need (Relative Paths)
+When working locally, cloning is slow. You want to point to your sibling folders on your hard drive.
+
+*   **Root Strategy**: Siblings are at `../sibling-repo`.
+*   **Subfolder Strategy**: Siblings are at `../../sibling-repo`.
+
+By using the **Root Strategy**, your local dev references are cleaner and match the standard "folder per project" structure of most developers.
+
+=== The "Best of Both Worlds" Solution
+
+Do not manually toggle URLs in your main playbook. Instead, use a **Local Dev Playbook Extension**.
+
+1.  Create `antora-playbook-local.yml` (and Git-ignore it).
+2.  Define only the local overrides:
++
+[source,yaml]
+----
+extends: ./antora-playbook.yml
+content:
+  sources:
+    - url: ../msi-generator
+      branches: HEAD
+      start_path: docs
+----
+
+3.  Run locally with: `antora antora-playbook-local.yml` (or `pnpm run build:local` if that script points at it).
+
+This keeps your **Root Strategy** intact for the repo's specific CI, while allowing the global "hub" site to aggregate everything seamlessly.
+
+=== Playbook file naming: why `antora-playbook.yml` and `antora-playbook-local.yml`
+
+Use these names even though you might prefer a different scheme (e.g. `playbook.yml` for local and `playbook-online.yml` for production). The reason is **ecosystem convention**.
+
+* **`antora-playbook.yml`** = production/online playbook (remote URLs, used by CI).
+* **`antora-playbook-local.yml`** = local-only playbook (sibling paths, git-ignored); extends the main playbook.
+
+**Why the main playbook must be "online":**
+
+In npm/pnpm, the script name `build` is the standard default. CI, READMEs, and tooling assume `pnpm build` (or `npm run build`) runs the *main* build—i.e. the one that produces the deployable site. So:
+
+* The **`build`** script in `package.json` should run the production playbook (`antora-playbook.yml`). That way `pnpm build` does what everyone expects.
+* The **`build:local`** script runs the local playbook (`antora-playbook-local.yml`) when you want to use sibling repos.
+
+**Reasoning chain (what we tried):**
+
+* First we tried naming by suffix: `playbook.yml` (local) and `playbook-online.yml` (online). Clean, but then the default `pnpm build` would run the local playbook—wrong for CI and for anyone running a plain `pnpm build`.
+* Then we swapped so `build` = online and added `build:online`. That fixed CI, but we had to give up the nice short names and accept that "build" is a reserved default.
+* Conclusion: the whole world expects `pnpm build` to be production. So the *file* that production uses should be the one that has the conventional name: `antora-playbook.yml`. The local override is `antora-playbook-local.yml`. Not our first choice, but it matches how the ecosystem works.
+
+=== Private repos: GITHUB_TOKEN vs PAT (why you needed days of debugging)
+
+Two different things use credentials. People often assume GITHUB_TOKEN does both. It does not.
+
+* **Deploy to GitHub Pages (same repo):** GITHUB_TOKEN is enough. The workflow runs in repo A, builds the site, and deploys to repo A's Pages. No cross-repo access. No PAT needed.
+
+* **Antora pulling content from other private repos:** GITHUB_TOKEN is scoped only to the repository where the workflow runs. It does **not** have permission to clone other private repos in the org. When the playbook has `content.sources` pointing at `https://github.com/org/private-repo.git`, Antora (via git) will try to clone that URL with no credentials and get 404 or "repository not found". So builds that aggregate docs from multiple **private** repos fail unless you add a token that can read those repos.
+
+**What to do when your playbook references private repos:**
+
+. Create a **Personal Access Token (PAT)** that has read access to every private repo you list in `content.sources`. Classic PAT: `repo` scope. Fine-grained PAT: give "Contents: Read" (or read-only) to each of those repos (or to the whole org if allowed).
+. Store the PAT as a repo or org secret (e.g. `ANTORA_READ_TOKEN` or `REPO_ACCESS_TOKEN`).
+. Before running Antora, make git use that token for `github.com` so that when Antora clones the source URLs, the clone succeeds. Two common ways:
++
+**Option A — git config (recommended):** Configure the runner to use the token for any clone from your org:
++
+[source,yaml]
+----
+- name: Configure git for private content sources
+  run: |
+    git config --global url."https://${{ secrets.ANTORA_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
+- name: Build docs
+  run: pnpm dlx antora antora-playbook.yml
+----
++
+Your playbook keeps normal URLs (`https://github.com/org/private-repo.git`). Git rewrites them to include the token when cloning.
++
+**Option B — rewrite playbook URLs at build time:** Generate a playbook (or env) where each source URL is `https://${{ secrets.ANTORA_READ_TOKEN }}@github.com/org/private-repo.git`. Works but duplicates URLs and is easier to get wrong.
+
+**Summary:**
+
+| Action | GITHUB_TOKEN enough? |
+| Deploy site to this repo's Pages | Yes |
+| Clone this repo (checkout) | Yes |
+| Clone other private repos (Antora content sources) | No — use a PAT and git config (or URL rewrite) |
+
+So: "GITHUB_TOKEN does it for me" is true for **deploy** and for **this** repo. For **private content sources** in an org, you need a PAT and the git config step. That's the distinction that causes the confusion and the long debugging sessions.
+
+== Package manager run commands
+
+When writing or following docs that run a package binary (e.g. a dev server or a one-off tool), the behavior differs by package manager:
+
+*   **npm**: A single entry point for both cases. `npx` (or `npm exec`) runs a binary from the current project's dependencies if present, otherwise fetches and runs it. No separate "local" vs "download and run" command.
+*   **pnpm**: Two commands. Use `pnpm exec` to run a binary from *already installed* dependencies. Use `pnpm dlx` to *download and run* a package without adding it to the project (one-off execution).
+*   **yarn** (Berry 2+): `yarn dlx` is the equivalent of "download and run"; for local binaries use `yarn run <script>` or the binary from `node_modules/.bin`.
+*   **bun**: `bunx` behaves like `npx` (run local or fetch and run in one command).
+
+When you see `npx` in documentation, use the equivalent for your manager: `pnpm exec` or `pnpm dlx`, `yarn dlx` (one-off) or `yarn run`, or `bunx` as appropriate.
+
+== GitHub Pages Configuration
+
+Regardless of strategy, deployment is the same:
+
+1.  **Build**: Antora generates a static site (default: `build/site` or `public/`).
+2.  **Upload**: Upload this folder to the `gh-pages` branch.
+3.  **Configure**: Set GitHub Pages to deploy from `gh-pages` / `root`.
+
+=== If the domain resolves but GitHub says "no site exists"
+
+*   **Publishing source:** When the workflow pushes to `gh-pages` (e.g. with `peaceiris/actions-gh-pages`), the repo must use **Deploy from a branch**, not "GitHub Actions". In the repo **Settings → Pages**, set Source to **Deploy from a branch**, Branch to `gh-pages`, folder `/` (root).
+*   **Custom domain:** In **Settings → Pages**, under "Custom domain", enter the full domain (e.g. `docs.devcentr.org`) and save. GitHub does not read the custom domain from a `CNAME` file alone; you must set it in the UI (or API).
+*   **CNAME in output:** For branch-based deployment, put a `CNAME` file at the *root* of the built site so the `gh-pages` branch contains it. In Antora, add the file to your supplemental UI and list it in `supplemental-ui/ui.yml` under `static_files` so it is published to the site root.
+
+== Auto-rebuild when an extension (UI bundle) updates
+
+Sites that depend on a shared Antora extension (e.g. a UI bundle or playbook extension) should rebuild when that extension is updated. Use GitHub's `repository_dispatch` event so the **extension repo** can notify all **subscriber** sites to run their deploy workflow.
+
+=== 1. Subscriber site (each Antora docs repo)
+
+Add `repository_dispatch` to the deploy workflow so it runs on push to `main` *and* when the extension repo sends a dispatch:
+
+[source,yaml]
+----
+# In .github/workflows/deploy.yml (or docs.yml)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [extension-updated]   # or ui-bundle-updated, docs-updated, etc.
+----
+
+No other changes are needed; the rest of the job (checkout, Antora build, deploy) stays the same. Use a distinct `types` value if you have multiple extension sources (e.g. `ui-bundle-updated` for the theme, `playbook-extension-updated` for a shared playbook).
+
+=== 2. Extension repo (UI bundle or playbook extension)
+
+On push or release, trigger each subscriber's workflow by sending a `repository_dispatch` event. Use a Personal Access Token (PAT) that has access to trigger workflows in the subscriber repos.
+
+**Option A — peter-evans/repository-dispatch (one subscriber per step):**
+
+[source,yaml]
+----
+# In the extension repo, e.g. .github/workflows/notify-subscribers.yml
+name: Notify subscriber sites
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger dev-centr/docs
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.SUBSCRIBER_DISPATCH_TOKEN }}
+          repository: dev-centr/docs
+          event-type: extension-updated
+          client-payload: '{"source": "${{ github.repository }}", "ref": "${{ github.ref }}"}'
+      - name: Trigger other-subscriber/other-docs
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.SUBSCRIBER_DISPATCH_TOKEN }}
+          repository: other-subscriber/other-docs
+          event-type: extension-updated
+----
+
+**Option B — API call (many subscribers via matrix):**
+
+[source,yaml]
+----
+  notify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [dev-centr/docs, dev-centr/devcentr]
+    steps:
+      - name: Trigger ${{ matrix.repo }}
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.SUBSCRIBER_DISPATCH_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ matrix.repo }}/dispatches \
+            -d '{"event_type":"extension-updated","client_payload":{"source":"${{ github.repository }}","ref":"${{ github.ref }}"}}'
+----
+
+=== 3. Token (PAT) setup
+
+The extension repo needs a secret (e.g. `SUBSCRIBER_DISPATCH_TOKEN`) that can create `repository_dispatch` events in each subscriber repo:
+
+*   **Classic PAT**: `repo` scope (or minimal scope that allows "Actions: trigger workflow" where applicable).
+*   **Fine-grained PAT**: Repository access set to each subscriber repo, with permission to trigger workflow runs (e.g. "Actions: Read and write" or the minimal option that allows repository dispatch).
+
+The PAT must be issued by (or have access as) a user or app that has write (or "trigger workflow") access to every subscriber repository. For organization-owned subscriber repos, use an org-level secret or a PAT from a user who has write access to those repos.
+
+=== Summary
+
+*   **Subscriber**: Add `repository_dispatch` with a chosen `event-type` to the existing deploy workflow.
+*   **Extension**: On push/release, call the repository dispatch API (or use `peter-evans/repository-dispatch`) for each subscriber repo.
+*   **Secret**: Store one PAT in the extension repo that can trigger workflows in all subscriber repos.

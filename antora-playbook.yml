@@ -21,6 +21,9 @@ content:
     - url: https://github.com/antora-supplemental/dprint-plugin-asciidoc.git
       branches: [main, master]
       start_path: docs
+    - url: https://github.com/antora-supplemental/asciidoc-interactive.git
+      branches: [main, master]
+      start_path: docs
     - url: .
       branches: HEAD
       start_path: docs
@@ -36,3 +39,5 @@ asciidoc:
   attributes:
     source-highlighter: highlight.js
     icons: font
+  extensions:
+    - ./node_modules/@antora-supplemental/instruction-flow/lib/instruction-flow-extension.js

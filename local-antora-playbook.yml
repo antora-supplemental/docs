@@ -23,6 +23,10 @@ content:
       branches: HEAD
       start_path: docs
       worktrees: true
+    - url: ../asciidoc-interactive
+      branches: HEAD
+      start_path: docs
+      worktrees: true
     - url: .
       branches: HEAD
       start_path: docs

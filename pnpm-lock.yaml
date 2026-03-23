@@ -7,12 +7,20 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@antora-supplemental/instruction-flow':
+        specifier: file:../asciidoc-interactive
+        version: file:../asciidoc-interactive
     devDependencies:
       antora:
         specifier: ^3.1.14
         version: 3.1.14
 
 packages:
+
+  '@antora-supplemental/instruction-flow@file:../asciidoc-interactive':
+    resolution: {directory: ../asciidoc-interactive, type: directory}
+    engines: {node: '>=18'}
 
   '@antora/asciidoc-loader@3.1.14':
     resolution: {integrity: sha512-4xxisnoBFrlLNY6f3xZtyyfgm+tBLsqesTcEStfc8jtXUMYJ4b2DWIzo1vULmxvZ7yY5+Q7YqEvS5o6kIWAG0A==}
@@ -639,6 +647,10 @@ packages:
     resolution: {integrity: sha512-phENi2PLiHnHb6QBVot+dJnaAZ0xosj7p3fWl+znIjBDlnMI2PsZCJZ306BPTFOaHf5qdDEI8x5qFrSOBN5vrw==}
 
 snapshots:
+
+  '@antora-supplemental/instruction-flow@file:../asciidoc-interactive':
+    dependencies:
+      json5: 2.2.3
 
   '@antora/asciidoc-loader@3.1.14':
     dependencies:

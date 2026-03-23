@@ -6,7 +6,9 @@ This site aggregates documentation for projects in the antora-supplemental organ
 == Components
 
 * xref:antora-dark-theme:guide:index.adoc[Antora Dark Theme] — Dark UI theme for Antora
+* xref:antora-deployment.adoc[Antora Deployment] — Root vs. subfolder strategy, CI, GitHub Pages, multi-repo playbooks
 * xref:samples:ROOT:index.adoc[Antora Samples Template]
 * xref:registry:ROOT:index.adoc[Antora Extensions Registry]
 * xref:antora-themes-site:user:index.adoc[Antora Themes Gallery]
 * xref:dprint-asciidoc:ROOT:index.adoc[dprint-plugin-asciidoc]
+* xref:instruction-flow:ROOT:index.adoc[Instruction flow] — Interactive instruction flows (JSON5, `instructionflow` block)
