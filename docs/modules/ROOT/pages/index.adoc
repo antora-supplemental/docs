@@ -2,10 +2,11 @@
 :navtitle: Portal
 
 This site aggregates documentation for projects in the antora-supplemental organization.
+A green-themed shell distinguishes this hub from per-project manuals published on GitHub Pages; see xref:antora-dark-theme.adoc[Antora Dark Theme] for the canonical theme docs (install, demo) at link:https://antora-supplemental.github.io/antora-dark-theme/[antora-supplemental.github.io/antora-dark-theme^].
 
 == Components
 
-* xref:antora-dark-theme:guide:index.adoc[Antora Dark Theme] — Dark UI theme for Antora
+* xref:antora-dark-theme.adoc[Antora Dark Theme] — Links to the canonical theme docs (install, demo, troubleshooting); not duplicated here
 * xref:antora-deployment.adoc[Antora Deployment] — Root vs. subfolder strategy, CI, GitHub Pages, multi-repo playbooks
 * xref:samples:ROOT:index.adoc[Antora Samples Template]
 * xref:registry:ROOT:index.adoc[Antora Extensions Registry]

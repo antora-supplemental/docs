@@ -1,0 +1,134 @@
+/*
+ * Antora Supplemental org portal — green brand layer (light + dark).
+ * Loads after site-extra.css; scoped with html.org-portal.
+ */
+
+/* --- Light (regular green) --- */
+html.org-portal:not(.dark-theme) body {
+  background-color: #f4fbf6;
+  color: #1a2e1f;
+}
+
+html.org-portal:not(.dark-theme) a {
+  color: #1b5e20;
+}
+
+html.org-portal:not(.dark-theme) a:hover,
+html.org-portal:not(.dark-theme) a:focus {
+  color: #2e7d32;
+}
+
+html.org-portal:not(.dark-theme) .navbar {
+  background: linear-gradient(180deg, #e8f5e9 0%, #dcedc8 100%);
+  border-bottom: 1px solid #a5d6a7;
+  box-shadow: 0 1px 0 rgba(27, 94, 32, 0.08);
+}
+
+html.org-portal:not(.dark-theme) .navbar a,
+html.org-portal:not(.dark-theme) .navbar .navbar-item,
+html.org-portal:not(.dark-theme) .navbar .navbar-link {
+  color: #1b4332;
+}
+
+html.org-portal:not(.dark-theme) .navbar .navbar-item:hover,
+html.org-portal:not(.dark-theme) .navbar .navbar-link:hover {
+  background-color: rgba(46, 125, 50, 0.12);
+}
+
+html.org-portal:not(.dark-theme) .navbar .navbar-menu {
+  background-color: #e8f5e9;
+  border-color: #a5d6a7;
+}
+
+html.org-portal:not(.dark-theme) .navbar .navbar-dropdown {
+  background-color: #f1f8e9;
+  border-color: #c5e1a5;
+}
+
+html.org-portal:not(.dark-theme) .nav,
+html.org-portal:not(.dark-theme) .nav-panel-menu,
+html.org-portal:not(.dark-theme) .nav-panel-explore,
+html.org-portal:not(.dark-theme) .toolbar {
+  background-color: #eef7f0;
+  border-color: #c8e6c9;
+}
+
+html.org-portal:not(.dark-theme) .toc.sidebar {
+  border-color: #c8e6c9;
+}
+
+html.org-portal:not(.dark-theme) .toc .toc-link.is-active {
+  color: #1b5e20;
+}
+
+/* --- Dark (dark green) --- */
+html.org-portal.dark-theme body {
+  background-color: #0d1a12;
+  color: #c8e6c9;
+}
+
+html.org-portal.dark-theme a {
+  color: #81c784;
+}
+
+html.org-portal.dark-theme a:hover,
+html.org-portal.dark-theme a:focus {
+  color: #a5d6a7;
+}
+
+html.org-portal.dark-theme .navbar {
+  background: linear-gradient(180deg, #142a1c 0%, #0f2118 100%);
+  border-bottom: 1px solid #2e7d32;
+  box-shadow: 0 1px 0 rgba(129, 199, 132, 0.12);
+}
+
+html.org-portal.dark-theme .navbar a,
+html.org-portal.dark-theme .navbar .navbar-item,
+html.org-portal.dark-theme .navbar .navbar-link {
+  color: #e8f5e9;
+}
+
+html.org-portal.dark-theme .navbar .navbar-item:hover,
+html.org-portal.dark-theme .navbar .navbar-link:hover {
+  background-color: rgba(46, 125, 50, 0.25);
+}
+
+html.org-portal.dark-theme .navbar .navbar-menu {
+  background-color: #142a1c;
+  border-color: #2e7d32;
+}
+
+html.org-portal.dark-theme .navbar .navbar-dropdown {
+  background-color: #1b3324;
+  border-color: #388e3c;
+}
+
+html.org-portal.dark-theme .nav,
+html.org-portal.dark-theme .nav-panel-menu,
+html.org-portal.dark-theme .nav-panel-explore,
+html.org-portal.dark-theme .toolbar {
+  background-color: #152620;
+  border-color: #2e7d32;
+  color: #c8e6c9;
+}
+
+html.org-portal.dark-theme .toc.sidebar {
+  border-color: #2e7d32;
+  color: #c8e6c9;
+}
+
+html.org-portal.dark-theme .toc .toc-link.is-active {
+  color: #a5d6a7;
+}
+
+html.org-portal.dark-theme .navbar .button,
+html.org-portal.dark-theme .navbar .button.is-primary {
+  background-color: #1b3324;
+  border-color: #388e3c;
+  color: #e8f5e9;
+}
+
+html.org-portal.dark-theme .navbar .button:hover,
+html.org-portal.dark-theme .navbar .button.is-primary:hover {
+  background-color: #234d32;
+}

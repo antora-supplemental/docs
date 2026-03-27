@@ -1,3 +1,4 @@
 * xref:index.adoc[Portal]
+* xref:antora-dark-theme.adoc[Antora Dark Theme]
 * xref:antora-deployment.adoc[Antora Deployment]
 * xref:antora-github-actions.adoc[Antora on GitHub]

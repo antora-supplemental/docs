@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="{{{uiRootPath}}}/css/site-extra.css">
+<link rel="stylesheet" href="{{{uiRootPath}}}/css/site-org-brand.css">
+{{#if page.origin.webUrl}}
+<meta name="antora-repo-url" content="{{page.origin.webUrl}}">
+{{/if}}
+<script>
+(function () {
+  document.documentElement.classList.add('org-portal');
+  const themeKey = 'antora-theme';
+  const savedTheme = localStorage.getItem(themeKey);
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark-theme');
+  }
+})();
+</script>

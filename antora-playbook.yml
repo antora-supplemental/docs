@@ -6,9 +6,6 @@ site:
   start_page: docs:ROOT:index.adoc
 content:
   sources:
-    - url: https://github.com/antora-supplemental/antora-dark-theme.git
-      branches: [main, master]
-      start_path: docs
     - url: https://github.com/antora-supplemental/antora-demo-template.git
       branches: [main, master]
       start_path: docs
@@ -32,6 +29,7 @@ ui:
   bundle:
     url: https://github.com/antora-supplemental/antora-dark-theme/releases/latest/download/ui-bundle.zip
     snapshot: true
+  supplemental_files: ./supplemental-ui
 output:
   dir: ./build/site
 

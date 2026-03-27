@@ -1,0 +1,26 @@
+= Antora Dark Theme
+:navtitle: Antora Dark Theme
+
+Dark mode and supplemental UI for Antora’s default UI bundle: non-invasive overlay, optional npm package, VCS repo logo, and more.
+
+[NOTE]
+====
+Full install steps, configuration, and the live demo are documented on link:https://antora-supplemental.github.io/antora-dark-theme/[GitHub Pages (canonical)^].
+This org hub uses a green-themed shell so it stays visually distinct from that product site.
+====
+
+== Canonical documentation
+
+Installation, playbook snippets, troubleshooting, and the **interactive demo** live on GitHub Pages (built from the `antora-dark-theme` repository):
+
+* https://antora-supplemental.github.io/antora-dark-theme/[Antora Dark Theme docs (canonical)^]
+
+Source repository:
+
+* https://github.com/antora-supplemental/antora-dark-theme[antora-supplemental/antora-dark-theme^]
+
+== This site vs. the theme docs
+
+The https://github.com/antora-supplemental/docs[antora-supplemental/docs] hub aggregates *multiple* organization projects.
+It intentionally does **not** embed the theme’s AsciiDoc guide, to avoid publishing the same manual under two URLs.
+Use the link above for the full theme manual; use this portal for cross-project topics (deployment, GitHub Actions, and links to other components).
