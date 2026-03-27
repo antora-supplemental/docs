@@ -3,7 +3,7 @@
 
 site:
   title: Antora Supplemental
-  start_page: antora-dark-theme:guide:index.adoc
+  start_page: docs:ROOT:index.adoc
 content:
   sources:
     - url: https://github.com/antora-supplemental/antora-dark-theme.git
