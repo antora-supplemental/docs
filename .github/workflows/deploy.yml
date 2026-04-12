@@ -43,7 +43,13 @@ jobs:
         run: pnpm install
 
       - name: Build Antora site
-        run: pnpm build
+        id: antora
+        uses: antora-supplemental/antora-build-action@v1
+        with:
+          playbook: antora-playbook.yml
+          output_dir: build/site
+          skip_install: true
+          fetch: true
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -51,7 +57,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './build/site'
+          path: ${{ steps.antora.outputs.site-path }}
 
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
