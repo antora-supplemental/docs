@@ -44,11 +44,13 @@ jobs:
 
       - name: Build Antora site
         id: antora
-        uses: antora-supplemental/antora-build-action@v1
+        uses: antora-supplemental/antora-build-action@v2
         with:
           playbook: antora-playbook.yml
           output_dir: build/site
-          skip_install: true
+          install_dependencies: false
+          setup_pnpm: false
+          setup_node: false
           fetch: true
 
       - name: Setup Pages
