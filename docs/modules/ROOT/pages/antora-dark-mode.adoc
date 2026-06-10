@@ -1,0 +1,28 @@
+= Antora Dark Mode
+:navtitle: Antora Dark Mode
+
+Dark mode supplemental UI for Antora's default UI bundle: theme toggle, FOUC prevention, and CSS overrides.
+
+For composed doc-site chrome (mast, header, layout), see link:https://github.com/antora-supplemental/valentus-theme[valentus-theme].
+
+[NOTE]
+====
+Full install steps, configuration, and the live demo are documented on link:https://antora-supplemental.github.io/antora-dark-mode/[GitHub Pages (canonical)^].
+This org hub uses a green-themed shell so it stays visually distinct from that product site.
+====
+
+== Canonical documentation
+
+Installation, playbook snippets, troubleshooting, and the **interactive demo** live on GitHub Pages (built from the `antora-dark-mode` repository):
+
+* https://antora-supplemental.github.io/antora-dark-mode/[Antora Dark Mode docs (canonical)^]
+
+Source repository:
+
+* https://github.com/antora-supplemental/antora-dark-mode[antora-supplemental/antora-dark-mode^]
+
+== This site vs. the extension docs
+
+The https://github.com/antora-supplemental/docs[antora-supplemental/docs] hub aggregates *multiple* organization projects.
+It intentionally does **not** embed the extension's AsciiDoc guide, to avoid publishing the same manual under two URLs.
+Use the link above for the full manual; use this portal for cross-project topics (deployment, GitHub Actions, and links to other components).

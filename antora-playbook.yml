@@ -12,7 +12,6 @@ content:
     - url: https://github.com/antora-supplemental/antora-extensions-registry.git
       branches: [main, master]
       start_path: docs
-    - url: https://github.com/antora-supplemental/antora-themes-site.git
       branches: [main, master]
       start_path: docs
     - url: https://github.com/antora-supplemental/dprint-plugin-asciidoc.git
@@ -27,7 +26,7 @@ content:
       worktrees: true
 ui:
   bundle:
-    url: https://github.com/antora-supplemental/antora-dark-theme/releases/latest/download/ui-bundle.zip
+    url: https://github.com/antora-supplemental/antora-dark-mode/releases/download/v1.2.0/ui-bundle.zip
     snapshot: true
   supplemental_files: ./supplemental-ui
 output:
