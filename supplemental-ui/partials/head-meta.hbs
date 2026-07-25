@@ -1,15 +1,51 @@
 <link rel="stylesheet" href="{{{uiRootPath}}}/css/site-extra.css">
+<meta name="dm-navbar" content="{{or site.keys.darkModeNavbar 'light'}}">
+<script>
+(function () {
+  document.documentElement.classList.add('org-portal')
+  const dmNavbar = document.querySelector('meta[name="dm-navbar"]')
+  if (dmNavbar && dmNavbar.content) {
+    document.documentElement.dataset.dmNavbar = dmNavbar.content
+  }
+  const MODE = 'antora-theme-mode'
+  const LEGACY = 'antora-theme'
+  function mode() {
+    const m = localStorage.getItem(MODE)
+    if (m === 'system' || m === 'dark' || m === 'light') return m
+    const o = localStorage.getItem(LEGACY)
+    if (o === 'dark' || o === 'light') return o
+    return 'system'
+  }
+  function isDark() {
+    const m = mode()
+    if (m === 'dark') return true
+    if (m === 'light') return false
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+  if (isDark()) document.documentElement.classList.add('dark-theme')
+})()
+</script>
+{{!-- read-width FOUC (same as Valentus 2.x / ui-modules read-width) --}}
+<script>
+(function () {
+  try {
+    var w = localStorage.getItem('adt-read-width')
+    document.documentElement.setAttribute(
+      'data-adt-read-width',
+      w === 'narrow' || w === 'comfortable' || w === 'wide' ? w : 'comfortable'
+    )
+  } catch (e) {
+    document.documentElement.setAttribute('data-adt-read-width', 'comfortable')
+  }
+})()
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="{{{uiRootPath}}}/css/site-doc-layout.css">
+<link rel="stylesheet" href="{{{uiRootPath}}}/css/site-visual.css">
+<link rel="stylesheet" href="{{{uiRootPath}}}/css/site-read-width.css">
 <link rel="stylesheet" href="{{{uiRootPath}}}/css/site-org-brand.css">
 {{#if page.origin.webUrl}}
 <meta name="antora-repo-url" content="{{page.origin.webUrl}}">
 {{/if}}
-<script>
-(function () {
-  document.documentElement.classList.add('org-portal');
-  const themeKey = 'antora-theme';
-  const savedTheme = localStorage.getItem(themeKey);
-  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark-theme');
-  }
-})();
-</script>

@@ -4,14 +4,20 @@
 site:
   title: Antora Supplemental
   start_page: docs:ROOT:index.adoc
+  keys:
+    header_logo: logo.svg
+    dark_mode_navbar: light
+    site_home_url: https://antora-supplemental.github.io/
+    site_home_label: antora-supplemental home
+    header_doc_title: Docs
+    github_profile_url: https://github.com/antora-supplemental
+
 content:
   sources:
     - url: https://github.com/antora-supplemental/antora-demo-template.git
       branches: [main, master]
       start_path: docs
     - url: https://github.com/antora-supplemental/antora-extensions-registry.git
-      branches: [main, master]
-      start_path: docs
       branches: [main, master]
       start_path: docs
     - url: https://github.com/antora-supplemental/dprint-plugin-asciidoc.git
@@ -24,11 +30,13 @@ content:
       branches: HEAD
       start_path: docs
       worktrees: true
+
 ui:
   bundle:
-    url: https://github.com/antora-supplemental/antora-dark-mode/releases/download/v1.2.0/ui-bundle.zip
+    url: https://github.com/antora-supplemental/valentus-theme/releases/download/v2.0.0/ui-bundle.zip
     snapshot: true
   supplemental_files: ./supplemental-ui
+
 output:
   dir: ./build/site
 

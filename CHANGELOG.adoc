@@ -1,0 +1,16 @@
+= Changelog
+:toc:
+
+== 2026-07-25 — Valentus 2.0.0
+
+* Pin UI bundle to Valentus `v2.0.0` (`2.0.0+antora.3`) release `ui-bundle.zip` (was broken `antora-dark-mode` pin / duplicate YAML keys on `main`).
+* Refit org brand overlay for Valentus 2.x: token overrides (`--adt-canvas` / `--adt-accent` / …) instead of element scrapes that fight `site-visual.css`.
+* Update `head-meta.hbs` for 2.x contract — read-width FOUC, Plus Jakarta Sans + IBM Plex Mono fonts, load `site-visual.css` + `site-read-width.css`, then `site-org-brand.css`.
+* Expand `local-antora-playbook.yml` to a full playbook (Antora has no YAML `extends`); keep duplicate-key fix from the prior Valentus prep.
+
+== 2026-07-24 — Valentus + org brand
+
+* Switch UI bundle from `antora-dark-mode` to link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] (1.x line).
+* Green brand overlay retargeted at Valentus CSS variables (`site-org-brand.css`); header mark `img/logo.svg`.
+* Preserve Valentus FOUC / dark-mode head script in `supplemental-ui/partials/head-meta.hbs`.
+* Fix duplicate `branches` / `start_path` keys in playbooks.

@@ -1,6 +1,17 @@
 # Local development playbook (sibling repos)
+# Full playbook — Antora does not support YAML `extends`.
 
-extends: ./antora-playbook.yml
+site:
+  title: Antora Supplemental
+  start_page: docs:ROOT:index.adoc
+  keys:
+    header_logo: logo.svg
+    dark_mode_navbar: light
+    site_home_url: https://antora-supplemental.github.io/
+    site_home_label: antora-supplemental home
+    header_doc_title: Docs
+    github_profile_url: https://github.com/antora-supplemental
+
 content:
   sources:
     - url: ../antora-demo-template
@@ -8,9 +19,6 @@ content:
       start_path: docs
       worktrees: true
     - url: ../antora-extensions-registry
-      branches: HEAD
-      start_path: docs
-      worktrees: true
       branches: HEAD
       start_path: docs
       worktrees: true
@@ -26,3 +34,19 @@ content:
       branches: HEAD
       start_path: docs
       worktrees: true
+
+ui:
+  bundle:
+    url: https://github.com/antora-supplemental/valentus-theme/releases/download/v2.0.0/ui-bundle.zip
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+
+output:
+  dir: ./build/site
+
+asciidoc:
+  attributes:
+    source-highlighter: highlight.js
+    icons: font
+  extensions:
+    - ./node_modules/@antora-supplemental/instruction-flow/lib/instruction-flow-extension.js

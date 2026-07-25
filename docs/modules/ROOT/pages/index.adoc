@@ -2,7 +2,8 @@
 :navtitle: Portal
 
 This site aggregates documentation for projects in the antora-supplemental organization.
-A green-themed shell distinguishes this hub from per-project manuals published on GitHub Pages; see xref:antora-dark-mode.adoc[Antora Dark Mode] for the canonical extension docs (install, demo) at link:https://antora-supplemental.github.io/antora-dark-mode/[antora-supplemental.github.io/antora-dark-mode^].
+It uses the link:https://github.com/antora-supplemental/valentus-theme[Valentus] `v2.0.0` UI bundle with a green org brand overlay so the hub matches https://antora-supplemental.github.io/[antora-supplemental.github.io^].
+See xref:antora-dark-mode.adoc[Antora Dark Mode] for the canonical extension docs (install, demo) at link:https://antora-supplemental.github.io/antora-dark-mode/[antora-supplemental.github.io/antora-dark-mode^].
 
 == Components
 

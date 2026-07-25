@@ -1,134 +1,101 @@
 /*
- * Antora Supplemental org portal — green brand layer (light + dark).
- * Loads after site-extra.css; scoped with html.org-portal.
+ * Antora Supplemental — green brand layer on Valentus 2.x chrome.
+ * Loads after site-visual.css / site-read-width.css.
+ * Prefer token overrides so site-visual !important rules pick up org colors.
  */
 
-/* --- Light (regular green) --- */
-html.org-portal:not(.dark-theme) body {
-  background-color: #f4fbf6;
-  color: #1a2e1f;
+:root {
+  /* Org palette (welcome-site parity) */
+  --as-ink: #14261a;
+  --as-ink-muted: #3d5a45;
+  --as-paper: #f3faf5;
+  --as-paper-deep: #e4f2e8;
+  --as-elevated: #ffffff;
+  --as-leaf: #1b5e20;
+  --as-leaf-bright: #2e7d32;
+  --as-leaf-soft: #a5d6a7;
+  --as-moss: #0d1a12;
+  --as-border: #c8e6c9;
+  --as-accent-soft: rgba(27, 94, 32, 0.1);
+
+  /* Valentus 2.x visual tokens */
+  --adt-canvas: var(--as-paper);
+  --adt-elevated: var(--as-elevated);
+  --adt-ink: var(--as-ink);
+  --adt-ink-muted: var(--as-ink-muted);
+  --adt-accent: var(--as-leaf);
+  --adt-accent-hover: var(--as-leaf-bright);
+  --adt-accent-soft: var(--as-accent-soft);
+  --adt-border: var(--as-border);
+  --adt-chrome: var(--as-paper-deep);
+  --adt-chrome-border: var(--as-border);
+  --adt-nav-bg: transparent;
+  --adt-shadow-float: 0 0.35rem 1rem rgba(13, 26, 18, 0.1);
+  --adt-shadow-sticky: 0 4px 16px rgba(13, 26, 18, 0.07);
+
+  /* Bridged layout / header tokens */
+  --adt-bc-kicker-fg: var(--adt-accent);
+  --adt-bc-kicker-bg: var(--adt-accent-soft);
+  --adt-bc-kicker-border: color-mix(in srgb, var(--adt-accent) 28%, transparent);
+  --adt-header-bar-bg: var(--adt-chrome);
+  --adt-header-bar-fg: var(--adt-ink);
+  --adt-header-bar-border: var(--adt-chrome-border);
+  --adt-header-bar-hover: var(--adt-accent-soft);
 }
 
-html.org-portal:not(.dark-theme) a {
-  color: #1b5e20;
+html.dark-theme {
+  --as-ink: #d8ecd9;
+  --as-ink-muted: #9bb89d;
+  --as-paper: #0d1a12;
+  --as-paper-deep: #152620;
+  --as-elevated: #142a1c;
+  --as-leaf: #81c784;
+  --as-leaf-bright: #a5d6a7;
+  --as-leaf-soft: #2e7d32;
+  --as-moss: #e8f5e9;
+  --as-border: rgba(46, 125, 50, 0.45);
+  --as-accent-soft: rgba(129, 199, 132, 0.12);
+
+  --adt-canvas: var(--as-paper);
+  --adt-elevated: var(--as-elevated);
+  --adt-ink: var(--as-ink);
+  --adt-ink-muted: var(--as-ink-muted);
+  --adt-accent: var(--as-leaf);
+  --adt-accent-hover: var(--as-leaf-bright);
+  --adt-accent-soft: var(--as-accent-soft);
+  --adt-border: var(--as-border);
+  --adt-chrome: var(--as-paper-deep);
+  --adt-chrome-border: var(--as-border);
+  --adt-nav-bg: transparent;
+  --adt-shadow-float: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.45);
+  --adt-shadow-sticky: 0 6px 18px rgba(0, 0, 0, 0.35);
+  --adt-header-vcs-icon-filter: none;
+
+  --adt-bc-kicker-fg: var(--adt-accent);
+  --adt-bc-kicker-bg: var(--adt-accent-soft);
+  --adt-bc-kicker-border: color-mix(in srgb, var(--adt-accent) 35%, transparent);
+  --adt-header-bar-bg: var(--adt-chrome);
+  --adt-header-bar-fg: var(--adt-ink);
+  --adt-header-bar-border: var(--adt-chrome-border);
+  --adt-header-bar-hover: var(--adt-accent-soft);
 }
 
-html.org-portal:not(.dark-theme) a:hover,
-html.org-portal:not(.dark-theme) a:focus {
-  color: #2e7d32;
+/* Display headings lean moss on light; keep ink for dark via tokens. */
+html:not(.dark-theme) .doc h1,
+html:not(.dark-theme) .doc h1.page,
+html:not(.dark-theme) .doc .adt-page-title,
+html:not(.dark-theme) .doc h2 {
+  color: var(--as-moss) !important;
 }
 
-html.org-portal:not(.dark-theme) .navbar {
-  background: linear-gradient(180deg, #e8f5e9 0%, #dcedc8 100%);
-  border-bottom: 1px solid #a5d6a7;
-  box-shadow: 0 1px 0 rgba(27, 94, 32, 0.08);
-}
-
-html.org-portal:not(.dark-theme) .navbar a,
-html.org-portal:not(.dark-theme) .navbar .navbar-item,
-html.org-portal:not(.dark-theme) .navbar .navbar-link {
-  color: #1b4332;
-}
-
-html.org-portal:not(.dark-theme) .navbar .navbar-item:hover,
-html.org-portal:not(.dark-theme) .navbar .navbar-link:hover {
-  background-color: rgba(46, 125, 50, 0.12);
-}
-
-html.org-portal:not(.dark-theme) .navbar .navbar-menu {
-  background-color: #e8f5e9;
-  border-color: #a5d6a7;
-}
-
-html.org-portal:not(.dark-theme) .navbar .navbar-dropdown {
-  background-color: #f1f8e9;
-  border-color: #c5e1a5;
-}
-
-html.org-portal:not(.dark-theme) .nav,
-html.org-portal:not(.dark-theme) .nav-panel-menu,
-html.org-portal:not(.dark-theme) .nav-panel-explore,
-html.org-portal:not(.dark-theme) .toolbar {
-  background-color: #eef7f0;
-  border-color: #c8e6c9;
-}
-
-html.org-portal:not(.dark-theme) .toc.sidebar {
-  border-color: #c8e6c9;
-}
-
-html.org-portal:not(.dark-theme) .toc .toc-link.is-active {
-  color: #1b5e20;
-}
-
-/* --- Dark (dark green) --- */
-html.org-portal.dark-theme body {
-  background-color: #0d1a12;
-  color: #c8e6c9;
-}
-
-html.org-portal.dark-theme a {
-  color: #81c784;
-}
-
-html.org-portal.dark-theme a:hover,
-html.org-portal.dark-theme a:focus {
-  color: #a5d6a7;
-}
-
-html.org-portal.dark-theme .navbar {
-  background: linear-gradient(180deg, #142a1c 0%, #0f2118 100%);
-  border-bottom: 1px solid #2e7d32;
-  box-shadow: 0 1px 0 rgba(129, 199, 132, 0.12);
-}
-
-html.org-portal.dark-theme .navbar a,
-html.org-portal.dark-theme .navbar .navbar-item,
-html.org-portal.dark-theme .navbar .navbar-link {
-  color: #e8f5e9;
-}
-
-html.org-portal.dark-theme .navbar .navbar-item:hover,
-html.org-portal.dark-theme .navbar .navbar-link:hover {
-  background-color: rgba(46, 125, 50, 0.25);
-}
-
-html.org-portal.dark-theme .navbar .navbar-menu {
-  background-color: #142a1c;
-  border-color: #2e7d32;
-}
-
-html.org-portal.dark-theme .navbar .navbar-dropdown {
-  background-color: #1b3324;
-  border-color: #388e3c;
-}
-
-html.org-portal.dark-theme .nav,
-html.org-portal.dark-theme .nav-panel-menu,
-html.org-portal.dark-theme .nav-panel-explore,
-html.org-portal.dark-theme .toolbar {
-  background-color: #152620;
-  border-color: #2e7d32;
-  color: #c8e6c9;
-}
-
-html.org-portal.dark-theme .toc.sidebar {
-  border-color: #2e7d32;
-  color: #c8e6c9;
-}
-
-html.org-portal.dark-theme .toc .toc-link.is-active {
-  color: #a5d6a7;
-}
-
-html.org-portal.dark-theme .navbar .button,
-html.org-portal.dark-theme .navbar .button.is-primary {
+html.dark-theme .navbar .button,
+html.dark-theme .navbar .button.is-primary {
   background-color: #1b3324;
   border-color: #388e3c;
   color: #e8f5e9;
 }
 
-html.org-portal.dark-theme .navbar .button:hover,
-html.org-portal.dark-theme .navbar .button.is-primary:hover {
+html.dark-theme .navbar .button:hover,
+html.dark-theme .navbar .button.is-primary:hover {
   background-color: #234d32;
 }
