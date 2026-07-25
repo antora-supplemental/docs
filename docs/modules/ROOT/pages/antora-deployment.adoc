@@ -195,93 +195,77 @@ Regardless of strategy, deployment is the same:
 *   **Custom domain:** In **Settings → Pages**, under "Custom domain", enter the full domain (e.g. `docs.devcentr.org`) and save. GitHub does not read the custom domain from a `CNAME` file alone; you must set it in the UI (or API).
 *   **CNAME in output:** For branch-based deployment, put a `CNAME` file at the *root* of the built site so the `gh-pages` branch contains it. In Antora, add the file to your supplemental UI and list it in `supplemental-ui/ui.yml` under `static_files` so it is published to the site root.
 
-== Auto-rebuild when an extension (UI bundle) updates
+== Auto-rebuild when content sources or extensions update
 
-Sites that depend on a shared Antora extension (e.g. a UI bundle or playbook extension) should rebuild when that extension is updated. Use GitHub's `repository_dispatch` event so the **extension repo** can notify all **subscriber** sites to run their deploy workflow.
+Aggregated Antora sites should rebuild when a **content source** or **shared extension/UI** changes — without polling.
+Use GitHub `repository_dispatch` on the **site** repo, fired with the `gh` CLI (agent-friendly) or a tiny optional workflow in the source repo.
 
-=== 1. Subscriber site (each Antora docs repo)
+This hub listens for:
 
-Add `repository_dispatch` to the deploy workflow so it runs on push to `main` *and* when the extension repo sends a dispatch:
+* `docs-source-updated` — a playbook content source pushed new docs
+* `extension-updated` — UI bundle / extension / theme change
+
+=== 1. Subscriber site (the Antora playbook repo)
+
+Add `repository_dispatch` to the deploy workflow:
 
 [source,yaml]
 ----
-# In .github/workflows/deploy.yml (or docs.yml)
+# In .github/workflows/deploy.yml
 on:
   push:
     branches: [main]
   workflow_dispatch:
   repository_dispatch:
-    types: [extension-updated]   # or ui-bundle-updated, docs-updated, etc.
+    types: [docs-source-updated, extension-updated]
 ----
 
-No other changes are needed; the rest of the job (checkout, Antora build, deploy) stays the same. Use a distinct `types` value if you have multiple extension sources (e.g. `ui-bundle-updated` for the theme, `playbook-extension-updated` for a shared playbook).
+Deploy jobs must allow `repository_dispatch` (not only `push` to `main`).
+No polling; the site workflow runs when something pokes it.
 
-=== 2. Extension repo (UI bundle or playbook extension)
+=== 2. Fire a rebuild with `gh` (preferred)
 
-On push or release, trigger each subscriber's workflow by sending a `repository_dispatch` event. Use a Personal Access Token (PAT) that has access to trigger workflows in the subscriber repos.
+From any machine where `gh` is authenticated to the org (human or agent), after pushing content:
 
-**Option A — peter-evans/repository-dispatch (one subscriber per step):**
-
-[source,yaml]
+[source,shell]
 ----
-# In the extension repo, e.g. .github/workflows/notify-subscribers.yml
-name: Notify subscriber sites
-
-on:
-  push:
-    branches: [main]
-  release:
-    types: [published]
-
-jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger dev-centr/docs
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ secrets.SUBSCRIBER_DISPATCH_TOKEN }}
-          repository: dev-centr/docs
-          event-type: extension-updated
-          client-payload: '{"source": "${{ github.repository }}", "ref": "${{ github.ref }}"}'
-      - name: Trigger other-subscriber/other-docs
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ secrets.SUBSCRIBER_DISPATCH_TOKEN }}
-          repository: other-subscriber/other-docs
-          event-type: extension-updated
+gh api repos/antora-supplemental/docs/dispatches \
+  -f event_type=docs-source-updated \
+  -f client_payload[source]=antora-supplemental/dprint-plugin-asciidoc \
+  -f client_payload[ref]=refs/heads/main \
+  -f client_payload[sha]=$(git rev-parse HEAD)
 ----
 
-**Option B — API call (many subscribers via matrix):**
+For a theme/extension release:
 
-[source,yaml]
+[source,shell]
 ----
-  notify:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        repo: [dev-centr/docs, dev-centr/devcentr]
-    steps:
-      - name: Trigger ${{ matrix.repo }}
-        run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.SUBSCRIBER_DISPATCH_TOKEN }}" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${{ matrix.repo }}/dispatches \
-            -d '{"event_type":"extension-updated","client_payload":{"source":"${{ github.repository }}","ref":"${{ github.ref }}"}}'
+gh api repos/antora-supplemental/docs/dispatches \
+  -f event_type=extension-updated \
+  -f client_payload[source]=antora-supplemental/valentus-theme \
+  -f client_payload[ref]=${{ github.ref }}
 ----
 
-=== 3. Token (PAT) setup
+`gh` uses your existing auth; no extra webhook receiver, no subscriber-ID registry.
+Permissions: the token needs permission to trigger workflows on the **subscriber** repo (typically `actions: write` on that repo, or a classic PAT with `repo`).
 
-The extension repo needs a secret (e.g. `SUBSCRIBER_DISPATCH_TOKEN`) that can create `repository_dispatch` events in each subscriber repo:
+=== 3. Optional: auto-notify on push (minimal workflow)
 
-*   **Classic PAT**: `repo` scope (or minimal scope that allows "Actions: trigger workflow" where applicable).
-*   **Fine-grained PAT**: Repository access set to each subscriber repo, with permission to trigger workflow runs (e.g. "Actions: Read and write" or the minimal option that allows repository dispatch).
+If you want push → site rebuild without a manual `gh` step, copy the template from
+https://github.com/antora-supplemental/antora-workflow-templates[antora-workflow-templates]
+(`.github/workflows/notify-docs-hub.yml`) into the **content source** repo.
+It is one job: call `repository_dispatch` on the hub.
+Store org/repo secret `DOCS_DISPATCH_TOKEN` (fine-grained PAT or GitHub App) that can dispatch into `antora-supplemental/docs`.
 
-The PAT must be issued by (or have access as) a user or app that has write (or "trigger workflow") access to every subscriber repository. For organization-owned subscriber repos, use an org-level secret or a PAT from a user who has write access to those repos.
+=== 4. Event types
+
+| Event type | When to send |
+|---|---|
+| `docs-source-updated` | Content repo docs paths changed |
+| `extension-updated` | Theme, UI bundle, or playbook extension changed |
 
 === Summary
 
-*   **Subscriber**: Add `repository_dispatch` with a chosen `event-type` to the existing deploy workflow.
-*   **Extension**: On push/release, call the repository dispatch API (or use `peter-evans/repository-dispatch`) for each subscriber repo.
-*   **Secret**: Store one PAT in the extension repo that can trigger workflows in all subscriber repos.
+*   **Subscriber**: Listen for `repository_dispatch` types; full Antora generate on each poke (v1 — correct, not incremental).
+*   **Notify**: Prefer `gh api .../dispatches` (fast, agent-friendly). Optional one-step workflow in sources for hands-free push notify.
+*   **Not required**: Custom webhook HTTP endpoints, subscriber UUID registries, or polling remotes.

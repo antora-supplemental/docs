@@ -40,6 +40,10 @@ ui:
 output:
   dir: ./build/site
 
+antora:
+  extensions:
+    - require: "@antora-supplemental/incremental"
+
 asciidoc:
   attributes:
     source-highlighter: highlight.js

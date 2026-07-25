@@ -8,6 +8,9 @@ on:
     branches:
       - main
   workflow_dispatch:
+  # Content sources / extensions poke this via `gh api .../dispatches` (no polling).
+  repository_dispatch:
+    types: [docs-source-updated, extension-updated]
 
 permissions:
   contents: read
@@ -62,7 +65,10 @@ jobs:
           path: ${{ steps.antora.outputs.site-path }}
 
   deploy:
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    # Deploy on main pushes, manual runs, and cross-repo repository_dispatch (not PRs).
+    if: >
+      github.event_name != 'pull_request' &&
+      (github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

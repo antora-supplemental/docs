@@ -1,0 +1,68 @@
+= Site rebuild architecture (v1 / v2)
+:description: How antora-supplemental rebuilds aggregated docs without polling, and the path to incremental converts.
+
+This page is the canonical write-up for PRs and design discussions.
+Keep GitHub PR bodies short — link here.
+
+== Problem
+
+Antora publishes **static HTML**. Includes, xrefs, nav, and aliases are resolved at **generate** time, not in the browser.
+A full site regenerate is always correct; polling remotes is slow and wasteful; true partial rebuild needs a dependency graph.
+
+== v1 — Push notify, full regenerate (shipped pattern)
+
+No polling. Something that changed **pokes** the site repo; the site runs a full `antora generate` and deploys.
+
+[source]
+----
+content source push ──► gh api …/dispatches (docs-source-updated)
+                              │
+                              ▼
+                    docs hub workflow
+                              │
+                              ▼
+                    full Antora generate → Pages
+----
+
+=== Pieces
+
+* **Subscriber (hub):** `antora-supplemental/docs` listens for `repository_dispatch` types `docs-source-updated` and `extension-updated` (see deploy workflow).
+* **Notify (preferred):** `gh api repos/antora-supplemental/docs/dispatches …` — agent-friendly, no extra CI theater.
+* **Notify (optional auto):** copy `notify-docs-hub.yml` from https://github.com/antora-supplemental/antora-workflow-templates[antora-workflow-templates] into a content source; secret `DOCS_DISPATCH_TOKEN`.
+* **Local author loop:** https://github.com/antora-supplemental/antora-serve[`@antora-supplemental/serve`] — watch local worktrees, full regenerate, live reload.
+
+How-to details: xref:antora-deployment.adoc#auto-rebuild-when-content-sources-or-extensions-update[Deployment: auto-rebuild].
+
+=== What v1 deliberately skips
+
+* Custom subscriber UUID registries
+* HTTP webhook receivers (GitHub `repository_dispatch` is enough)
+* Incremental / dirty-set conversion (still full generate)
+
+== v2 — Dependency manifest + dirty set
+
+Package: https://github.com/antora-supplemental/antora-incremental[`@antora-supplemental/incremental`].
+
+* **v2a:** Extension writes `build/site/.antora-deps.json` on every full publish (includes / xrefs / nav / aliases / sources).
+* **v2b:** `antora-dirty` CLI → dirty page set from changed paths + manifest.
+* **v2c:** Extension skips AsciiDoc convert for clean pages when `ANTORA_INCREMENTAL_DIRTY_FILE` + `ANTORA_INCREMENTAL_PRIOR_SITE` are set; `antora-serve` wires this automatically.
+
+[source]
+----
+full build ──► .antora-deps.json (manifest)
+changed paths + manifest ──► dirty page set
+dirty set ──► partial reconvert (+ full fallback)
+----
+
+
+=== Why not “linked HTML includes”?
+
+HTML is a delivery format, not an AsciiDoc-style composition format.
+iframes and client-side fragment fetch do not replace bake-time includes/xrefs/nav without a different product (runtime docs app). We keep static HTML.
+
+== Related
+
+* xref:antora-deployment.adoc[Antora Deployment]
+* xref:antora-github-actions.adoc[Antora on GitHub]
+* https://github.com/antora-supplemental/antora-serve[antora-serve]
+* https://github.com/antora-supplemental/antora-workflow-templates[antora-workflow-templates]
