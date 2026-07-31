@@ -2,7 +2,7 @@
 :navtitle: Portal
 
 This site aggregates documentation for projects in the antora-supplemental organization.
-It uses the link:https://github.com/antora-supplemental/valentus-theme[Valentus] `v2.0.2` UI bundle with a green org brand overlay so the hub matches https://antora-supplemental.github.io/[antora-supplemental.github.io^].
+It uses the link:https://github.com/antora-supplemental/valentus-theme[Valentus] rolling `v2` UI bundle with a green org brand overlay so the hub matches https://antora-supplemental.github.io/[antora-supplemental.github.io^].
 
 Start with xref:theme-products.adoc[Theme products] for how `valentus-theme`, `antora-dark-mode`, and the retired `antora-dark-theme` name relate.
 Canonical dark-mode overlay docs (install, demo): link:https://antora-supplemental.github.io/antora-dark-mode/[antora-supplemental.github.io/antora-dark-mode^] (portal stub: xref:antora-dark-mode.adoc[Antora Dark Mode]).

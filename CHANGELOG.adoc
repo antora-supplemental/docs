@@ -1,6 +1,10 @@
 = Changelog
 :toc:
 
+== 2026-07-31 — Rolling Valentus v2 pin
+
+* Subscribe the hub UI bundle to the rolling major line `releases/download/v2/ui-bundle.zip` (with `snapshot: true`) instead of an exact patch tag, so sticky-footer and other 2.x fixes land on the next deploy without a playbook bump.
+
 == 2026-07-31 — Valentus 2.0.2 sticky footer
 
 * Pin UI bundle to Valentus `v2.0.2` (`2.0.2+antora.3`) so the hub picks up the sticky footer (shell fills leftover viewport; footer stays natural height / full-bleed).
