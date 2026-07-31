@@ -1,0 +1,10 @@
+= DOMAIN — docs.antora-supplemental.org
+
+Custom domain for this Antora docs hub.
+
+* Hostname: `docs.antora-supplemental.org`
+* Registrar: CNAME `docs` → `antora-supplemental.github.io`
+* Deploy workflow writes `CNAME` into the Pages artifact after Antora build.
+* Org-wide DNS: https://github.com/antora-supplemental/antora-supplemental.github.io/blob/main/DOMAIN.adoc
+
+GitHub Pages alternate URL remains `https://antora-supplemental.github.io/docs/`.

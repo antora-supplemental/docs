@@ -7,10 +7,11 @@ site:
   keys:
     header_logo: logo.svg
     dark_mode_navbar: light
-    site_home_url: https://antora-supplemental.github.io/
+    site_home_url: https://antora-supplemental.org/
     site_home_label: antora-supplemental home
     header_doc_title: Docs
     github_profile_url: https://github.com/antora-supplemental
+  url: https://docs.antora-supplemental.org
 
 content:
   sources:

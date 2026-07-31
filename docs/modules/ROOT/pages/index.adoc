@@ -2,7 +2,7 @@
 :navtitle: Portal
 
 This site aggregates documentation for projects in the antora-supplemental organization.
-It uses the link:https://github.com/antora-supplemental/valentus-theme[Valentus] rolling `v2` UI bundle with a green org brand overlay so the hub matches https://antora-supplemental.github.io/[antora-supplemental.github.io^].
+It uses the link:https://github.com/antora-supplemental/valentus-theme[Valentus] rolling `v2` UI bundle with a green org brand overlay so the hub matches https://antora-supplemental.org/[antora-supplemental.org^].
 
 Start with xref:theme-products.adoc[Theme products] for how `valentus-theme`, `antora-dark-mode`, and the retired `antora-dark-theme` name relate.
 Canonical dark-mode overlay docs (install, demo): link:https://antora-supplemental.github.io/antora-dark-mode/[antora-supplemental.github.io/antora-dark-mode^] (portal stub: xref:antora-dark-mode.adoc[Antora Dark Mode]).
@@ -15,7 +15,7 @@ Canonical dark-mode overlay docs (install, demo): link:https://antora-supplement
 * xref:antora-github-actions.adoc[Antora on GitHub] — Actions, workflow templates, template repos, Pages
 * xref:org-github-config.adoc[Org GitHub config] — `.github` vs `.github-private`; retired personal private bootstrap; theme rename pointers
 * xref:samples:ROOT:index.adoc[Antora Samples Template]
-* xref:registry:ROOT:index.adoc[Antora Extensions Registry]
-* https://antora-extensions.org/themes[Antora Theme Gallery] (antora-extensions.org)
+* xref:registry:ROOT:index.adoc[Ecosystem registry] — extensions, themes, packages
+* https://registry.antora-supplemental.org/themes[Theme gallery] (registry.antora-supplemental.org)
 * xref:dprint-asciidoc:ROOT:index.adoc[dprint-plugin-asciidoc]
 * xref:instruction-flow:ROOT:index.adoc[Instruction flow] — Interactive instruction flows (JSON5, `instructionflow` block)

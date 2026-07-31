@@ -1,6 +1,12 @@
 = Changelog
 :toc:
 
+== 2026-07-31 — antora-supplemental.org domain map
+
+* `site.url` → `https://docs.antora-supplemental.org`; `site_home_url` → apex `https://antora-supplemental.org/`.
+* Deploy writes `CNAME` (`docs.antora-supplemental.org`) into the Pages artifact.
+* Registry / themes discovery points at `registry.antora-supplemental.org` (standalone themes gallery archived).
+
 == 2026-07-31 — Rolling Valentus v2 pin
 
 * Subscribe the hub UI bundle to the rolling major line `releases/download/v2/ui-bundle.zip` (with `snapshot: true`) instead of an exact patch tag, so sticky-footer and other 2.x fixes land on the next deploy without a playbook bump.
