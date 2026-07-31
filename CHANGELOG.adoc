@@ -1,6 +1,18 @@
 = Changelog
 :toc:
 
+== 2026-07-31 — Valentus 2.0.2 sticky footer
+
+* Pin UI bundle to Valentus `v2.0.2` (`2.0.2+antora.3`) so the hub picks up the sticky footer (shell fills leftover viewport; footer stays natural height / full-bleed).
+* Refresh `pnpm-lock.yaml` for `@antora-supplemental/incremental` and `@antora-supplemental/serve`; clone `antora-serve` on CI so the `file:` serve dep resolves.
+
+== 2026-07-30 — Org config & theme product roles
+
+* Add `theme-products.adoc` — product map for `valentus-theme`, `antora-dark-mode`, and retired `antora-dark-theme`.
+* Add `org-github-config.adoc` — `.github` vs `.github-private`, retired personal private bootstrap, `antora-dark-theme` successor pointers, org rename history (folds `ORG_RENAME.adoc`).
+* Portal: dark-mode page documents successor split (valentus / antora-dark-mode) and obsolete personal forks.
+* Cross-link private workflow templates from `antora-github-actions.adoc`; expand component list on the portal index.
+
 == 2026-07-25 — Content-source dispatch rebuild
 
 * Deploy workflow listens for `repository_dispatch` types `docs-source-updated` and `extension-updated` (push-triggered full site rebuild, no polling).

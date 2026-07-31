@@ -11,6 +11,18 @@ Full install steps, configuration, and the live demo are documented on link:http
 This org hub uses a green-themed shell so it stays visually distinct from that product site.
 ====
 
+== Successor to `antora-dark-theme`
+
+The former monolithic **`antora-dark-theme`** package was split:
+
+* *Full stack (usual install):* link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] release `ui-bundle.zip` (chrome + bundled dark mode)
+* *Dark mode only (overlay):* link:https://github.com/antora-supplemental/antora-dark-mode[antora-dark-mode] on top of your own `ui.bundle`
+
+Canonical homes are the **antora-supplemental** org repositories above.
+Personal forks of the old package name are obsolete leftovers — do not treat them as the source of truth.
+Migration steps: link:https://antora-supplemental.github.io/antora-dark-mode/antora-dark-mode/guide/legacy-names.html[Legacy names & migration^] in the dark-mode guide; Valentus has the matching install section for full-stack sites.
+Org-wide product map: xref:theme-products.adoc[Theme products].
+
 == Canonical documentation
 
 Installation, playbook snippets, troubleshooting, and the **interactive demo** live on GitHub Pages (built from the `antora-dark-mode` repository):
@@ -25,4 +37,6 @@ Source repository:
 
 The https://github.com/antora-supplemental/docs[antora-supplemental/docs] hub aggregates *multiple* organization projects.
 It intentionally does **not** embed the extension's AsciiDoc guide, to avoid publishing the same manual under two URLs.
-Use the link above for the full manual; use this portal for cross-project topics (deployment, GitHub Actions, and links to other components).
+Use the link above for the full manual; use this portal for cross-project topics (deployment, GitHub Actions, org config, and links to other components).
+
+See also xref:org-github-config.adoc[Org GitHub config].

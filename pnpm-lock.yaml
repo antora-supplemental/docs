@@ -8,19 +8,42 @@ importers:
 
   .:
     dependencies:
+      '@antora-supplemental/incremental':
+        specifier: github:antora-supplemental/antora-incremental
+        version: https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/09255e09c430d31cad5bbdce8e79cb23ee22d4b3(@antora/site-generator@3.1.14)
       '@antora-supplemental/instruction-flow':
         specifier: file:../asciidoc-interactive
         version: file:../asciidoc-interactive
     devDependencies:
+      '@antora-supplemental/serve':
+        specifier: file:../antora-serve
+        version: file:../antora-serve(@antora/playbook-builder@3.1.14)(@antora/site-generator@3.1.14)(@antora/user-require-helper@3.0.0)
       antora:
         specifier: ^3.1.14
         version: 3.1.14
 
 packages:
 
+  '@antora-supplemental/incremental@https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/09255e09c430d31cad5bbdce8e79cb23ee22d4b3':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/09255e09c430d31cad5bbdce8e79cb23ee22d4b3}
+    version: 0.1.0
+    engines: {node: '>=18'}
+    hasBin: true
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
+
   '@antora-supplemental/instruction-flow@file:../asciidoc-interactive':
     resolution: {directory: ../asciidoc-interactive, type: directory}
     engines: {node: '>=18'}
+
+  '@antora-supplemental/serve@file:../antora-serve':
+    resolution: {directory: ../antora-serve, type: directory}
+    engines: {node: '>=18'}
+    hasBin: true
+    peerDependencies:
+      '@antora/playbook-builder': '>=3.1.0'
+      '@antora/site-generator': '>=3.1.0'
+      '@antora/user-require-helper': '>=3.0.0'
 
   '@antora/asciidoc-loader@3.1.14':
     resolution: {integrity: sha512-4xxisnoBFrlLNY6f3xZtyyfgm+tBLsqesTcEStfc8jtXUMYJ4b2DWIzo1vULmxvZ7yY5+Q7YqEvS5o6kIWAG0A==}
@@ -648,9 +671,19 @@ packages:
 
 snapshots:
 
+  '@antora-supplemental/incremental@https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/09255e09c430d31cad5bbdce8e79cb23ee22d4b3(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora/site-generator': 3.1.14
+
   '@antora-supplemental/instruction-flow@file:../asciidoc-interactive':
     dependencies:
       json5: 2.2.3
+
+  '@antora-supplemental/serve@file:../antora-serve(@antora/playbook-builder@3.1.14)(@antora/site-generator@3.1.14)(@antora/user-require-helper@3.0.0)':
+    dependencies:
+      '@antora/playbook-builder': 3.1.14
+      '@antora/site-generator': 3.1.14
+      '@antora/user-require-helper': 3.0.0
 
   '@antora/asciidoc-loader@3.1.14':
     dependencies:

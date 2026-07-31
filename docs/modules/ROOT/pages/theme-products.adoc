@@ -1,0 +1,49 @@
+= Theme & dark-mode products
+:navtitle: Theme products
+:description: Roles of valentus-theme, antora-dark-mode, and the retired antora-dark-theme name.
+
+How the organization splits doc-site chrome and dark mode across repositories.
+
+== Product map
+
+[cols="2,3,2", options="header"]
+|===
+| Product | Role | Install shape
+
+| link:https://github.com/antora-supplemental/valentus-theme[`valentus-theme`^]
+| Composed doc-site chrome (mast, header, layout, VCS icons) **with bundled dark mode**
+| Release `ui-bundle.zip` as `ui.bundle` (usual full-stack install)
+
+| link:https://github.com/antora-supplemental/antora-dark-mode[`antora-dark-mode`^]
+| Dark mode *only* — toggle, FOUC prevention, CSS overlay
+| `supplemental_files` or ui-module on *another* theme / Default UI; optional convenience zip for Default UI alone
+
+| `antora-dark-theme` (retired)
+| Former monolithic package (chrome + dark in one name)
+| **Do not use.** Migrate to Valentus (full) or `antora-dark-mode` (overlay)
+|===
+
+== Choose quickly
+
+* Need sticky header, breadcrumb mast, and dark toggle together → **valentus-theme**
+* Already happy with Default UI (or another theme) and only want a dark toggle → **antora-dark-mode**
+* Still pinning `antora-dark-theme` URLs or a personal fork of that name → migrate (see below)
+
+Do **not** put Valentus in `ui.bundle` *and* also layer `antora-dark-mode` on top — Valentus already includes dark mode.
+
+== Canonical docs
+
+* Valentus: link:https://antora-supplemental.github.io/valentus-theme/[GitHub Pages^]
+* Dark mode overlay: link:https://antora-supplemental.github.io/antora-dark-mode/[GitHub Pages^] · hub stub xref:antora-dark-mode.adoc[Antora Dark Mode]
+* Migration from the old name: link:https://antora-supplemental.github.io/antora-dark-mode/antora-dark-mode/guide/legacy-names.html[Legacy names & migration^]
+
+== GitHub topic strings (gallery)
+
+The theme gallery uses prescribed *topics* such as `antora-dark-theme` and `antora-dark-mode` for appearance filters.
+Those topic strings are **not** the retired npm/package name — they describe capability (full dark theme vs slipstream overlay).
+See the themes-site user guide on GitHub topics.
+
+== See also
+
+* xref:org-github-config.adoc[Org GitHub config]
+* xref:antora-dark-mode.adoc[Antora Dark Mode] (portal stub)

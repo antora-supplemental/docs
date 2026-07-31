@@ -1,5 +1,7 @@
 * xref:index.adoc[Portal]
 * xref:site-rebuild.adoc[Site rebuild (v1/v2)]
+* xref:theme-products.adoc[Theme products]
 * xref:antora-dark-mode.adoc[Antora Dark Mode]
 * xref:antora-deployment.adoc[Antora Deployment]
 * xref:antora-github-actions.adoc[Antora on GitHub]
+* xref:org-github-config.adoc[Org GitHub config]

@@ -2,6 +2,8 @@
 
 **Completed.** The GitHub organization has been renamed to `antora-supplemental`.
 
+Published summary (preferred): link:docs/modules/ROOT/pages/org-github-config.adoc[docs/modules/ROOT/pages/org-github-config.adoc] (Org GitHub config — history section).
+
 All references were updated in:
 
 * URLs (GitHub, package.json, README, docs)

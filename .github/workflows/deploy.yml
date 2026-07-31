@@ -33,6 +33,9 @@ jobs:
       - name: Clone asciidoc-interactive (pnpm file:../asciidoc-interactive)
         run: git clone --depth 1 https://github.com/antora-supplemental/asciidoc-interactive.git "${GITHUB_WORKSPACE}/../asciidoc-interactive"
 
+      - name: Clone antora-serve (pnpm file:../antora-serve)
+        run: git clone --depth 1 https://github.com/antora-supplemental/antora-serve.git "${GITHUB_WORKSPACE}/../antora-serve"
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 

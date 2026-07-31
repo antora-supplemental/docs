@@ -1,0 +1,50 @@
+= Organization GitHub configuration
+:navtitle: Org GitHub config
+:description: Where antora-supplemental keeps public and private org config — .github vs .github-private.
+
+The organization does **not** use personal member repositories for org-wide GitHub configuration.
+Two org-owned repositories hold that role.
+
+== Public vs private
+
+[cols="1,2,2", options="header"]
+|===
+| Audience | Repository | Holds
+
+| Public repos
+| https://github.com/antora-supplemental/.github[`.github`^]
+| Profile README, public workflow starter templates, canonical brand assets
+
+| Private repos
+| https://github.com/antora-supplemental/.github-private[`.github-private`^]
+| Private workflow starter templates; mirrored brand assets
+|===
+
+Upload the org avatar from `.github/assets/logo-256.png` (Organization settings → Profile).
+Keep `.github-private/assets/` in sync when the mark changes.
+
+== What not to create
+
+* A personal `antora-supplemental-private` (or similar) under a member account for org health files or workflow templates — use `.github-private` instead.
+* A personal GitHub fork of Antora's GitLab Default UI solely to host Antora upstream work — contribute via a GitLab fork of https://gitlab.com/antora/antora-ui-default[`antora/antora-ui-default`^].
+
+== Related product names (themes)
+
+The former monolithic package **`antora-dark-theme`** was split and renamed:
+
+* https://github.com/antora-supplemental/valentus-theme[`valentus-theme`^] — composed chrome + bundled dark mode (usual successor install)
+* https://github.com/antora-supplemental/antora-dark-mode[`antora-dark-mode`^] — dark mode overlay only
+
+Personal forks of the old name are obsolete; use the org repositories above.
+See xref:theme-products.adoc[Theme products], xref:antora-dark-mode.adoc[Antora Dark Mode], and the Valentus installation guide on GitHub Pages.
+
+== Organization rename (history)
+
+The GitHub organization was renamed from `asciidoc-supplemental` to `antora-supplemental`.
+URLs, playbooks, package metadata, and remotes were updated to match.
+Local clones should live under `…/github.com/antora-supplemental/` (not the old org folder name).
+
+== See also
+
+* xref:antora-github-actions.adoc[Antora on GitHub] — actions, templates, Pages
+* xref:antora-deployment.adoc[Antora Deployment]

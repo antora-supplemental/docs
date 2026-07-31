@@ -115,10 +115,13 @@ To help users move between levels of abstraction:
 ** This helps users upgrade from “copy/paste example” to “clean, reusable action call.”
 
 * **Organization workflow templates**:
-** The `.github` repo in the organization provides workflow templates (for example, `antora-pages.yml`) that appear in the *Actions → New workflow* screen.
+** The `.github` repo in the organization provides workflow templates (for example, `antora-pages.yml`) that appear in the *Actions → New workflow* screen for **public** repos.
+** Private repos use the sibling link:https://github.com/antora-supplemental/.github-private[`.github-private`^] repository for the same role.
 ** These templates should mirror the recommended GitHub Pages pattern and can refer both to `antora-build-action` and to the template repo.
 
 This cross-linking makes it easier for new users to start with a template, then learn to recognize and re-use the underlying actions.
+
+Org-wide profile README, brand assets, and the public/private split are documented in xref:org-github-config.adoc[Org GitHub config].
 
 ==== Naming and decision points
 
