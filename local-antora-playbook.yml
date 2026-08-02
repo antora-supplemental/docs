@@ -45,6 +45,11 @@ ui:
 output:
   dir: ./build/site
 
+antora:
+  extensions:
+    - require: "@antora-supplemental/incremental"
+    - require: "@antora-supplemental/unversioned-component-urls"
+
 asciidoc:
   attributes:
     source-highlighter: highlight.js

@@ -44,6 +44,7 @@ output:
 antora:
   extensions:
     - require: "@antora-supplemental/incremental"
+    - require: "@antora-supplemental/unversioned-component-urls"
 
 asciidoc:
   attributes:

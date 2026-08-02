@@ -18,6 +18,9 @@ importers:
       '@antora-supplemental/serve':
         specifier: file:../antora-serve
         version: file:../antora-serve(@antora/playbook-builder@3.1.14)(@antora/site-generator@3.1.14)(@antora/user-require-helper@3.0.0)
+      '@antora-supplemental/unversioned-component-urls':
+        specifier: github:antora-supplemental/antora-unversioned-component-urls#v2.1.0
+        version: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e(@antora/site-generator@3.1.14)
       antora:
         specifier: ^3.1.14
         version: 3.1.14
@@ -44,6 +47,13 @@ packages:
       '@antora/playbook-builder': '>=3.1.0'
       '@antora/site-generator': '>=3.1.0'
       '@antora/user-require-helper': '>=3.0.0'
+
+  '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e}
+    version: 2.1.0
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
 
   '@antora/asciidoc-loader@3.1.14':
     resolution: {integrity: sha512-4xxisnoBFrlLNY6f3xZtyyfgm+tBLsqesTcEStfc8jtXUMYJ4b2DWIzo1vULmxvZ7yY5+Q7YqEvS5o6kIWAG0A==}
@@ -684,6 +694,10 @@ snapshots:
       '@antora/playbook-builder': 3.1.14
       '@antora/site-generator': 3.1.14
       '@antora/user-require-helper': 3.0.0
+
+  '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora/site-generator': 3.1.14
 
   '@antora/asciidoc-loader@3.1.14':
     dependencies:
