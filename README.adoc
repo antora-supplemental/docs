@@ -4,7 +4,53 @@ ifndef::env-github[:icons: font]
 :sectanchors:
 endif::[]
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/antora-supplemental/docs/graphs/contributors"><img src="https://img.shields.io/github/contributors/antora-supplemental/docs.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/antora-supplemental/docs/network/members"><img src="https://img.shields.io/github/forks/antora-supplemental/docs.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/antora-supplemental/docs/stargazers"><img src="https://img.shields.io/github/stars/antora-supplemental/docs.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/antora-supplemental/docs/issues"><img src="https://img.shields.io/github/issues/antora-supplemental/docs.svg?style=for-the-badge" alt="Issues"></a>
+<br />
+<h3 align="center">Antora Supplemental Docs</h3>
+<p align="center">
+Documentation hub for antora-supplemental projects. Antora site with antora-dark-theme.<br />
+<a href="https://antora-supplemental.github.io/docs"><strong>Explore the docs ·</strong></a>
+<br /><br />
+<a href="https://github.com/antora-supplemental/docs/issues">Report Bug</a>
+&middot;
+<a href="https://github.com/antora-supplemental/docs/issues">Request Feature</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
+
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/antora-supplemental/docs/graphs/contributors"><img src="https://img.shields.io/github/contributors/antora-supplemental/docs.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/antora-supplemental/docs/network/members"><img src="https://img.shields.io/github/forks/antora-supplemental/docs.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/antora-supplemental/docs/stargazers"><img src="https://img.shields.io/github/stars/antora-supplemental/docs.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/antora-supplemental/docs/issues"><img src="https://img.shields.io/github/issues/antora-supplemental/docs.svg?style=for-the-badge" alt="Issues"></a>
+<br />
+<h3 align="center">Antora Supplemental Docs</h3>
+<p align="center">
+Documentation hub for antora-supplemental projects. Antora site with antora-dark-theme.<br />
+<a href="https://antora-supplemental.github.io/docs"><strong>Explore the docs ·</strong></a>
+<br /><br />
+<a href="https://github.com/antora-supplemental/docs/issues">Report Bug</a>
+&middot;
+<a href="https://github.com/antora-supplemental/docs/issues">Request Feature</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/antora-supplemental/docs.svg?style=for-the-badge[Contributors,link=https://github.com/antora-supplemental/docs/graphs/contributors]
 image:https://img.shields.io/github/forks/antora-supplemental/docs.svg?style=for-the-badge[Forks,link=https://github.com/antora-supplemental/docs/network/members]
 image:https://img.shields.io/github/stars/antora-supplemental/docs.svg?style=for-the-badge[Stars,link=https://github.com/antora-supplemental/docs/stargazers]
@@ -17,14 +63,16 @@ Documentation hub for antora-supplemental projects. Antora site with antora-dark
 link:https://antora-supplemental.github.io/docs[Explore the docs] ·
 link:https://github.com/antora-supplemental/docs/issues[Report Bug] ·
 link:https://github.com/antora-supplemental/docs/issues[Request Feature]
+endif::[]
 
 == About The Project
 
 Documentation hub for the antora-supplemental organization, built with Antora.
 The UI uses the link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] rolling `v2` release bundle (`ui-bundle.zip`, refreshed each build via `snapshot: true`) plus a local green brand overlay (`supplemental-ui/`: `site-org-brand.css` and `img/logo.svg`) so this portal matches the org welcome-site vibe while staying on Valentus 2.x chrome.
 
-link:#readme-top[back to top]
-
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 == Installation
 
 [source,shell]
@@ -32,8 +80,9 @@ link:#readme-top[back to top]
 pnpm install
 ----
 
-link:#readme-top[back to top]
-
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 == Usage
 
 * Production (fetch from GitHub): `pnpm build`
@@ -52,8 +101,9 @@ This repo's own content is under `docs/` (portal and nav).
 
 The `package.json` file dependency `file:../asciidoc-interactive` supplies the `@antora-supplemental/instruction-flow` Asciidoctor extension (registered in `antora-playbook.yml`). GitHub Actions clones that repository next to this one before `pnpm install` so the path resolves on CI.
 
-link:#readme-top[back to top]
-
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 == Contact
 
 Antora Supplemental — support@antora-supplemental.org
@@ -61,4 +111,6 @@ Antora Supplemental — support@antora-supplemental.org
 * Project: https://github.com/antora-supplemental/docs
 * Site: https://antora-supplemental.org
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
