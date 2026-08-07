@@ -37,11 +37,17 @@ Do **not** put Valentus in `ui.bundle` *and* also layer `antora-dark-mode` on to
 * Dark mode overlay: link:https://antora-supplemental.github.io/antora-dark-mode/[GitHub Pages^] · hub stub xref:antora-dark-mode.adoc[Antora Dark Mode]
 * Migration from the old name: link:https://antora-supplemental.github.io/antora-dark-mode/antora-dark-mode/guide/legacy-names.html[Legacy names & migration^]
 
-== GitHub topic strings (gallery)
+== GitHub topic strings (gallery + dependents)
 
-The theme gallery uses prescribed *topics* such as `antora-dark-theme` and `antora-dark-mode` for appearance filters.
-Those topic strings are **not** the retired npm/package name — they describe capability (full dark theme vs slipstream overlay).
-See the themes-site user guide on GitHub topics.
+The theme gallery uses prescribed *capability* topics such as `antora-theme`, `antora-dark-theme`, and `antora-dark-mode` for appearance filters.
+Those topic strings describe capability (full theme vs slipstream overlay) — they are **not** the retired npm package name.
+
+Separately, every site that *depends on* a named theme must add that theme’s **product topic** (exact GitHub repository name) so dependents stay rediscoverable:
+
+* Valentus consumers → topic `valentus-theme` (`gh search repos --topic valentus-theme`)
+* Dark-mode overlay consumers → topic `antora-dark-mode` when appropriate
+
+See the extensions-registry contributing guide (*Product dependency topics*) and the Valentus guide on GitHub Topics.
 
 == See also
 
