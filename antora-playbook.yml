@@ -48,6 +48,7 @@ antora:
 
 asciidoc:
   attributes:
+    stem: latexmath
     source-highlighter: highlight.js
     icons: font
   extensions:
