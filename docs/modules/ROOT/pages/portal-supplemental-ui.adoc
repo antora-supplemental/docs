@@ -1,0 +1,86 @@
+= Portal supplemental UI
+:navtitle: Supplemental UI
+:description: How this hub overrides Valentus head-meta, brand CSS, and FOUC paint-hold.
+
+This site layers a local `supplemental-ui/` directory on top of the Valentus rolling `v2` UI bundle (`antora-playbook.yml` → `ui.supplemental_files`).
+The overlay supplies org branding and keeps head scripts in sync with Valentus so preference attributes apply before first paint.
+
+== Layout
+
+[source,text]
+----
+supplemental-ui/
+├── css/
+│   ├── site-math.css          # KaTeX / stem math (required on every org site)
+│   └── site-org-brand.css     # Green brand tokens over Valentus --adt-* variables
+├── img/
+│   ├── logo.svg               # Header mark (playbook site.keys.header_logo)
+│   └── logo-avatar.svg
+├── js/
+│   └── site-math.js           # KaTeX loader (defer in head-meta)
+└── partials/
+    └── head-meta.hbs          # Overrides Valentus head-meta (see below)
+----
+
+Brand CSS must load **after** Valentus `site-visual.css` and `site-read-width.css` so token overrides win over `!important` rules in the bundle (see xref:theme-products.adoc[Theme products] and `AGENTS.md`).
+
+== `head-meta.hbs` load order
+
+The partial replaces the bundle's `head-meta.hbs`.
+Order matters: interim paint-hold, early extras, fonts and layered CSS, preference scripts, then paint-hold release.
+
+[cols="1,3", options="header"]
+|===
+| Step | What runs
+
+| 1. Paint-hold (open)
+| Inline `html.adt-fouc-pending { visibility: hidden }` plus a script that adds `adt-fouc-pending` on `<html>`.
+
+| 2. Early head
+| `site-extra.css`, `dm-navbar` meta, Google Fonts preconnect + stylesheet.
+
+| 3. Layered Valentus CSS
+| `site-doc-layout.css`, `site-visual.css`, `site-read-width.css`, `site-font-size.css`, `site-math.css`, `site-org-brand.css`.
+
+| 4. Preference scripts
+| Dark-mode class (`org-portal`, `dark-theme`), read-width `data-adt-read-width`, font-size `data-adt-font-size` (read from `localStorage`).
+
+| 5. Paint-hold (close)
+| Script removes `adt-fouc-pending` so the page becomes visible with attributes and CSS already applied.
+
+| 6. Tail
+| Optional `antora-repo-url` meta, deferred `site-math.js`.
+|===
+
+=== Interim FOUC paint-hold
+
+Valentus 2.x ships the same interim hack until Antora Default UI can deliver layered stylesheets in a single pass (upstream: `antora-ui-default!207` and master FOUC/stylesheets guidance).
+This hub copies that contract so the portal does not flash unstyled or wrong-theme chrome while supplemental CSS loads.
+
+* **Do not** move brand CSS links above the paint-hold open block — the page stays hidden until layered CSS is linked.
+* **Do not** remove the closing `classList.remove('adt-fouc-pending')` — without it the site stays invisible.
+* When Valentus drops the hack upstream, remove the matching blocks here in the same PR that bumps the UI bundle pin.
+
+The read-width and font-size inline scripts are separate, smaller FOUC guards (same as Valentus `ui-modules`); they set `data-adt-*` attributes before body render.
+
+=== Dark mode and navbar
+
+`meta name="dm-navbar"` defaults to `light` via playbook `site.keys.dark_mode_navbar`.
+The head script copies that into `document.documentElement.dataset.dmNavbar` and applies `dark-theme` when stored preference or system scheme is dark.
+
+== Local preview
+
+[source,shell]
+----
+pnpm install
+pnpm run build        # production content sources
+pnpm run build:local  # sibling repos via local-antora-playbook.yml
+----
+
+After changing `head-meta.hbs` or brand CSS, rebuild and hard-refresh to verify no flash of wrong theme, read width, or font size.
+
+== See also
+
+* xref:theme-products.adoc[Theme products] — Valentus vs `antora-dark-mode`
+* xref:antora-dark-mode.adoc[Antora Dark Mode] — overlay-only dark mode (canonical docs off-site)
+* https://github.com/antora-supplemental/valentus-theme[valentus-theme] — upstream head-meta source of truth

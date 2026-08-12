@@ -1,6 +1,11 @@
 = Changelog
 :toc:
 
+== 2026-08-12 — Valentus FOUC paint-hold sync
+
+* Sync `supplemental-ui/partials/head-meta.hbs` with Valentus interim paint-hold: open `adt-fouc-pending` before layered CSS links, run preference scripts, then release before deferred `site-math.js`.
+* Document load order and maintenance rules in `docs/modules/ROOT/pages/portal-supplemental-ui.adoc` (published as *Supplemental UI* on the hub).
+
 == 2026-07-31 — antora-supplemental.org domain map
 
 * `site.url` → `https://docs.antora-supplemental.org`; `site_home_url` → apex `https://antora-supplemental.org/`.
