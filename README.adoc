@@ -12,6 +12,8 @@ ifdef::env-github[]
 <a href="https://github.com/antora-supplemental/docs/network/members"><img src="https://img.shields.io/github/forks/antora-supplemental/docs.svg?style=for-the-badge" alt="Forks"></a>
 <a href="https://github.com/antora-supplemental/docs/stargazers"><img src="https://img.shields.io/github/stars/antora-supplemental/docs.svg?style=for-the-badge" alt="Stars"></a>
 <a href="https://github.com/antora-supplemental/docs/issues"><img src="https://img.shields.io/github/issues/antora-supplemental/docs.svg?style=for-the-badge" alt="Issues"></a>
+<a href="https://docs.antora-supplemental.org/"><img src="https://img.shields.io/badge/docs-Antora%20Supplemental-22c55e?style=for-the-badge" alt="Docs"></a>
+<a href="https://github.com/antora-supplemental/docs/actions/workflows/deploy.yml"><img src="https://img.shields.io/github/actions/workflow/status/antora-supplemental/docs/deploy.yml?branch=main&style=for-the-badge&label=deploy" alt="Deploy"></a>
 <br />
 <h3 align="center">Antora Supplemental Docs</h3>
 <p align="center">
@@ -36,6 +38,8 @@ ifdef::env-github[]
 <a href="https://github.com/antora-supplemental/docs/network/members"><img src="https://img.shields.io/github/forks/antora-supplemental/docs.svg?style=for-the-badge" alt="Forks"></a>
 <a href="https://github.com/antora-supplemental/docs/stargazers"><img src="https://img.shields.io/github/stars/antora-supplemental/docs.svg?style=for-the-badge" alt="Stars"></a>
 <a href="https://github.com/antora-supplemental/docs/issues"><img src="https://img.shields.io/github/issues/antora-supplemental/docs.svg?style=for-the-badge" alt="Issues"></a>
+<a href="https://docs.antora-supplemental.org/"><img src="https://img.shields.io/badge/docs-Antora%20Supplemental-22c55e?style=for-the-badge" alt="Docs"></a>
+<a href="https://github.com/antora-supplemental/docs/actions/workflows/deploy.yml"><img src="https://img.shields.io/github/actions/workflow/status/antora-supplemental/docs/deploy.yml?branch=main&style=for-the-badge&label=deploy" alt="Deploy"></a>
 <br />
 <h3 align="center">Antora Supplemental Docs</h3>
 <p align="center">
@@ -55,6 +59,8 @@ image:https://img.shields.io/github/contributors/antora-supplemental/docs.svg?st
 image:https://img.shields.io/github/forks/antora-supplemental/docs.svg?style=for-the-badge[Forks,link=https://github.com/antora-supplemental/docs/network/members]
 image:https://img.shields.io/github/stars/antora-supplemental/docs.svg?style=for-the-badge[Stars,link=https://github.com/antora-supplemental/docs/stargazers]
 image:https://img.shields.io/github/issues/antora-supplemental/docs.svg?style=for-the-badge[Issues,link=https://github.com/antora-supplemental/docs/issues]
+image:https://img.shields.io/badge/docs-Antora%20Supplemental-22c55e?style=for-the-badge[Docs,link=https://docs.antora-supplemental.org/]
+image:https://img.shields.io/github/actions/workflow/status/antora-supplemental/docs/deploy.yml?branch=main&style=for-the-badge&label=deploy[Deploy,link=https://github.com/antora-supplemental/docs/actions/workflows/deploy.yml]
 
 = Antora Supplemental Docs
 
@@ -69,6 +75,7 @@ endif::[]
 
 Documentation hub for the antora-supplemental organization, built with Antora.
 The UI uses the link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] rolling `v2` release bundle (`ui-bundle.zip`, refreshed each build via `snapshot: true`) plus a local green brand overlay (`supplemental-ui/`: `site-org-brand.css` and `img/logo.svg`) so this portal matches the org welcome-site vibe while staying on Valentus 2.x chrome.
+Head overrides and FOUC paint-hold are documented on the hub: link:https://docs.antora-supplemental.org/docs/ROOT/portal-supplemental-ui.html[Supplemental UI].
 
 ++++
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
