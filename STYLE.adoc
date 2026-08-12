@@ -145,6 +145,7 @@ Encyclopedia concept names (`= Instruction flows`) â€” no forced news verb.
 | `Sequence as top-level organization`
 | `Sequence as the top-level: â€¦`
 |===
+
 == Pull request titles and summaries
 
 When opening a pull request (especially an upstream gift):
@@ -153,4 +154,4 @@ When opening a pull request (especially an upstream gift):
 * *Summary / intro* — inviting plain English. Lead with the human problem; short bullets for what changed; soft close inviting feedback. Tone: gift to maintainers, not a lecture.
 * *UI-visible changes* — before/after screenshots at minimum.
 
-Agent detail: link:https://github.com/dev-centr/agent-rules/blob/main/general/pull-requests.md[general/pull-requests.md] in dev-centr/agent-rules (org shortcut: gents/editorial/pull-requests.md).
+Agent detail: link:https://github.com/dev-centr/agent-rules/blob/main/general/pull-requests.md[general/pull-requests.md] in `dev-centr/agent-rules` (org shortcut: `agents/editorial/pull-requests.md`).
