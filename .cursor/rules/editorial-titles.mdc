@@ -1,0 +1,16 @@
+---
+description: News and blog title style — headline present, implied [On] test
+globs: "**/news/**/*,**/blog/**/*,**/content/**/*"
+alwaysApply: false
+---
+
+# Titles for news and blog
+
+Follow repo root `STYLE.adoc` and `AGENTS.md`.
+
+- **News:** subject + present-tense verb (headline present).
+- **Essay with an action:** implied **[On]** test — gerunds OK; bare imperatives not.
+- **Essay claim without a verb:** OK for theses.
+- Sentence case; accurate.
+
+Do not put these rules only in `MEMORIES.md`.
