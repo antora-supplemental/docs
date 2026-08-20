@@ -1,8 +1,8 @@
 {{!--
-  HACK (interim paint-hold): hide until layered CSS + preference attrs apply.
+  HACK (interim paint-hold): hide until layered CSS + preference attrs + web fonts.
   Copied from Valentus head-meta — pending upstream Default UI single-pass CSS
-  (antora-ui-default!207 + master FOUC/stylesheets guidance). Keep brand CSS
-  links with the other stylesheets, before the paint-hold release script.
+  (antora-ui-default !207 / !213). Keep brand CSS with the other stylesheets,
+  before the paint-hold release (fonts.ready) script.
 --}}
 <style>
 html.adt-fouc-pending { visibility: hidden !important; }
@@ -74,8 +74,34 @@ document.documentElement.classList.add('adt-fouc-pending')
   }
 })()
 </script>
+{{!-- Webfont FOUT: kick loads, then release paint-hold (3s timeout if CDN stalls). --}}
 <script>
-document.documentElement.classList.remove('adt-fouc-pending')
+(function () {
+  var released = false
+  function release () {
+    if (released) return
+    released = true
+    document.documentElement.classList.remove('adt-fouc-pending')
+  }
+  var fallback = setTimeout(release, 3000)
+  function finish () {
+    clearTimeout(fallback)
+    release()
+  }
+  if (!document.fonts || !document.fonts.load) {
+    finish()
+    return
+  }
+  Promise.all([
+    document.fonts.load('400 1em "Source Sans 3"'),
+    document.fonts.load('600 1em "Source Sans 3"'),
+    document.fonts.load('500 1em "Plus Jakarta Sans"'),
+    document.fonts.load('700 1em "Plus Jakarta Sans"'),
+    document.fonts.load('400 1em "IBM Plex Mono"'),
+  ])
+    .then(function () { return document.fonts.ready })
+    .then(finish, finish)
+})()
 </script>
 {{#if page.origin.webUrl}}
 <meta name="antora-repo-url" content="{{page.origin.webUrl}}">
