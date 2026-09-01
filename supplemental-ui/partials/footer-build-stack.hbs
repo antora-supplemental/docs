@@ -1,0 +1,9 @@
+{{#if site.keys.build_stack_antora_html}}
+<div class="footer-related" aria-label="Build extensions">
+  <p class="footer-related-label">Extensions</p>
+  <p class="footer-related-links">
+    Antora: {{{site.keys.build_stack_antora_html}}}{{#if site.keys.build_stack_asciidoc_html}}<br/>
+    AsciiDoc: {{{site.keys.build_stack_asciidoc_html}}}{{/if}}
+  </p>
+</div>
+{{/if}}

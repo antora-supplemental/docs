@@ -1,0 +1,14 @@
+<footer class="footer">
+  {{> footer-build-stack}}
+  <p>
+    Built with <a href="https://antora.org" target="_blank" rel="noopener">Antora</a>{{#if antoraVersion}} <span class="antora-version">({{antoraVersion}})</span>{{/if}}.
+    UI:
+    {{#if site.keys.ui_bundle_name}}
+    <a href="{{site.keys.ui_bundle_url}}" target="_blank" rel="noopener">{{site.keys.ui_bundle_name}}</a>
+    {{else}}
+    <a href="https://github.com/antora-supplemental/valentus-theme" target="_blank" rel="noopener">valentus-theme</a>
+    {{/if}}
+    (MIT) with antora-supplemental branding.
+  </p>
+</footer>
+<script src="{{{uiRootPath}}}/js/site-math.js" defer></script>
