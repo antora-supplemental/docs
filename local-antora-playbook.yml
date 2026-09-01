@@ -49,6 +49,7 @@ antora:
   extensions:
     - require: "@antora-supplemental/incremental"
     - require: "@antora-supplemental/unversioned-component-urls"
+    - '@antora-supplemental/build-stack'
 
 asciidoc:
   attributes:
