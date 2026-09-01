@@ -8,9 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@antora-supplemental/build-stack':
+        specifier: github:antora-supplemental/build-stack#main
+        version: https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c(@antora/site-generator@3.1.14)
       '@antora-supplemental/incremental':
         specifier: github:antora-supplemental/antora-incremental
-        version: https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/09255e09c430d31cad5bbdce8e79cb23ee22d4b3(@antora/site-generator@3.1.14)
+        version: https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/c3fb712a95d3a436ca96e8fa98dab67c17e9891c(@antora/site-generator@3.1.14)
       '@antora-supplemental/instruction-flow':
         specifier: file:../asciidoc-interactive
         version: file:../asciidoc-interactive
@@ -27,8 +30,15 @@ importers:
 
 packages:
 
-  '@antora-supplemental/incremental@https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/09255e09c430d31cad5bbdce8e79cb23ee22d4b3':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/09255e09c430d31cad5bbdce8e79cb23ee22d4b3}
+  '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c}
+    version: 0.1.2
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
+
+  '@antora-supplemental/incremental@https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/c3fb712a95d3a436ca96e8fa98dab67c17e9891c':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/c3fb712a95d3a436ca96e8fa98dab67c17e9891c}
     version: 0.1.0
     engines: {node: '>=18'}
     hasBin: true
@@ -681,7 +691,11 @@ packages:
 
 snapshots:
 
-  '@antora-supplemental/incremental@https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/09255e09c430d31cad5bbdce8e79cb23ee22d4b3(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora/site-generator': 3.1.14
+
+  '@antora-supplemental/incremental@https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/c3fb712a95d3a436ca96e8fa98dab67c17e9891c(@antora/site-generator@3.1.14)':
     dependencies:
       '@antora/site-generator': 3.1.14
 
