@@ -1,5 +1,6 @@
 * xref:index.adoc[Portal]
 * xref:site-rebuild.adoc[Site rebuild (v1/v2)]
+* xref:live-docs.adoc[Live docs]
 * xref:theme-products.adoc[Theme products]
 * xref:antora-dark-mode.adoc[Antora Dark Mode]
 * xref:antora-deployment.adoc[Antora Deployment]

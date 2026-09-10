@@ -27,6 +27,9 @@ content:
     - url: https://github.com/antora-supplemental/asciidoc-interactive.git
       branches: [main, master]
       start_path: docs
+    - url: https://github.com/antora-supplemental/antora-live.git
+      branches: [main, master]
+      start_path: docs
     - url: .
       branches: HEAD
       start_path: docs

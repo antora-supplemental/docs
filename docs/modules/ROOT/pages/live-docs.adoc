@@ -1,0 +1,60 @@
+= Live docs architecture
+:description: Canonical short write-up for Antora Live — DB-backed concurrent authoring beside static Antora generate.
+:page-audience: Maintainers and contributors discussing multiplayer Antora authoring
+:page-usage-context: Org docs hub — link from PRs instead of pasting long design
+:page-orig-author: Ryan Johnson
+:page-last-author: Cursor agent on behalf of Ryan Johnson
+:page-last-edited: 2026-09-10
+
+This page is the canonical short write-up for PRs and design discussions about **Antora Live**.
+Keep GitHub PR bodies short — link here.
+Long-form design lives in the https://github.com/antora-supplemental/antora-live[`antora-live`] component (xref:antora-live:ROOT:design.adoc[Design], xref:antora-live:ROOT:data-model.adoc[Data model], xref:antora-live:ROOT:phases.adoc[Phases]).
+
+== Problem
+
+Antora publishes **static HTML**. Includes, xrefs, nav, aliases, and many extensions resolve at **generate** time.
+Teams still want Confluence-like **concurrent editing** and a **page editor**. That needs a different product beside the generator — not a thin UI on published HTML.
+
+xref:site-rebuild.adoc[Site rebuild] already treats a “runtime docs app” as out of scope for the static rebuild story. Live is that product.
+
+== Locked model
+
+* *Publish / generate* — git content sources stay the source of truth for public static sites and the Facto stack.
+* *Authoring* — LibSQL/Turso working layer: drafts, CRDT ops, presence, permissions (later).
+* *Editor* — AsciiDoc **source** + preview first (no HTML→AsciiDoc round-trip; no WYSIWYG over extension chrome in v1).
+* *Bridge* — export commits/PRs to content repos; preview via https://github.com/antora-supplemental/antora-serve[`antora-serve`] + https://github.com/antora-supplemental/antora-incremental[`antora-incremental`].
+
+[source]
+----
+CRDT AsciiDoc editor ──► LibSQL drafts
+         │                    │
+         │                    ├──► serve + incremental preview
+         │                    └──► git export ──► antora generate ──► Pages
+----
+
+== Why it is hard (one paragraph)
+
+Bake-time includes/xrefs/nav, extension-injected page-context / page-edit chrome, path-keyed dirty graphs, and multi-repo versioned components do not survive as a live HTML wiki.
+DB rows must carry Antora coordinates (`component` + `version` + `module` + `family` + `path`) and still export to git so `editUrl`, deps manifests, and hub dispatch keep working.
+
+== Phases (summary)
+
+* *P0* — Design filing (this page + `antora-live` docs).
+* *P1* — Single-user DB store, source editor, preview, one-repo export.
+* *P2* — Concurrent CRDT on source.
+* *P3* — Auth, nav/page chrome, optional Live Edit URL from `page-edit`.
+* *P4* — Higher preview fidelity; optional DB content source for private sites.
+
+== Related
+
+* xref:site-rebuild.adoc[Site rebuild (v1/v2)]
+* xref:antora-live:ROOT:index.adoc[Antora Live overview]
+* https://github.com/antora-supplemental/antora-serve[antora-serve]
+* https://github.com/antora-supplemental/antora-incremental[antora-incremental]
+* https://github.com/antora-supplemental/page-edit[page-edit]
+
+ifndef::page-context-active[]
+Audience role:: Maintainers and contributors discussing multiplayer Antora authoring
+Authors:: Ryan Johnson; Cursor agent on behalf of Ryan Johnson
+Last updated:: 2026-09-10
+endif::[]

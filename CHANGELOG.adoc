@@ -1,6 +1,11 @@
 = Changelog
 :toc:
 
+== 2026-09-10 — Antora Live design filing
+
+* Add `live-docs.adoc` — canonical short architecture page for DB-backed concurrent authoring (link from PRs).
+* Wire `antora-live` content source into hub and local playbooks; nav entry **Live docs**; cross-link from `site-rebuild.adoc`.
+
 == 2026-07-31 — antora-supplemental.org domain map
 
 * `site.url` → `https://docs.antora-supplemental.org`; `site_home_url` → apex `https://antora-supplemental.org/`.

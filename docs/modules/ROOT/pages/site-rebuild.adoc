@@ -62,6 +62,7 @@ iframes and client-side fragment fetch do not replace bake-time includes/xrefs/n
 
 == Related
 
+* xref:live-docs.adoc[Live docs] — DB-backed concurrent authoring (separate product; not a runtime on static HTML)
 * xref:antora-deployment.adoc[Antora Deployment]
 * xref:antora-github-actions.adoc[Antora on GitHub]
 * https://github.com/antora-supplemental/antora-serve[antora-serve]
