@@ -12,6 +12,10 @@ site:
     header_doc_title: Docs
     github_profile_url: https://github.com/antora-supplemental
   url: https://docs.antora-supplemental.org
+  robots: |
+    User-agent: *
+    Allow: /
+    Sitemap: https://docs.antora-supplemental.org/sitemap.xml
 
 content:
   sources:
@@ -47,7 +51,7 @@ output:
 antora:
   extensions:
     - require: "@antora-supplemental/incremental"
-    - require: "@antora-supplemental/unversioned-component-urls"
+    - require: "@antora-supplemental/unversioned-component-urls"
     - "@antora-supplemental/page-edit"
     - '@antora-supplemental/build-stack'
 

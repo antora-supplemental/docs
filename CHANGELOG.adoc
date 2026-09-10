@@ -1,6 +1,10 @@
 = Changelog
 :toc:
 
+== 2026-09-10 -- Publish robots.txt with sitemap
+
+* Antora `site.robots` now emits `/robots.txt` with an absolute `Sitemap:` line for the production host.
+
 == 2026-09-10 — Antora Live design filing
 
 * Add `live-docs.adoc` — canonical short architecture page for DB-backed concurrent authoring (link from PRs).
