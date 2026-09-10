@@ -12,8 +12,9 @@
     "@antora-supplemental/instruction-flow": "file:../asciidoc-interactive"
   },
   "devDependencies": {
+    "@antora-supplemental/page-edit": "github:antora-supplemental/page-edit#main",
+    "@antora-supplemental/serve": "file:../antora-serve",
     "@antora-supplemental/unversioned-component-urls": "github:antora-supplemental/antora-unversioned-component-urls#v2.1.0",
-    "antora": "^3.1.14",
-    "@antora-supplemental/serve": "file:../antora-serve"
+    "antora": "^3.1.14"
   }
 }

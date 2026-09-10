@@ -18,6 +18,9 @@ importers:
         specifier: file:../asciidoc-interactive
         version: file:../asciidoc-interactive
     devDependencies:
+      '@antora-supplemental/page-edit':
+        specifier: github:antora-supplemental/page-edit#main
+        version: https://codeload.github.com/antora-supplemental/page-edit/tar.gz/8dc5913948dbcf3f9f3f087a5ebf60ed7d3ec2e8(@antora/site-generator@3.1.14)
       '@antora-supplemental/serve':
         specifier: file:../antora-serve
         version: file:../antora-serve(@antora/playbook-builder@3.1.14)(@antora/site-generator@3.1.14)(@antora/user-require-helper@3.0.0)
@@ -48,6 +51,13 @@ packages:
   '@antora-supplemental/instruction-flow@file:../asciidoc-interactive':
     resolution: {directory: ../asciidoc-interactive, type: directory}
     engines: {node: '>=18'}
+
+  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/8dc5913948dbcf3f9f3f087a5ebf60ed7d3ec2e8':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/page-edit/tar.gz/8dc5913948dbcf3f9f3f087a5ebf60ed7d3ec2e8}
+    version: 0.1.0
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
 
   '@antora-supplemental/serve@file:../antora-serve':
     resolution: {directory: ../antora-serve, type: directory}
@@ -702,6 +712,10 @@ snapshots:
   '@antora-supplemental/instruction-flow@file:../asciidoc-interactive':
     dependencies:
       json5: 2.2.3
+
+  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/8dc5913948dbcf3f9f3f087a5ebf60ed7d3ec2e8(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora/site-generator': 3.1.14
 
   '@antora-supplemental/serve@file:../antora-serve(@antora/playbook-builder@3.1.14)(@antora/site-generator@3.1.14)(@antora/user-require-helper@3.0.0)':
     dependencies:
