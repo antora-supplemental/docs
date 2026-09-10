@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:none">
+  <symbol id="icon-component-root" viewBox="0 0 16 16">
+    <path fill="currentColor" d="M2 4.5 8 1.5l6 3v7L8 14.5l-6-3v-7Zm1 .8v5.4l5 2.5 5-2.5V5.3L8 2.8 3 5.3Z"/>
+  </symbol>
+  <symbol id="icon-spec-component" viewBox="0 0 16 16">
+    <path fill="currentColor" d="M3 3h4v4H3V3Zm6 0h4v4H9V3ZM3 9h4v4H3V9Zm6 2 1.5 1.5L12 10l1 1-1.5 1.5L12 14l-1-1-1.5 1.5L8 13l1.5-1.5L8 10l1 1 1.5-1.5Z"/>
+  </symbol>
+  <symbol id="icon-spec-feature" viewBox="0 0 16 16">
+    <path fill="currentColor" d="M8 1.5 9.6 6h4.4l-3.6 2.6 1.4 4.4L8 10.8 4.2 13l1.4-4.4L2 6h4.4L8 1.5Z"/>
+  </symbol>
+  <symbol id="icon-diataxis-tutorial" viewBox="0 0 16 16">
+    <path fill="currentColor" d="M8 1.5 3 4v5l5 2.5 5-2.5V4L8 1.5Zm0 1.2 3.5 1.75V8.3L8 10.05 4.5 8.3V4.45 8 2.7ZM2 12.5h12v1H2v-1Z"/>
+  </symbol>
+  <symbol id="icon-diataxis-howto" viewBox="0 0 16 16">
+    <path fill="currentColor" d="M3 2h7l3 3v9H3V2Zm7 1.5V6h2.5L10 3.5ZM5 9h6v1H5V9Zm0 2.5h4v1H5v-1Z"/>
+  </symbol>
+  <symbol id="icon-diataxis-reference" viewBox="0 0 16 16">
+    <path fill="currentColor" d="M3 2h10v12H3V2Zm1 1v10h8V3H4Zm1 1h6v1H5V4Zm0 2h6v1H5V6Zm0 2h4v1H5V8Z"/>
+  </symbol>
+  <symbol id="icon-diataxis-explanation" viewBox="0 0 16 16">
+    <path fill="currentColor" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm0 1a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm-.5 2h1v1h-1V4.5Zm0 2h1v4.5h-1V6.5Z"/>
+  </symbol>
+  <symbol id="icon-changelog" viewBox="0 0 16 16">
+    <path fill="currentColor" d="M4 2h8l2 2v10H4V2Zm1 1v11h10V5h-2V3H5Zm1 5h8v1H6V8Zm0 2h6v1H6v-1Zm0 2h5v1H6v-1Z"/>
+    <path fill="currentColor" d="M11.5 2.5 13 4l-3.5 3.5L8 6 11.5 2.5Z"/>
+  </symbol>
+</svg>

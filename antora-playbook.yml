@@ -48,17 +48,41 @@ ui:
 output:
   dir: ./build/site
 
+urls:
+  html_extension_style: indexify
+
 antora:
   extensions:
+    # Facto: Lunr before wrappers. Folder URLs via indexify.
+    - require: "@antora/lunr-extension"
+      index_latest_only: true
+      index_by_heading: true
+      snippet_length: 200
+    - require: "@antora-supplemental/antora-search-chat"
     - require: "@antora-supplemental/incremental"
     - require: "@antora-supplemental/unversioned-component-urls"
+    # Forest allowlist — samples stay published but are not a sidebar root.
+    - require: "@antora-supplemental/site-nav-tree"
+      include: [docs, antora-live, instruction-flow, registry, dprint-asciidoc]
+      order: [docs, antora-live, instruction-flow, registry, dprint-asciidoc]
+    - require: "@antora-supplemental/nav-typology"
+    - require: "@antora-supplemental/nav-typology-diataxis"
+    - "@antora-supplemental/build-stack"
     - "@antora-supplemental/page-edit"
-    - '@antora-supplemental/build-stack'
+    - require: "@antora-supplemental/page-context/antora"
+      component: docs
+      path: keywords
 
 asciidoc:
   attributes:
     stem: latexmath
+    kroki-server-url: https://kroki.io
+    kroki-fetch-diagram: true
+    page-context-active: ""
+    page-context-keyword-base: "/docs/keywords"
     source-highlighter: highlight.js
     icons: font
   extensions:
+    - asciidoctor-kroki
+    - "@antora-supplemental/page-context"
     - ./node_modules/@antora-supplemental/instruction-flow/lib/instruction-flow-extension.js

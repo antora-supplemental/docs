@@ -1,0 +1,17 @@
+<script id="site-script" src="{{{uiRootPath}}}/js/site.js" data-ui-root-path="{{{uiRootPath}}}"></script>
+<script src="{{{uiRootPath}}}/js/site-nav-tree-current.js"></script>
+<script async src="{{{uiRootPath}}}/js/vendor/highlight.js"></script>
+{{#if env.SITE_SEARCH_PROVIDER}}
+{{> search-scripts}}
+{{/if}}
+<script src="{{{uiRootPath}}}/js/site-dark-mode.js"></script>
+<script src="{{{uiRootPath}}}/js/site-adt-accordion.js"></script>
+<script src="{{{uiRootPath}}}/js/site-visual.js"></script>
+<script src="{{{uiRootPath}}}/js/site-read-width.js"></script>
+<script src="{{{uiRootPath}}}/js/site-font-size.js"></script>
+<script src="{{{uiRootPath}}}/js/site-math.js" defer></script>
+<script type="module">
+  import { upgradeThemedSvgImages } from '{{{uiRootPath}}}/js/themed-svg-element.js'
+  document.querySelectorAll('.imageblock.themed-svg img').forEach((image) => image.dataset.themedSvg = '')
+  upgradeThemedSvgImages()
+</script>

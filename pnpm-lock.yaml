@@ -18,20 +18,48 @@ importers:
         specifier: file:../asciidoc-interactive
         version: file:../asciidoc-interactive
     devDependencies:
+      '@antora-supplemental/antora-search-chat':
+        specifier: github:antora-supplemental/antora-search-chat#v0.1.4
+        version: https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/2cc2feb4a9c0aaae0e6e0b8458f26c747735a23d(@antora/lunr-extension@1.0.0-alpha.13)
+      '@antora-supplemental/nav-typology':
+        specifier: github:antora-supplemental/nav-typology#main
+        version: https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/6b7ca58bc5ce8f0c3717a267412b4b8200eaf700(@antora/site-generator@3.1.14)
+      '@antora-supplemental/nav-typology-diataxis':
+        specifier: github:antora-supplemental/nav-typology-diataxis#main
+        version: https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/92e0eca1675bafedb19dffe3239b78a80de0d17d(@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/6b7ca58bc5ce8f0c3717a267412b4b8200eaf700(@antora/site-generator@3.1.14))(@antora/site-generator@3.1.14)
+      '@antora-supplemental/page-context':
+        specifier: github:antora-supplemental/page-context#v0.6.4
+        version: https://codeload.github.com/antora-supplemental/page-context/tar.gz/4580d4320fc2de5ad7e76f35c2dfee8a59687a4d(@antora/site-generator@3.1.14)
       '@antora-supplemental/page-edit':
-        specifier: github:antora-supplemental/page-edit#main
-        version: https://codeload.github.com/antora-supplemental/page-edit/tar.gz/8dc5913948dbcf3f9f3f087a5ebf60ed7d3ec2e8(@antora/site-generator@3.1.14)
+        specifier: github:antora-supplemental/page-edit#v0.2.3
+        version: https://codeload.github.com/antora-supplemental/page-edit/tar.gz/3b38bd68e15eeaf4040d604a57608eb1a577199c(@antora/site-generator@3.1.14)
       '@antora-supplemental/serve':
         specifier: file:../antora-serve
         version: file:../antora-serve(@antora/playbook-builder@3.1.14)(@antora/site-generator@3.1.14)(@antora/user-require-helper@3.0.0)
+      '@antora-supplemental/site-nav-tree':
+        specifier: github:antora-supplemental/site-nav-tree#main
+        version: https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/678c4d0c3dc59e52261ed6ae0d3c8eaa73e1780d(@antora/site-generator@3.1.14)
       '@antora-supplemental/unversioned-component-urls':
         specifier: github:antora-supplemental/antora-unversioned-component-urls#v2.1.0
         version: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e(@antora/site-generator@3.1.14)
+      '@antora/lunr-extension':
+        specifier: 1.0.0-alpha.13
+        version: 1.0.0-alpha.13
       antora:
         specifier: ^3.1.14
         version: 3.1.14
+      asciidoctor-kroki:
+        specifier: ^0.18.1
+        version: 0.18.1(@asciidoctor/core@2.2.8)
 
 packages:
+
+  '@antora-supplemental/antora-search-chat@https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/2cc2feb4a9c0aaae0e6e0b8458f26c747735a23d':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/2cc2feb4a9c0aaae0e6e0b8458f26c747735a23d}
+    version: 0.1.4
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/lunr-extension': '>=1.0.0-alpha.12'
 
   '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c':
     resolution: {tarball: https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c}
@@ -52,9 +80,34 @@ packages:
     resolution: {directory: ../asciidoc-interactive, type: directory}
     engines: {node: '>=18'}
 
-  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/8dc5913948dbcf3f9f3f087a5ebf60ed7d3ec2e8':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/page-edit/tar.gz/8dc5913948dbcf3f9f3f087a5ebf60ed7d3ec2e8}
+  '@antora-supplemental/nav-typology-diataxis@https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/92e0eca1675bafedb19dffe3239b78a80de0d17d':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/92e0eca1675bafedb19dffe3239b78a80de0d17d}
     version: 0.1.0
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora-supplemental/nav-typology': '>=0.1.0'
+      '@antora/site-generator': '>=3.1.0'
+
+  '@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/6b7ca58bc5ce8f0c3717a267412b4b8200eaf700':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/6b7ca58bc5ce8f0c3717a267412b4b8200eaf700}
+    version: 0.1.4
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
+
+  '@antora-supplemental/page-context@https://codeload.github.com/antora-supplemental/page-context/tar.gz/4580d4320fc2de5ad7e76f35c2dfee8a59687a4d':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/page-context/tar.gz/4580d4320fc2de5ad7e76f35c2dfee8a59687a4d}
+    version: 0.6.4
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
+    peerDependenciesMeta:
+      '@antora/site-generator':
+        optional: true
+
+  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/3b38bd68e15eeaf4040d604a57608eb1a577199c':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/page-edit/tar.gz/3b38bd68e15eeaf4040d604a57608eb1a577199c}
+    version: 0.2.3
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -67,6 +120,13 @@ packages:
       '@antora/playbook-builder': '>=3.1.0'
       '@antora/site-generator': '>=3.1.0'
       '@antora/user-require-helper': '>=3.0.0'
+
+  '@antora-supplemental/site-nav-tree@https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/678c4d0c3dc59e52261ed6ae0d3c8eaa73e1780d':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/678c4d0c3dc59e52261ed6ae0d3c8eaa73e1780d}
+    version: 0.3.0
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
 
   '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e':
     resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e}
@@ -106,6 +166,10 @@ packages:
 
   '@antora/logger@3.1.14':
     resolution: {integrity: sha512-kVEeGqZbXR903hPIm+BlN97fLdQ3LoUzE/BOPZ6vRp9m9Mmbnm67Kg7fSYkfTMLB0S2UWpAPFg22RdsU5ZoAzA==}
+    engines: {node: '>=16.0.0'}
+
+  '@antora/lunr-extension@1.0.0-alpha.13':
+    resolution: {integrity: sha512-u8n8XLB6elMmXbW0bdeL5jG8UBJi6PSiz1zaMn+wIIIu/bnxotRBW4kEWSge+zTfdF4rEYMcJ9LvkAOamMyuKQ==}
     engines: {node: '>=16.0.0'}
 
   '@antora/navigation-builder@3.1.14':
@@ -174,6 +238,12 @@ packages:
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
+
+  asciidoctor-kroki@0.18.1:
+    resolution: {integrity: sha512-eQxbBCaPTbyNoJtk62Gp+6h4LlJp2147g7eS0QIVjqaLpFa8sseH0BlMiBoATrJUYv1w3nR+FTzvloBJ/MioYg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@asciidoctor/core': '>=2.2 <4.0'
 
   asciidoctor-opal-runtime@0.3.3:
     resolution: {integrity: sha512-/CEVNiOia8E5BMO9FLooo+Kv18K4+4JBFRJp8vUy/N5dMRAg+fRNV4HA+o6aoSC79jVU/aT5XvUpxSxSsTS8FQ==}
@@ -281,12 +351,29 @@ packages:
   diff3@0.0.3:
     resolution: {integrity: sha512-iSq8ngPOt0K53A6eVr4d5Kn6GNrM2nQZtC740pzIriHtn4pOQ2lyzEXQMBeVcWERN0ye7fhBsk9PbLLQOnUx/g==}
 
+  dom-serializer@2.0.0:
+    resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
+
+  domelementtype@2.3.0:
+    resolution: {integrity: sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw==}
+
+  domhandler@5.0.3:
+    resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
+    engines: {node: '>= 4'}
+
+  domutils@3.2.2:
+    resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
+
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
 
   end-of-stream@1.4.5:
     resolution: {integrity: sha512-ooEGc6HP26xXq/N+GCGOT0JKCLDGrq2bQUZrQ7gyrJiZANJ/8YDTxTpQBXGMn+WbIQXNVpyWymm7KYVICQnyOg==}
+
+  entities@4.5.0:
+    resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
+    engines: {node: '>=0.12'}
 
   es-define-property@1.0.1:
     resolution: {integrity: sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g==}
@@ -392,6 +479,9 @@ packages:
     resolution: {integrity: sha512-A91dYTeIB6NoXG+PxTQpCCDDnfHsW9kc06Lvpu1TEe9gnd6ZFeiBoRO9JvzEv6xK7EX97/dUE8g/vBMTqTS3CA==}
     engines: {node: '>=14'}
 
+  htmlparser2@9.1.0:
+    resolution: {integrity: sha512-5zfg6mHUoaer/97TxnGpxmbR7zJtPwIYFMZ/H5ucTlPZhKvtum05yiPK3Mgai3a0DyVxv7qYqoweaEd2nrYQzQ==}
+
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
 
@@ -450,6 +540,12 @@ packages:
   lodash.clonedeep@4.5.0:
     resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
 
+  lunr-languages@1.10.0:
+    resolution: {integrity: sha512-BBjKKcwrieJlzwwc9M5H/MRXGJ2qyOSDx/NXYiwkuKjiLOOoouh0WsDzeqcLoUWcX31y7i8sb8IgsZKObdUCkw==}
+
+  lunr@2.3.9:
+    resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -483,6 +579,11 @@ packages:
   minimisted@2.0.1:
     resolution: {integrity: sha512-1oPjfuLQa2caorJUM8HV8lGgWCc0qqAO1MNv/k05G4qslmsndV/5WdNZrqCiyqiz3wohia2Ij2B7w2Dr7/IyrA==}
 
+  mkdirp@2.1.3:
+    resolution: {integrity: sha512-sjAkg21peAG9HS+Dkx7hlG9Ztx7HLeKnvB3NQRcu/mltCVmvkF0pisbiTSfDVYTT86XEfZrTUosLdZLStquZUw==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   multi-progress@4.0.0:
     resolution: {integrity: sha512-9zcjyOou3FFCKPXsmkbC3ethv51SFPoA4dJD6TscIp2pUmy26kBDZW6h9XofPELrzseSkuD7r0V+emGEeo39Pg==}
     peerDependencies:
@@ -500,6 +601,9 @@ packages:
 
   pako@1.0.11:
     resolution: {integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==}
+
+  pako@2.1.0:
+    resolution: {integrity: sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==}
 
   path-is-absolute@1.0.1:
     resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
@@ -588,6 +692,9 @@ packages:
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
+  rusha@0.8.14:
+    resolution: {integrity: sha512-cLgakCUf6PedEu15t8kbsjnwIFFR2D4RfL+W3iWFJ4iac7z4B0ZI8fxy4R3J956kAI68HclCFGL8MPoUVC3qVA==}
+
   safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
@@ -667,6 +774,10 @@ packages:
     resolution: {integrity: sha512-MAhukhVHyaLGDjyDYhy8gVjWJyhTECCdNsLwlMoGFoNJ3o79fpQhtQuzmAE4IxCMDwraF4cW8ZjpAV0m9CRQbg==}
     engines: {node: '>=8.11'}
 
+  unxhr@1.2.0:
+    resolution: {integrity: sha512-6cGpm8NFXPD9QbSNx0cD2giy7teZ6xOkCUH3U89WKVkL9N9rBrWjlCwhR94Re18ZlAop4MOc3WU1M3Hv/bgpIw==}
+    engines: {node: '>=8.11'}
+
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
@@ -701,6 +812,10 @@ packages:
 
 snapshots:
 
+  '@antora-supplemental/antora-search-chat@https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/2cc2feb4a9c0aaae0e6e0b8458f26c747735a23d(@antora/lunr-extension@1.0.0-alpha.13)':
+    dependencies:
+      '@antora/lunr-extension': 1.0.0-alpha.13
+
   '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/84875b509693847d123c066d815af3269dd3054c(@antora/site-generator@3.1.14)':
     dependencies:
       '@antora/site-generator': 3.1.14
@@ -713,7 +828,20 @@ snapshots:
     dependencies:
       json5: 2.2.3
 
-  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/8dc5913948dbcf3f9f3f087a5ebf60ed7d3ec2e8(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/nav-typology-diataxis@https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/92e0eca1675bafedb19dffe3239b78a80de0d17d(@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/6b7ca58bc5ce8f0c3717a267412b4b8200eaf700(@antora/site-generator@3.1.14))(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora-supplemental/nav-typology': https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/6b7ca58bc5ce8f0c3717a267412b4b8200eaf700(@antora/site-generator@3.1.14)
+      '@antora/site-generator': 3.1.14
+
+  '@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/6b7ca58bc5ce8f0c3717a267412b4b8200eaf700(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora/site-generator': 3.1.14
+
+  '@antora-supplemental/page-context@https://codeload.github.com/antora-supplemental/page-context/tar.gz/4580d4320fc2de5ad7e76f35c2dfee8a59687a4d(@antora/site-generator@3.1.14)':
+    optionalDependencies:
+      '@antora/site-generator': 3.1.14
+
+  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/3b38bd68e15eeaf4040d604a57608eb1a577199c(@antora/site-generator@3.1.14)':
     dependencies:
       '@antora/site-generator': 3.1.14
 
@@ -722,6 +850,10 @@ snapshots:
       '@antora/playbook-builder': 3.1.14
       '@antora/site-generator': 3.1.14
       '@antora/user-require-helper': 3.0.0
+
+  '@antora-supplemental/site-nav-tree@https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/678c4d0c3dc59e52261ed6ae0d3c8eaa73e1780d(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora/site-generator': 3.1.14
 
   '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e(@antora/site-generator@3.1.14)':
     dependencies:
@@ -793,6 +925,12 @@ snapshots:
       pino: 9.2.0
       pino-pretty: 11.2.2
       sonic-boom: 4.0.1
+
+  '@antora/lunr-extension@1.0.0-alpha.13':
+    dependencies:
+      htmlparser2: 9.1.0
+      lunr: 2.3.9
+      lunr-languages: 1.10.0
 
   '@antora/navigation-builder@3.1.14':
     dependencies:
@@ -907,6 +1045,15 @@ snapshots:
 
   argparse@2.0.1: {}
 
+  asciidoctor-kroki@0.18.1(@asciidoctor/core@2.2.8):
+    dependencies:
+      '@asciidoctor/core': 2.2.8
+      json5: 2.2.3
+      mkdirp: 2.1.3
+      pako: 2.1.0
+      rusha: 0.8.14
+      unxhr: 1.2.0
+
   asciidoctor-opal-runtime@0.3.3:
     dependencies:
       glob: 7.1.3
@@ -996,6 +1143,24 @@ snapshots:
 
   diff3@0.0.3: {}
 
+  dom-serializer@2.0.0:
+    dependencies:
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      entities: 4.5.0
+
+  domelementtype@2.3.0: {}
+
+  domhandler@5.0.3:
+    dependencies:
+      domelementtype: 2.3.0
+
+  domutils@3.2.2:
+    dependencies:
+      dom-serializer: 2.0.0
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+
   dunder-proto@1.0.1:
     dependencies:
       call-bind-apply-helpers: 1.0.2
@@ -1005,6 +1170,8 @@ snapshots:
   end-of-stream@1.4.5:
     dependencies:
       once: 1.4.0
+
+  entities@4.5.0: {}
 
   es-define-property@1.0.1: {}
 
@@ -1116,6 +1283,13 @@ snapshots:
 
   hpagent@1.2.0: {}
 
+  htmlparser2@9.1.0:
+    dependencies:
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      domutils: 3.2.2
+      entities: 4.5.0
+
   ieee754@1.2.1: {}
 
   ignore@5.3.2: {}
@@ -1167,6 +1341,10 @@ snapshots:
 
   lodash.clonedeep@4.5.0: {}
 
+  lunr-languages@1.10.0: {}
+
+  lunr@2.3.9: {}
+
   math-intrinsics@1.1.0: {}
 
   merge2@1.4.1: {}
@@ -1194,6 +1372,8 @@ snapshots:
     dependencies:
       minimist: 1.2.8
 
+  mkdirp@2.1.3: {}
+
   multi-progress@4.0.0(progress@2.0.3):
     dependencies:
       progress: 2.0.3
@@ -1207,6 +1387,8 @@ snapshots:
       wrappy: 1.0.2
 
   pako@1.0.11: {}
+
+  pako@2.1.0: {}
 
   path-is-absolute@1.0.1: {}
 
@@ -1301,6 +1483,8 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
+  rusha@0.8.14: {}
+
   safe-buffer@5.2.1: {}
 
   safe-stable-stringify@2.5.0: {}
@@ -1392,6 +1576,8 @@ snapshots:
     optional: true
 
   unxhr@1.0.1: {}
+
+  unxhr@1.2.0: {}
 
   util-deprecate@1.0.2: {}
 

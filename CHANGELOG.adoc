@@ -1,7 +1,12 @@
 = Changelog
 :toc:
 
-== 2026-09-10 -- Publish robots.txt with sitemap
+== 2026-09-10 — Facto stack on the hub
+
+* Register Facto on the org playbook: indexify folder URLs, Lunr + search-chat, page-context, Kroki, site-nav-tree allowlist, nav-typology.
+* Fixes `/docs/live-docs/` (and other folder URLs) that 404’d without indexify.
+
+== 2026-09-10 — Publish robots.txt with sitemap
 
 * Antora `site.robots` now emits `/robots.txt` with an absolute `Sitemap:` line for the production host.
 

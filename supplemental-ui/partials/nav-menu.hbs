@@ -1,0 +1,13 @@
+{{!
+  Companion partial for Valentus when @antora-supplemental/site-nav-tree is on.
+  Component titles live in the tree roots - do not also print adt-nav-component-title.
+  Keeps stock nav-tree partial + Default UI / Valentus expand-collapse JS.
+}}
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu nav-tree-only adt-nav-tree-only" aria-label="Site documentation">
+    <button class="nav-menu-toggle" aria-label="Toggle expand and collapse of all item groups" style="display: none"></button>
+    {{#with page.navigation}}
+    {{> nav-tree navigation=this}}
+    {{/with}}
+  </nav>
+</div>
