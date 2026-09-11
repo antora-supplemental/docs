@@ -1,6 +1,10 @@
 = Changelog
 :toc:
 
+== 2026-09-10 — page-context 0.6.6 author spacing
+
+* Pin `@antora-supplemental/page-context` to `v0.6.6` so the linked name, circular avatar, and via Agent stay separated in the lead byline and footer author cells.
+
 == 2026-09-10 — Facto stack on the hub
 
 * Register Facto on the org playbook: indexify folder URLs, Lunr + search-chat, page-context, Kroki, site-nav-tree allowlist, nav-typology.

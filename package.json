@@ -15,7 +15,7 @@
     "@antora-supplemental/antora-search-chat": "github:antora-supplemental/antora-search-chat#v0.1.4",
     "@antora-supplemental/nav-typology": "github:antora-supplemental/nav-typology#main",
     "@antora-supplemental/nav-typology-diataxis": "github:antora-supplemental/nav-typology-diataxis#main",
-    "@antora-supplemental/page-context": "github:antora-supplemental/page-context#v0.6.4",
+    "@antora-supplemental/page-context": "github:antora-supplemental/page-context#v0.6.6",
     "@antora-supplemental/page-edit": "github:antora-supplemental/page-edit#v0.2.3",
     "@antora-supplemental/serve": "file:../antora-serve",
     "@antora-supplemental/site-nav-tree": "github:antora-supplemental/site-nav-tree#main",
