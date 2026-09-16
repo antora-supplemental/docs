@@ -1,4 +1,8 @@
 = Changelog
+
+== 2026-09-15 -- page-edit 0.2.4 component-home Source
+
+* Pin `@antora-supplemental/page-edit` to `v0.2.4` so Antora component start pages get the Source | View | Edit row (empty lead shells no longer false-positive on page-context CSS).
 :toc:
 
 == 2026-09-10 — page-context 0.6.6 author spacing
