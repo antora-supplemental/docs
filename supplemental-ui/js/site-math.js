@@ -68,4 +68,10 @@
   } else {
     start()
   }
+
+  function onSoftNavLoaded (fn) {
+    if (window.SoftNav && typeof SoftNav.on === 'function') SoftNav.on('loaded', fn)
+    else document.addEventListener('soft-nav:loaded', function (e) { fn(e.detail || {}) })
+  }
+  onSoftNavLoaded(function () { start() })
 })()
