@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-09-25 -- Diagram engines (bake vs client) + zoom pointer
+
+* Add `diagram-engines.adoc` — supported Option A (Kroki/Themed SVG bake), Option B (client Mermaid), hybrid `[.mermaid-client]` how-to, and chassis `diagram-zoom` enable steps.
+* Nav + portal index entries; canonical deep how-to remains on docs.devcentr.org diagram formats page.
 == 2026-09-15 -- page-edit 0.2.4 component-home Source
 
 * Pin `@antora-supplemental/page-edit` to `v0.2.4` so Antora component start pages get the Source | View | Edit row (empty lead shells no longer false-positive on page-context CSS).

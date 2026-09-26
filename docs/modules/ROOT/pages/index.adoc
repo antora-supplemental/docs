@@ -13,7 +13,8 @@ Canonical dark-mode overlay docs (install, demo): link:https://antora-supplement
 * xref:antora-dark-mode.adoc[Antora Dark Mode] — Links to the canonical dark-mode extension docs (install, demo, troubleshooting); not duplicated here
 * xref:antora-deployment.adoc[Antora Deployment] — Root vs. subfolder strategy, CI, GitHub Pages, multi-repo playbooks
 * xref:antora-github-actions.adoc[Antora on GitHub] — Actions, workflow templates, template repos, Pages
-* xref:org-github-config.adoc[Org GitHub config] — `.github` vs `.github-private`; retired personal private bootstrap; theme rename pointers
+* xref:org-github-config.adoc[Org GitHub config] -- `.github` vs `.github-private`; retired personal private bootstrap; theme rename pointers
+* xref:diagram-engines.adoc[Diagram engines] -- Bake SVG (Kroki/Themed SVG) vs client Mermaid; hybrid; diagram-zoom
 * xref:samples:ROOT:index.adoc[Antora Samples Template]
 * xref:registry:ROOT:index.adoc[Ecosystem registry] — extensions, themes, packages
 * https://registry.antora-supplemental.org/themes[Theme gallery] (registry.antora-supplemental.org)

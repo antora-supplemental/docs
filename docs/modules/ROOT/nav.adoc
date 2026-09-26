@@ -5,3 +5,4 @@
 * xref:antora-deployment.adoc[Antora Deployment]
 * xref:antora-github-actions.adoc[Antora on GitHub]
 * xref:org-github-config.adoc[Org GitHub config]
+* xref:diagram-engines.adoc[Diagram engines]

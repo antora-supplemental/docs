@@ -1,0 +1,61 @@
+= Diagram engines (bake vs client)
+:navtitle: Diagram engines
+:description: Supported Antora diagram options — bake SVG at build (Kroki/Themed SVG), ship client Mermaid, hybrid per diagram, and diagram zoom/lightbox.
+
+Antora itself does not force a diagram bake.
+The antora-supplemental / Facto stack treats **two strategies** as supported options (plus hybrid).
+
+== Option A — Bake SVG at build
+
+* Extension: `asciidoctor-kroki` with `kroki-fetch-diagram: true`.
+* Formats: Mermaid + PlantUML (and other Kroki types) become SVG during `antora`.
+* Theme: raw Kroki `<img>` is fixed-color. For dark-mode toggle without dual forks, post-process with `@dev-centr/mermaid-svg-css-vars` / `plantuml-svg-css-vars` into link:https://github.com/dev-centr/themed-svg[Themed SVG] and serve `[.themed-svg]`.
+* Dark-text WARN / borrow-from-light: see the DevCentr how-to (linked below).
+
+.When to use
+Default for hubs, PlantUML, offline/print, and figures that must work with JS disabled.
+
+== Option B — Client render engines (Mermaid first)
+
+* Ship supplemental `site-mermaid.js` + `site-mermaid.css` (hub pattern).
+* Leave Mermaid **source** in the HTML; SVG ids appear only after JS (DeepWiki-style).
+* Theme with Mermaid `theme` / `themeVariables` and CSS tokens — no dual checked-in SVG.
+* PlantUML-in-browser is harder and **not** shipped as a Facto default.
+
+.When to use
+Mermaid that must follow light/dark without a Themed SVG generate step.
+
+== Hybrid
+
+Keep Kroki for PlantUML (and baked Mermaid you want stable).
+For a client Mermaid figure on the same site, author a listing Kroki will not claim:
+
+[source,asciidoc]
+----
+[.mermaid-client]
+[source,text]
+----
+flowchart TD
+  A[Client source] --> B[SVG after JS]
+----
+----
+
+Or `++++` + `<pre class="mermaid">…</pre>`.
+Hub `site-mermaid.js` collects `.mermaid-client` / `pre.mermaid` and re-runs on SoftNav.
+
+== Diagram zoom / lightbox
+
+Chassis package: link:https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/diagram-zoom[`diagram-zoom`].
+
+.Enable
+. Copy `js/site-diagram-zoom.js` and `css/site-diagram-zoom.css` into `supplemental-ui/`.
+. Link the stylesheet in `head-meta.hbs`; load the script after SoftNav in the footer partial.
+. No AsciiDoc role required — attaches to `.doc .imageblock` and client Mermaid hosts.
+
+In-article: zoom in/out/reset + expand. Lightbox: drag-pan, wheel-zoom, Esc/close. Uses `--adt-*` tokens.
+
+== Canonical how-to
+
+DevCentr authors: link:https://docs.devcentr.org/home/publishing/antora-diagram-formats/[Antora diagram formats] (Option A/B/hybrid steps, Kroki self-host, WARN policy, zoom).
+
+Compose pack: link:https://github.com/antora-supplemental/antora-facto[antora-facto] (Valentus stays lean; Kroki is Facto, not Valentus core).

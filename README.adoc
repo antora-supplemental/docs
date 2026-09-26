@@ -65,6 +65,10 @@ link:https://github.com/antora-supplemental/docs/issues[Report Bug] ·
 link:https://github.com/antora-supplemental/docs/issues[Request Feature]
 endif::[]
 
+== Diagram engines
+
+Bake (Kroki/Themed SVG) vs client Mermaid is a **supported** supplemental option — see the portal page `diagram-engines.adoc` (and DevCentr `publishing/antora-diagram-formats`). Zoom/lightbox: chassis `packages/diagram-zoom`.
+
 == About The Project
 
 Documentation hub for the antora-supplemental organization, built with Antora.
