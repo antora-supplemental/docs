@@ -5,6 +5,44 @@
 Antora itself does not force a diagram bake.
 The antora-supplemental / Facto stack treats **two strategies** as supported options (plus hybrid).
 
+
+== Packaged extensions (antora-diagram-engines)
+
+Selectable monorepo (not a monolith): link:https://github.com/antora-supplemental/antora-diagram-engines[antora-supplemental/antora-diagram-engines].
+
+[cols="2,3"]
+|===
+| Package | Role
+
+| \@antora-supplemental/mermaid-client| Asciidoctor client hosts + Antora UI inject. **CDN-first** Mermaid runtime (pinned jsDelivr); optional \cdn: false\ + local script for air-gap. Light/dark re-render (no dual SVG forks).
+
+| \@antora-supplemental/diagram-zoom| Zoom / lightbox assets (chassis patterns).
+
+| \@antora-supplemental/diagram-engines| Optional meta bundle wiring Mermaid client + zoom defaults.
+|===
+
+.Mermaid + zoom only (playbook sketch)
+[source,yaml]
+----
+antora:
+  extensions:
+    - require: '@antora-supplemental/mermaid-client/antora'
+      # cdn: 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js'  # default
+      # cdn: false
+      # localScript: 'js/vendor/mermaid.min.js'
+    - require: '@antora-supplemental/diagram-zoom'
+asciidoc:
+  extensions:
+    - asciidoctor-kroki   # PlantUML / other bake formats
+  attributes:
+    mermaid-client: ''
+    mermaid-client-mode: client
+    kroki-fetch-diagram: true
+----
+
+PlantUML stays on Kroki (does not auto-retheme like Mermaid).
+DevCentr Themed SVG / bake pipeline remains **live but unmaintained**.
+
 == Option A — Bake SVG at build
 
 * Extension: `asciidoctor-kroki` with `kroki-fetch-diagram: true`.
