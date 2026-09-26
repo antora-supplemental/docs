@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-09-25 -- antora-diagram-engines monorepo pointer
+
+* Point diagram-engines.adoc at link:https://github.com/antora-supplemental/antora-diagram-engines[antora-diagram-engines] packages (mermaid-client, diagram-zoom, optional bundle). CDN-first Mermaid; PlantUML via Kroki; Themed SVG live/unmaintained.
+
 == 2026-09-25 -- Diagram engines (bake vs client) + zoom pointer
 
 * Add `diagram-engines.adoc` — supported Option A (Kroki/Themed SVG bake), Option B (client Mermaid), hybrid `[.mermaid-client]` how-to, and chassis `diagram-zoom` enable steps.
