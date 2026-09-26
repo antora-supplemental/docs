@@ -1,5 +1,8 @@
-= Changelog
+﻿= Changelog
 
+== 2026-09-25 -- Cite facto-stack
+
+* Related link: `antora-facto` renamed to https://github.com/antora-supplemental/facto-stack[facto-stack].
 == 2026-09-25 -- antora-diagram-engines monorepo pointer
 
 * Point diagram-engines.adoc at link:https://github.com/antora-supplemental/antora-diagram-engines[antora-diagram-engines] packages (mermaid-client, diagram-zoom, optional bundle). CDN-first Mermaid; PlantUML via Kroki; Themed SVG live/unmaintained.

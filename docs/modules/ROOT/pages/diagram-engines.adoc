@@ -1,4 +1,4 @@
-= Diagram engines (bake vs client)
+﻿= Diagram engines (bake vs client)
 :navtitle: Diagram engines
 :description: Supported Antora diagram options — bake SVG at build (Kroki/Themed SVG), ship client Mermaid, hybrid per diagram, and diagram lightbox (zoom/pan).
 
@@ -99,4 +99,4 @@ In-article: zoom in/out/reset + expand. Lightbox: drag-pan, wheel-zoom, Esc/clos
 
 DevCentr authors: link:https://docs.devcentr.org/home/publishing/antora-diagram-formats/[Antora diagram formats] (Option A/B/hybrid steps, Kroki self-host, WARN policy, zoom).
 
-Compose pack: link:https://github.com/antora-supplemental/antora-facto[antora-facto] (Valentus stays lean; Kroki is Facto, not Valentus core).
+Compose pack: link:https://github.com/antora-supplemental/facto-stack[facto-stack] (Valentus stays lean; Kroki is Facto, not Valentus core).
