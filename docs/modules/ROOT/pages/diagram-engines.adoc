@@ -14,11 +14,14 @@ Selectable monorepo (not a monolith): link:https://github.com/antora-supplementa
 |===
 | Package | Role
 
-| \@antora-supplemental/mermaid-client| Asciidoctor client hosts + Antora UI inject. **CDN-first** Mermaid runtime (pinned jsDelivr); optional \cdn: false\ + local script for air-gap. Light/dark re-render (no dual SVG forks).
+| `@antora-supplemental/mermaid-client`
+| Asciidoctor client hosts + Antora UI inject. **CDN-first** Mermaid runtime (pinned jsDelivr); optional `cdn: false` + local script for air-gap. Light/dark re-render (no dual SVG forks).
 
-| \@antora-supplemental/diagram-zoom| Zoom / lightbox assets (chassis patterns).
+| `@antora-supplemental/diagram-zoom`
+| Zoom / lightbox assets (chassis patterns).
 
-| \@antora-supplemental/diagram-engines| Optional meta bundle wiring Mermaid client + zoom defaults.
+| `@antora-supplemental/diagram-engines`
+| Optional meta bundle wiring Mermaid client + zoom defaults.
 |===
 
 .Mermaid + zoom only (playbook sketch)
@@ -55,7 +58,7 @@ Default for hubs, PlantUML, offline/print, and figures that must work with JS di
 
 == Option B — Client render engines (Mermaid first)
 
-* Ship supplemental `site-mermaid.js` + `site-mermaid.css` (hub pattern).
+* Prefer `@antora-supplemental/mermaid-client` (CDN runtime + UI inject), or continue shipping hub supplemental `site-mermaid.js` + `site-mermaid.css`.
 * Leave Mermaid **source** in the HTML; SVG ids appear only after JS (DeepWiki-style).
 * Theme with Mermaid `theme` / `themeVariables` and CSS tokens — no dual checked-in SVG.
 * PlantUML-in-browser is harder and **not** shipped as a Facto default.
