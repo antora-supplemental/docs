@@ -1,6 +1,6 @@
 = Diagram engines (bake vs client)
 :navtitle: Diagram engines
-:description: Supported Antora diagram options — bake SVG at build (Kroki/Themed SVG), ship client Mermaid, hybrid per diagram, and diagram zoom/lightbox.
+:description: Supported Antora diagram options — bake SVG at build (Kroki/Themed SVG), ship client Mermaid, hybrid per diagram, and diagram lightbox (zoom/pan).
 
 Antora itself does not force a diagram bake.
 The antora-supplemental / Facto stack treats **two strategies** as supported options (plus hybrid).
@@ -17,14 +17,14 @@ Selectable monorepo (not a monolith): link:https://github.com/antora-supplementa
 | `@antora-supplemental/mermaid-client`
 | Asciidoctor client hosts + Antora UI inject. **CDN-first** Mermaid runtime (pinned jsDelivr); optional `cdn: false` + local script for air-gap. Light/dark re-render (no dual SVG forks).
 
-| `@antora-supplemental/diagram-zoom`
+| `@antora-supplemental/diagram-lightbox`
 | Zoom / lightbox assets (chassis patterns).
 
 | `@antora-supplemental/diagram-engines`
-| Optional meta bundle wiring Mermaid client + zoom defaults.
+| Optional meta bundle wiring Mermaid client + lightbox defaults.
 |===
 
-.Mermaid + zoom only (playbook sketch)
+.Mermaid + lightbox only (playbook sketch)
 [source,yaml]
 ----
 antora:
@@ -33,7 +33,7 @@ antora:
       # cdn: 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js'  # default
       # cdn: false
       # localScript: 'js/vendor/mermaid.min.js'
-    - require: '@antora-supplemental/diagram-zoom'
+    - require: '@antora-supplemental/diagram-lightbox'
 asciidoc:
   extensions:
     - asciidoctor-kroki   # PlantUML / other bake formats
@@ -89,7 +89,7 @@ Hub `site-mermaid.js` collects `.mermaid-client` / `pre.mermaid` and re-runs on 
 Chassis package: link:https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/diagram-zoom[`diagram-zoom`].
 
 .Enable
-. Copy `js/site-diagram-zoom.js` and `css/site-diagram-zoom.css` into `supplemental-ui/`.
+. Prefer `@antora-supplemental/diagram-lightbox` (injects `site-diagram-lightbox.js/css`), or copy chassis `js/site-diagram-zoom.js` and `css/site-diagram-zoom.css` into `supplemental-ui/`.
 . Link the stylesheet in `head-meta.hbs`; load the script after SoftNav in the footer partial.
 . No AsciiDoc role required — attaches to `.doc .imageblock` and client Mermaid hosts.
 
