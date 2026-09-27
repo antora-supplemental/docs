@@ -69,6 +69,14 @@ antora:
     - require: "@antora-supplemental/nav-typology-diataxis"
     - "@antora-supplemental/build-stack"
     - "@antora-supplemental/page-edit"
+    - require: "@antora-supplemental/link-validator"
+      reportEmail: support@devcentr.org
+      softFail403: true
+      failLevel: none
+    - require: "@antora-supplemental/linkinator"
+      statusDefault: unchecked
+    - require: "@antora-supplemental/extension-lister"
+      layouts: [footer]
     - require: "@antora-supplemental/page-context/antora"
       component: docs
       path: keywords
