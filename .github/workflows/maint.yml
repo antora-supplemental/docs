@@ -1,0 +1,35 @@
+name: Maint audits
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  maint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Clone asciidoc-interactive
+        run: git clone --depth 1 https://github.com/antora-supplemental/asciidoc-interactive.git "${GITHUB_WORKSPACE}/../asciidoc-interactive"
+      - name: Clone antora-serve
+        run: git clone --depth 1 https://github.com/antora-supplemental/antora-serve.git "${GITHUB_WORKSPACE}/../antora-serve"
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: pnpm
+      - run: pnpm install
+      - name: Playbook pin auditor
+        run: pnpm run maint:pins
+        continue-on-error: true
+      - name: Orphan finder
+        run: pnpm run maint:orphans
+        continue-on-error: true
