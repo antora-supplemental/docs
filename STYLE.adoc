@@ -1,4 +1,4 @@
-= Editorial style â€” titles and headlines
+= Editorial style — titles and headlines
 :toc:
 
 Rules for news posts, blog essays, and other titled prose on this org's public surfaces.
@@ -15,7 +15,7 @@ Agents and authors both follow this document.
 
 | *News* (first-party)
 | Name what entered the record; org is already in context
-| Notification / status line. Example: `Instruction flows added to the repertoire`. Do *not* prefix with `HCI Nerdz â€¦` unless another actor did the thing.
+| Notification / status line. Example: `Instruction flows added to the repertoire`. Do *not* prefix with `HCI Nerdz …` unless another actor did the thing.
 
 | *News* (external actor)
 | Name who did what
@@ -23,30 +23,30 @@ Agents and authors both follow this document.
 
 | *Blog / essay*
 | Orient the reader to a claim, framing, question, or situation
-| Pass implied *[On] â€¦* when using an action; prefer *as* / process / indefinite over rigid *X is Y* equations. Drop surplus *the*.
+| Pass implied *[On] …* when using an action; prefer *as* / process / indefinite over rigid *X is Y* equations. Drop surplus *the*.
 |===
 
 Do not write a news headline that could pass for a whitepaper section heading.
-Do not write an essay title that only announces â€œwe shipped a thingâ€ unless the piece is literally a changelog in essay clothing.
+Do not write an essay title that only announces “we shipped a thing” unless the piece is literally a changelog in essay clothing.
 
 == First-party news: omit the org
 
-On this site, the readerâ€™s attention is already contextualized to this org.
+On this site, the reader’s attention is already contextualized to this org.
 Unless otherwise noted, *we* are the actors.
 
 * Prefer: `Instruction flows added to the repertoire`
 * Avoid: `OrgName adds instruction flows to the repertoire`
 
-Wire-service â€œalways name the subjectâ€ still applies when the subject is *not* us.
+Wire-service “always name the subject” still applies when the subject is *not* us.
 
 == The implied-[On] test (action titles)
 
 Whenever the title uses an *action*, rewrite until it reads naturally after an invisible *On*:
 
-* Good: `Sharing the IR, not the pixels` â†’ *On sharing the IRâ€¦*
-* Good: `Navigating by content` â†’ *On navigating by content*
-* Awkward: `Navigate by content` â†’ bare imperative
-* Awkward: `Navigating by the content` â†’ surplus *the*; overformal once *On* is implied
+* Good: `Sharing the IR, not the pixels` → *On sharing the IR…*
+* Good: `Navigating by content` → *On navigating by content*
+* Awkward: `Navigate by content` → bare imperative
+* Awkward: `Navigating by the content` → surplus *the*; overformal once *On* is implied
 
 Also acceptable: noun framing `Navigation by content` (*On navigation by content*).
 
@@ -62,39 +62,39 @@ Prefer the thinner form when *the* only adds formality: `by content`, not `by th
 | Shape | Effect
 
 | `Theme is a contract`
-| Rigid equation of two closed concepts; little room to ask â€œwhich?â€
+| Rigid equation of two closed concepts; little room to ask “which?”
 
 | `Theme as a contract`
-| Framing â€” orients without closing the definition
+| Framing — orients without closing the definition
 
 | `Theming is a contract`
 | Process/verb noun; admits behavior beyond the dictionary sense
 
 | `A theme is a contract`
-| Existential opener (â€œthere exists a theme such thatâ€¦â€); invites *which theme?*
+| Existential opener (“there exists a theme such that…”); invites *which theme?*
 |===
 
 Prefer orientation over identity equations for abstract essays.
 
 == Titles that plant a question
 
-* *Disproof:* `Attention is not inventory` â€” reader asks *why not?* / *how not?* (needs a real finding)
-* *Situation:* `When 'non-technical' products lie` â€” places the reader in a class of events
-* *Identity question:* `What is Antora Supplemental?` â€” matches the query people already have
+* *Disproof:* `Attention is not inventory` — reader asks *why not?* / *how not?* (needs a real finding)
+* *Situation:* `When 'non-technical' products lie` — places the reader in a class of events
+* *Identity question:* `What is Antora Supplemental?` — matches the query people already have
 
 Avoid commitment without a finding (dictation) and floating jargon without an object.
 
 == Attach floating modifiers
 
-`Sequence as the top-level` disorients â€” top-level *what?*
+`Sequence as the top-level` disorients — top-level *what?*
 Prefer `Sequence as top-level organization` (name the object/context).
 
 == Structure and naming
 
-* *One strong idea per news item* â€” split rejection vs shipping into cross-linked posts when both claims stand alone
-* *Big idea first* â€” `Reimplementing dark mode as an overlay`, not burying the job under an implementation nuance
-* *Human names before CLI tokens* â€” unless the invocation *is* the news
-* *Welcome posts* â€” first news should orient: motivation, philosophy, people involved + profile links
+* *One strong idea per news item* — split rejection vs shipping into cross-linked posts when both claims stand alone
+* *Big idea first* — `Reimplementing dark mode as an overlay`, not burying the job under an implementation nuance
+* *Human names before CLI tokens* — unless the invocation *is* the news
+* *Welcome posts* — first news should orient: motivation, philosophy, people involved + profile links
 * *Soft welcomes* OK when continuity with a prior surface is assumed
 * *Predictable slight inaccuracy* is sometimes genre-normal; *disorientation* is the failure to fix
 
@@ -104,17 +104,17 @@ Prefer `Sequence as top-level organization` (name the object/context).
 * Prefer a verb in news (or a clear notification participle: `added`, `ships`)
 * Sentence case; accuracy over cleverness
 
-Sources: AP headline notes; reporting textbooks (verb + present); Cambridge headline grammar (article drop, present for immediacy). Orientation, *as* vs *is*, and first-party actor omission are house doctrine beyond those manuals â€” see the philosophy essay.
+Sources: AP headline notes; reporting textbooks (verb + present); Cambridge headline grammar (article drop, present for immediacy). Orientation, *as* vs *is*, and first-party actor omission are house doctrine beyond those manuals — see the philosophy essay.
 
 == Antora / docs topic titles
 
-Encyclopedia concept names (`= Instruction flows`) â€” no forced news verb.
+Encyclopedia concept names (`= Instruction flows`) — no forced news verb.
 
 == Quick checklist
 
-. First-party news â†’ org omitted unless another actor?
-. Action title â†’ *[On] + title* sounds human? Surplus *the* dropped?
-. Abstract claim â†’ *as* / process / *a* / question / *when* / disproof instead of rigid *X is Y*?
+. First-party news → org omitted unless another actor?
+. Action title → *[On] + title* sounds human? Surplus *the* dropped?
+. Abstract claim → *as* / process / *a* / question / *when* / disproof instead of rigid *X is Y*?
 . Modifiers attached to an object?
 . One idea per news item? Big idea first?
 . Sentence case? Orienting? Honest enough?
@@ -143,7 +143,7 @@ Encyclopedia concept names (`= Instruction flows`) â€” no forced news verb.
 
 | Essay (organization)
 | `Sequence as top-level organization`
-| `Sequence as the top-level: â€¦`
+| `Sequence as the top-level: …`
 |===
 
 == Pull request titles and summaries
