@@ -1,5 +1,9 @@
 ﻿= Changelog
 
+== Unreleased
+
+* Lockfile refresh so Antora and `asciidoctor-kroki` resolve `@asciidoctor/core` 2.2.9; its Opal runtime (0.3.4) uses `fast-glob` instead of the deprecated `glob@7` and `inflight`.
+
 == 2026-09-25 -- Cite facto-stack
 
 * Related link: `antora-facto` renamed to https://github.com/antora-supplemental/facto-stack[facto-stack].
