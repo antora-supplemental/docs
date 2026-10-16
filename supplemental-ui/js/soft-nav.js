@@ -193,10 +193,14 @@
 
   function readPageNavMeta (doc) {
     var root = doc && doc.querySelector ? doc : document
-    var hidden = root.querySelector('meta[name="antora-supplemental:nav-hidden"]')
-    var parent = root.querySelector('meta[name="antora-supplemental:nav-parent"]')
+    var hidden =
+      root.querySelector('meta[name="antora-supplemental:hide-from-navtree"]') ||
+      root.querySelector('meta[name="antora-supplemental:nav-hidden"]')
+    var parent =
+      root.querySelector('meta[name="antora-supplemental:navtree-parent"]') ||
+      root.querySelector('meta[name="antora-supplemental:nav-parent"]')
     return {
-      navHidden: !!hidden,
+      hideFromNavtree: !!hidden,
       navParent: parent && parent.getAttribute('content') ? parent.getAttribute('content').trim() : null,
     }
   }
@@ -268,7 +272,7 @@
     var meta = readPageNavMeta(fetchedDoc || document)
     var pathname = pageUrl(url).pathname
     var parentSlug = parentSlugFromMeta(meta, pathname)
-    var treatAsHidden = meta.navHidden || (parentSlug && pathname.indexOf('-details') >= 0)
+    var treatAsHidden = meta.hideFromNavtree || (parentSlug && pathname.indexOf('-details') >= 0)
 
     if (treatAsHidden && parentSlug) {
       var parentItem = findParentNavItem(menu, parentSlug, url)
@@ -442,6 +446,59 @@
     tocScrollHandler()
   }
 
+  function patchBreadcrumbs (url, fetchedDoc) {
+    var meta = readPageNavMeta(fetchedDoc || document)
+    if (!meta.hideFromNavtree) return
+
+    var list =
+      document.querySelector('.adt-doc-mast-center nav.adt-breadcrumbs ul') ||
+      document.querySelector('nav.adt-breadcrumbs ul')
+    if (!list) return
+
+    var current = list.querySelector('.adt-breadcrumb-trail--current')
+    if (!current) return
+
+    var label = pageLabelFromDoc(fetchedDoc || document)
+    var curLink = current.querySelector('a.adt-breadcrumb-trail-link')
+    if (curLink) {
+      curLink.href = url
+      curLink.textContent = label
+    }
+
+    if (list.querySelector('.adt-breadcrumb-trail[data-navtree-parent="1"]')) return
+
+    var pathname = pageUrl(url).pathname
+    var parentSlug = parentSlugFromMeta(meta, pathname)
+    var menu = document.querySelector('.nav-container [data-panel=menu]')
+    var parentItem = menu && parentSlug ? findParentNavItem(menu, parentSlug, url) : null
+    var parentAnchor = parentItem && parentItem.querySelector('a.nav-link')
+    if (!parentAnchor) return
+
+    var parentText = parentAnchor.querySelector('.nav-text')
+    parentText = parentText ? parentText.textContent.trim() : parentSlug
+
+    function makeSep () {
+      var sep = document.createElement('li')
+      sep.className = 'adt-breadcrumb-sep'
+      sep.setAttribute('aria-hidden', 'true')
+      sep.textContent = '/'
+      return sep
+    }
+
+    var parentLi = document.createElement('li')
+    parentLi.className = 'adt-breadcrumb-trail'
+    parentLi.setAttribute('data-navtree-parent', '1')
+    var pa = document.createElement('a')
+    pa.className = 'adt-breadcrumb-trail-link'
+    pa.href = parentAnchor.href
+    pa.textContent = parentText
+    parentLi.appendChild(pa)
+
+    list.insertBefore(makeSep(), current)
+    list.insertBefore(parentLi, current)
+    list.insertBefore(makeSep(), current)
+  }
+
   function finishPageTransition (ctx) {
     var dest = pageUrl(ctx.url)
     if (dest.hash) scrollToHash(dest.hash)
@@ -449,6 +506,7 @@
 
     rebuildPageToc()
     syncNavAfterNavigate(ctx.url, ctx.doc)
+    patchBreadcrumbs(ctx.url, ctx.doc)
   }
 
   SoftNav.registerRegion({
@@ -625,6 +683,7 @@
   function onInitialReady () {
     rebuildPageToc()
     syncNavAfterNavigate(window.location.href, document)
+    patchBreadcrumbs(window.location.href, document)
   }
 
   if (document.readyState === 'loading') {

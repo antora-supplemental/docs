@@ -71,11 +71,11 @@ Authors want:
 * Stable URLs and xrefs without expanding the left nav forest (UX and **HTML payload** on every page share the same baked nav tree).
 * Optional breadcrumb or contextual TOC injection for hidden targets without duplicating 20+ nav lines.
 
-**Interim author convention (shipped in nav-drift 0.1.2):** declare `:page-nav-hidden:` at the top of any page intentionally omitted from `nav.adoc`. With `nav-drift --require-in-nav`, marked pages report as `nav-hidden-page` (intentional), not `page-missing-from-nav`. Example: all `changelog-details/` pages on the D Lang Supplemental hub.
+**Interim author convention (nav-drift + SoftNav):** declare `:hide-from-navtree:` (imperative; legacy `:page-nav-hidden:` still parses) and optional `:navtree-parent: changelog.adoc` on pages intentionally omitted from `nav.adoc`. With `nav-drift --require-in-nav`, marked pages report as `nav-hidden-page` (intentional), not `page-missing-from-nav`. SoftNav and `@antora-supplemental/soft-nav-page-toc` inject parent breadcrumbs, a single nav-tree child under the parent, and matching `<meta>` tags at build time.
 
 Possible upstream directions (for discussion, not a finished API):
 
-* Promote `:page-nav-hidden:` (or equivalent) in Antora core so generators and UI bundles understand nav-hidden pages without CLI scanning.
+* Promote `:hide-from-navtree:` (or equivalent imperative directive) in Antora core so generators and UI bundles understand nav-hidden pages without CLI scanning.
 * Nav file attribute on xref lines, for example `xref:path.adoc[Label, nav-hidden]` semantics.
 * Playbook key, for example `site.nav.hidden_pages` with explicit allow-list for sitemap/search.
 * Generator output: omit hidden pages from `nav-data.js` / menu partial but retain them in the content catalog and page manifest.
@@ -87,7 +87,7 @@ Possible upstream directions (for discussion, not a finished API):
 * Default `SoftNav.swapNav = false` — left nav tree is not replaced on soft loads; mast + article update in place.
 * `SoftNav.rebuildPageToc()` runs after every soft navigation (and initial load).
 * `SoftNav.scrollToTop = true` — cross-page soft nav scrolls the window to the top unless the destination URL has a `#` hash.
-* Nav-hidden pages (`:page-nav-hidden:` plus optional `:page-nav-parent:`) inject a single child item under the parent nav link on hard and soft loads; `@antora-supplemental/soft-nav-page-toc` emits matching `<meta>` tags at build time.
+* Nav-hidden pages inject a **parent breadcrumb** (`… / Changelog / Detail title`) and a single child under the parent nav link on hard and soft loads (`:hide-from-navtree:` + `:navtree-parent:`).
 
 == Upstream ask C — paginated long indices (changelog, release notes)
 
