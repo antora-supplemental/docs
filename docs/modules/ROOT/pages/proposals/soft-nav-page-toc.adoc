@@ -1,0 +1,104 @@
+= SoftNav page TOC and nav-hidden pages
+:navtitle: SoftNav page TOC
+:page-tags: proposal
+:description: Rebuild the aside page TOC after SoftNav swaps; optional nav-hidden routable pages for detail views and performance.
+:page-audience: Antora maintainers, UI bundle authors, supplemental extension authors
+:page-usage-context: Upstream discussion and Zulip link target
+:page-orig-author: Ryan Johnson
+:page-last-author: Composer on behalf of Ryan Johnson
+
+== Summary
+
+Hubs that use https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/soft-nav[SoftNav] with Default UI or Valentus can soft-swap mast, left nav, and article without a full reload.
+The **right-rail page TOC** (`aside.toc.sidebar`) is built once by bundled `site.js` from `article.doc` headings.
+After a soft navigation (for example from a changelog index to an xref:https://github.com/dlang-supplemental/docs[`changelog-details`] orphan page), the article updates but the TOC still lists the previous page's sections.
+
+This proposal separates two concerns:
+
+. **Near-term (UI bolt-on):** rebuild the page TOC when the article region changes — interim extension https://github.com/antora-supplemental/soft-nav-page-toc[`@antora-supplemental/soft-nav-page-toc`^], wired into https://github.com/antora-supplemental/facto-stack[`facto-stack`^] hub profiles.
+. **Medium-term (Antora core / nav model):** first-class **nav-hidden** (or similarly named) pages — routable, xref-able, and searchable, but omitted from the published left nav tree unless explicitly promoted.
+
+== Problem (right-rail TOC)
+
+[cols="1,2"]
+|===
+| Layer | Behavior today
+
+| SoftNav
+| Registers `mast`, left `[data-panel=menu]`, and `article` regions; emits `soft-nav:loaded` and `doc-nav:loaded`.
+
+| Default UI `site.js`
+| On initial load, scans heading IDs under `article.doc`, fills `aside.toc.sidebar`, attaches scroll-spy.
+
+| Gap
+| Fetched HTML for the target page is never re-run through `site.js` in the live document; SoftNav does not swap the aside. Users see stale TOC entries (notably on serial index → detail flows).
+|===
+
+**Not the same bug:** orphan pages (omitted from `nav.adoc`) explain weak left-nav “current page” highlighting on detail URLs; they do **not** by themselves prevent TOC refresh. Fixing the rail requires rebuild-or-swap after article swap regardless of nav tree membership.
+
+== Interim extension (shippable now)
+
+Package: https://github.com/antora-supplemental/soft-nav-page-toc[`soft-nav-page-toc`^]
+
+* Publishes `_/js/soft-nav-page-toc.js` via `siteCatalog.addFile`.
+* Optionally injects a defer script immediately after `ui/js/site.js` on each composed page.
+* Listens for `soft-nav:loaded` / `doc-nav:loaded` and rebuilds the aside TOC using the same heading selectors Default UI uses (`sectN`, `:not(.discrete)`, `:toclevels` from `data-levels` on the aside).
+
+Requirements for sites:
+
+* SoftNav loaded from supplemental UI (before consumers that rebind on `soft-nav:loaded`).
+* Default UI / Valentus layout with `aside.toc.sidebar` and `article.doc`.
+
+== Upstream ask A — page TOC lifecycle in Default UI
+
+Target: https://gitlab.com/antora/antora-ui-default[`antora-ui-default`^] (and Valentus parity).
+
+* Export a supported `buildPageToc(document)` (name negotiable) that rebuilds aside + embedded TOC and rebinds scroll-spy.
+* Document a single navigation event contract (`doc-nav:loaded` or native equivalent) that fire-and-forget UI scripts can subscribe to after any in-place article swap — not only SoftNav.
+* Optional: register `aside.toc` as a fourth SoftNav region in chassis docs so fetch-and-replace works without rescanning (rebuild is still the minimal fix).
+
+== Upstream ask B — nav-hidden routable pages
+
+Antora today has no first-class “listed in the site model but hidden from the left nav tree” entry type.
+
+Common author patterns:
+
+* **Orphans** — pages under `pages/` reachable by URL, xref, and search; omitted from `nav.adoc` (changelog-details, legal footnotes, print-only explainer pages).
+* **Promoted later** — same page later added to nav when the story graduates from appendix to first-class doc.
+
+Authors want:
+
+* Stable URLs and xrefs without expanding the left nav forest (UX and **HTML payload** on every page share the same baked nav tree).
+* Optional breadcrumb or contextual TOC injection for hidden targets without duplicating 20+ nav lines.
+
+Possible directions (for discussion, not a finished API):
+
+* Nav file attribute on xref lines, for example `:nav-hidden:` or `xref:path.adoc[Label, nav-hidden]` semantics.
+* Playbook key, for example `site.nav.hidden_pages` or per-page `:page-nav-hidden:` with explicit allow-list for sitemap/search.
+* Generator output: omit hidden pages from `nav-data.js` / menu partial but retain them in the content catalog and page manifest.
+
+**Performance note:** hiding entries reduces left-rail markup size; it does not remove the need to generate detail HTML. A richer optimization (lazy nav subtrees) is out of scope for v1 but pairs naturally with nav-hidden metadata.
+
+== Non-goals
+
+* Changing Valentus TOC truncate/fade CSS to mask long labels — serial changelog pages should use heading structure instead.
+* Replacing SoftNav with full SPA routing — Antora remains static-first.
+
+== Suggested Zulip post
+
+Post in https://antora.zulipchat.com/#narrow/stream/203078-community/general[Antora Zulip → community / general^] (or UI stream if you prefer):
+
+[quote]
+____
+SoftNav + Default UI: the aside page TOC goes stale after in-component soft navigation because `site.js` only builds it on full load. We documented a proposal (nav-hidden pages + TOC rebuild lifecycle) here:
+
+https://docs.antora-supplemental.org/docs/ROOT/proposals/soft-nav-page-toc.html
+
+Interim bolt-on: https://github.com/antora-supplemental/soft-nav-page-toc — feedback welcome on whether Default UI should export `buildPageToc()` and standardize `doc-nav:loaded`.
+____
+
+== References
+
+* https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/soft-nav[SoftNav (chassis)]
+* https://github.com/antora-supplemental/facto-stack[`facto-stack` compose pack]
+* https://github.com/antora-supplemental/orphan-finder[orphan-finder] — complementary; reports orphans at build time, does not change nav visibility rules
