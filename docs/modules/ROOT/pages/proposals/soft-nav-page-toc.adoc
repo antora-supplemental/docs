@@ -71,10 +71,13 @@ Authors want:
 * Stable URLs and xrefs without expanding the left nav forest (UX and **HTML payload** on every page share the same baked nav tree).
 * Optional breadcrumb or contextual TOC injection for hidden targets without duplicating 20+ nav lines.
 
-Possible directions (for discussion, not a finished API):
+**Interim author convention (shipped in nav-drift 0.1.2):** declare `:page-nav-hidden:` at the top of any page intentionally omitted from `nav.adoc`. With `nav-drift --require-in-nav`, marked pages report as `nav-hidden-page` (intentional), not `page-missing-from-nav`. Example: all `changelog-details/` pages on the D Lang Supplemental hub.
 
-* Nav file attribute on xref lines, for example `:nav-hidden:` or `xref:path.adoc[Label, nav-hidden]` semantics.
-* Playbook key, for example `site.nav.hidden_pages` or per-page `:page-nav-hidden:` with explicit allow-list for sitemap/search.
+Possible upstream directions (for discussion, not a finished API):
+
+* Promote `:page-nav-hidden:` (or equivalent) in Antora core so generators and UI bundles understand nav-hidden pages without CLI scanning.
+* Nav file attribute on xref lines, for example `xref:path.adoc[Label, nav-hidden]` semantics.
+* Playbook key, for example `site.nav.hidden_pages` with explicit allow-list for sitemap/search.
 * Generator output: omit hidden pages from `nav-data.js` / menu partial but retain them in the content catalog and page manifest.
 
 **Performance note:** hiding entries reduces left-rail markup size; it does not remove the need to generate detail HTML. A richer optimization (lazy nav subtrees) is out of scope for v1 but pairs naturally with nav-hidden metadata.
