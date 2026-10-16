@@ -2,7 +2,7 @@
 
 == Unreleased
 
-* Proposal xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC]: explicit long author directives (`:hide-from-navtree:`, `:navtree-parent:`), avoid `:omit-nav:` / `:nav-hidden:`; build-time `navtree-registry.json` and `navtree-parent-association` nav comments.
+* Proposal xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC]: `:hide-page:` (nav tree only) plus `:hide-from-navtree:` synonym; build-time `navtree-registry.json` and `navtree-parent-association` nav comments.
 * Lockfile refresh so Antora and `asciidoctor-kroki` resolve `@asciidoctor/core` 2.2.9; its Opal runtime (0.3.4) uses `fast-glob` instead of the deprecated `glob@7` and `inflight`.
 
 == 2026-09-25 -- Cite facto-stack

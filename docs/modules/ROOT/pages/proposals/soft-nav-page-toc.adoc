@@ -18,13 +18,14 @@ This proposal separates two concerns:
 . **Near-term (UI bolt-on):** rebuild the page TOC when the article region changes — interim extension https://github.com/antora-supplemental/soft-nav-page-toc[`@antora-supplemental/soft-nav-page-toc`^], wired into https://github.com/antora-supplemental/facto-stack[`facto-stack`^] hub profiles.
 . **Medium-term (Antora core / nav model):** first-class **hide-from-navtree** pages — routable, xref-able, and searchable, but omitted from the published **left nav tree** unless explicitly promoted.
 
-== Author directive naming (explicit, long)
+== Author directive naming
 
-Short or generic names read like they affect **in-page** navigation (TOC, pagination, “next” links), not membership in Antora's **`nav.adoc` left tree**.
+Short names like `:omit-nav:` read like they affect **in-page** navigation (TOC, pagination, “next” links), not membership in Antora's **`nav.adoc` left tree**.
 
 **Use (interim and preferred upstream):**
 
-* `:hide-from-navtree:` — this page is intentionally **not** listed in `nav.adoc`; it remains a normal routable page (URL, xref, search).
+* `:hide-page:` — **recommended author-facing name.** Means this page is hidden from the **left nav tree only** (omitted from `nav.adoc`); it remains published — normal URL, xref, and search. There is no other supported meaning of “hidden” for this flag (not unpublished, not noindex, not access control).
+* `:hide-from-navtree:` — synonym for `:hide-page:`; same semantics; useful when you want the nav-tree scope spelled out in the directive itself.
 * `:navtree-parent: parent-page.adoc` — when the page is hidden from the nav tree, which **nav tree parent** should breadcrumbs and contextual left-nav injection use (required when path heuristics such as `*-details/` do not apply).
 
 **Build-time associations (when one page links to another tree's hidden subpage):** colocate `navtree-registry.json` beside the component (prefix and per-page parent map) and/or `;; navtree-parent-association:` comment lines in `nav.adoc` (not rendered; parsed at compose time). Page-level `:navtree-parent:` wins over registry rules.
@@ -36,7 +37,7 @@ Short or generic names read like they affect **in-page** navigation (TOC, pagina
 
 Legacy `:page-nav-hidden:` / `:page-nav-parent:` still parse during migration.
 
-Composed HTML meta names mirror the primary directives: `antora-supplemental:hide-from-navtree`, `antora-supplemental:navtree-parent`.
+Composed HTML meta (build output): `antora-supplemental:hide-from-navtree` (emitted for any hide directive), optional `antora-supplemental:navtree-parent`.
 
 == Problem (right-rail TOC)
 
