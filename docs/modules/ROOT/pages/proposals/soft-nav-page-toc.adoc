@@ -82,6 +82,24 @@ Possible upstream directions (for discussion, not a finished API):
 
 **Performance note:** hiding entries reduces left-rail markup size; it does not remove the need to generate detail HTML. A richer optimization (lazy nav subtrees) is out of scope for v1 but pairs naturally with nav-hidden metadata.
 
+**Shipped client behavior (chassis / hub `soft-nav.js`):**
+
+* Default `SoftNav.swapNav = false` — left nav tree is not replaced on soft loads; mast + article update in place.
+* `SoftNav.rebuildPageToc()` runs after every soft navigation (and initial load).
+* `SoftNav.scrollToTop = true` — cross-page soft nav scrolls the window to the top unless the destination URL has a `#` hash.
+* Nav-hidden pages (`:page-nav-hidden:` plus optional `:page-nav-parent:`) inject a single child item under the parent nav link on hard and soft loads; `@antora-supplemental/soft-nav-page-toc` emits matching `<meta>` tags at build time.
+
+== Upstream ask C — paginated long indices (changelog, release notes)
+
+Long index pages (changelog timelines, exhaustive reference lists) will overwhelm initial HTML download and render cost. Pagination should be **on by default for tagged index pages** (for example `:page-pagination: changelog` or `:page-tags: paginated-index`), with `:page-pagination: none` to opt out on pages that must stay one URL.
+
+Open design questions (future extension or Antora core):
+
+* **Precalculation** — chunk boundaries must be known at publish time (heading-level splits, byte/line budgets, or explicit `===` page breaks) so the first response stays small before the reader opts into page 2+.
+* **URLs** — bare URL resolves to page 1; suffix or query distinguishes later pages (for example `/changelog/` + `/changelog/2/` or `?page=2`). SoftNav and canonical links must agree.
+* **SoftNav** — paginated index segments may soft-load inside the article column while nav + TOC stay stable; TOC might list only the current segment or link sibling pages.
+* **Nav tree** — do not mirror every changelog day in `nav.adoc`; keep nav-hidden details + pagination in the index body.
+
 == Non-goals
 
 * Changing Valentus TOC truncate/fade CSS to mask long labels — serial changelog pages should use heading structure instead.
