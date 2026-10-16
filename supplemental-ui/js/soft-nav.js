@@ -194,6 +194,7 @@
   function readPageNavMeta (doc) {
     var root = doc && doc.querySelector ? doc : document
     var hidden =
+      root.querySelector('meta[name="antora-supplemental:hide-page"]') ||
       root.querySelector('meta[name="antora-supplemental:hide-from-navtree"]') ||
       root.querySelector('meta[name="antora-supplemental:nav-hidden"]')
     var parent =

@@ -1,7 +1,7 @@
-= SoftNav page TOC and nav-hidden pages
+= SoftNav page TOC and hide-page nav entries
 :navtitle: SoftNav page TOC
 :page-tags: proposal
-:description: Rebuild the aside page TOC after SoftNav swaps; optional nav-hidden routable pages for detail views and performance.
+:description: Rebuild the aside page TOC after SoftNav swaps; hide-page routable pages for detail views and performance.
 :page-audience: Antora maintainers, UI bundle authors, supplemental extension authors
 :page-usage-context: Upstream discussion and Zulip link target
 :page-orig-author: Ryan Johnson
@@ -16,28 +16,21 @@ After a soft navigation (for example from a changelog index to an xref:https://g
 This proposal separates two concerns:
 
 . **Near-term (UI bolt-on):** rebuild the page TOC when the article region changes — interim extension https://github.com/antora-supplemental/soft-nav-page-toc[`@antora-supplemental/soft-nav-page-toc`^], wired into https://github.com/antora-supplemental/facto-stack[`facto-stack`^] hub profiles.
-. **Medium-term (Antora core / nav model):** first-class **hide-from-navtree** pages — routable, xref-able, and searchable, but omitted from the published **left nav tree** unless explicitly promoted.
+. **Medium-term (Antora core / nav model):** first-class **hide-page** entries — routable, xref-able, and searchable, but omitted from the published **left nav tree** unless explicitly promoted.
 
 == Author directive naming
 
-Short names like `:omit-nav:` read like they affect **in-page** navigation (TOC, pagination, “next” links), not membership in Antora's **`nav.adoc` left tree**.
+**Single author flag:** `:hide-page:` — this page is hidden from the **left nav tree only** (omitted from `nav.adoc`); it remains published (URL, xref, search). Not unpublished, not noindex, not access control.
 
-**Use (interim and preferred upstream):**
+**Parent link:** `:navtree-parent: parent-page.adoc` — which nav tree parent should breadcrumbs and contextual left-nav injection use (required when path heuristics such as `*-details/` do not apply).
 
-* `:hide-page:` — **recommended author-facing name.** Means this page is hidden from the **left nav tree only** (omitted from `nav.adoc`); it remains published — normal URL, xref, and search. There is no other supported meaning of “hidden” for this flag (not unpublished, not noindex, not access control).
-* `:hide-from-navtree:` — synonym for `:hide-page:`; same semantics; useful when you want the nav-tree scope spelled out in the directive itself.
-* `:navtree-parent: parent-page.adoc` — when the page is hidden from the nav tree, which **nav tree parent** should breadcrumbs and contextual left-nav injection use (required when path heuristics such as `*-details/` do not apply).
+**Build-time associations (cross-tree links to hidden subpages):** `navtree-registry.json` beside the component and/or `;; navtree-parent-association:` comment lines in `nav.adoc` (not rendered; parsed at compose time). Page-level `:navtree-parent:` wins over registry rules.
 
-**Build-time associations (when one page links to another tree's hidden subpage):** colocate `navtree-registry.json` beside the component (prefix and per-page parent map) and/or `;; navtree-parent-association:` comment lines in `nav.adoc` (not rendered; parsed at compose time). Page-level `:navtree-parent:` wins over registry rules.
+**Do not use for this:** `:omit-nav:`, `:nav-hidden:` — ambiguous. `:orphan:` — overloaded with Antora diagnostics.
 
-**Avoid for this feature:**
+**Migration only (still parsed, not documented for new pages):** `:hide-from-navtree:`, `:page-nav-hidden:`, `:page-nav-parent:`.
 
-* `:omit-nav:`, `:no-nav:`, `:nav-hidden:` — ambiguous (omit what nav? hide from where?).
-* `:orphan:` — overloaded with Antora “orphan page” diagnostics.
-
-Legacy `:page-nav-hidden:` / `:page-nav-parent:` still parse during migration.
-
-Composed HTML meta (build output): `antora-supplemental:hide-from-navtree` (emitted for any hide directive), optional `antora-supplemental:navtree-parent`.
+Composed HTML meta: `antora-supplemental:hide-page`, optional `antora-supplemental:navtree-parent`.
 
 == Problem (right-rail TOC)
 
@@ -78,7 +71,7 @@ Target: https://gitlab.com/antora/antora-ui-default[`antora-ui-default`^] (and V
 * Document a single navigation event contract (`doc-nav:loaded` or native equivalent) that fire-and-forget UI scripts can subscribe to after any in-place article swap — not only SoftNav.
 * Optional: register `aside.toc` as a fourth SoftNav region in chassis docs so fetch-and-replace works without rescanning (rebuild is still the minimal fix).
 
-== Upstream ask B — hide-from-navtree routable pages
+== Upstream ask B — hide-page routable entries
 
 Antora today has no first-class “listed in the site model but hidden from the left nav tree” entry type.
 
@@ -92,24 +85,24 @@ Authors want:
 * Stable URLs and xrefs without expanding the left nav forest (UX and **HTML payload** on every page share the same baked nav tree).
 * Optional breadcrumb or contextual TOC injection for hidden targets without duplicating 20+ nav lines.
 
-**Interim author convention (nav-drift + SoftNav):** declare `:hide-from-navtree:` (imperative; legacy `:page-nav-hidden:` still parses) and optional `:navtree-parent: changelog.adoc` on pages intentionally omitted from `nav.adoc`. With `nav-drift --require-in-nav`, marked pages report as `nav-hidden-page` (intentional), not `page-missing-from-nav`. SoftNav and `@antora-supplemental/soft-nav-page-toc` inject parent breadcrumbs, a single nav-tree child under the parent, and matching `<meta>` tags at build time.
+**Interim author convention (nav-drift + SoftNav):** declare `:hide-page:` and optional `:navtree-parent: changelog.adoc` on pages intentionally omitted from `nav.adoc`. With `nav-drift --require-in-nav`, marked pages report as `nav-hidden-page` (intentional), not `page-missing-from-nav`. SoftNav and `@antora-supplemental/soft-nav-page-toc` inject parent breadcrumbs, a single nav-tree child under the parent, and matching `<meta>` tags at build time.
 
 Possible upstream directions (for discussion, not a finished API):
 
-* Promote `:hide-from-navtree:` in Antora core so generators and UI bundles understand intentional nav-tree omission without CLI scanning.
-* Nav file attribute on xref lines with an **explicit** name, for example `xref:path.adoc[Label, hide-from-navtree]` (not `nav-hidden` or `omit-nav`).
+* Promote `:hide-page:` in Antora core so generators and UI bundles understand intentional nav-tree omission without CLI scanning.
+* Nav file attribute on xref lines, for example `xref:path.adoc[Label, hide-page]`.
 * Optional `navtree-parent-association` metadata in nav files or component registry for parent links when URL structure alone is insufficient.
 * Playbook key, for example `site.nav.hidden_pages` with explicit allow-list for sitemap/search.
 * Generator output: omit hidden pages from `nav-data.js` / menu partial but retain them in the content catalog and page manifest.
 
-**Performance note:** hiding entries reduces left-rail markup size; it does not remove the need to generate detail HTML. A richer optimization (lazy nav subtrees) is out of scope for v1 but pairs naturally with nav-hidden metadata.
+**Performance note:** hiding entries reduces left-rail markup size; it does not remove the need to generate detail HTML. A richer optimization (lazy nav subtrees) is out of scope for v1 but pairs naturally with hide-page metadata.
 
 **Shipped client behavior (chassis / hub `soft-nav.js`):**
 
 * Default `SoftNav.swapNav = false` — left nav tree is not replaced on soft loads; mast + article update in place.
 * `SoftNav.rebuildPageToc()` runs after every soft navigation (and initial load).
 * `SoftNav.scrollToTop = true` — cross-page soft nav scrolls the window to the top unless the destination URL has a `#` hash.
-* Nav-hidden pages inject a **parent breadcrumb** (`… / Changelog / Detail title`) and a single child under the parent nav link on hard and soft loads (`:hide-from-navtree:` + `:navtree-parent:`).
+* Hide-page entries inject a **parent breadcrumb** (`… / Changelog / Detail title`) and a single child under the parent nav link on hard and soft loads (`:hide-page:` + `:navtree-parent:`).
 
 == Upstream ask C — paginated long indices (changelog, release notes)
 
@@ -120,7 +113,7 @@ Open design questions (future extension or Antora core):
 * **Precalculation** — chunk boundaries must be known at publish time (heading-level splits, byte/line budgets, or explicit `===` page breaks) so the first response stays small before the reader opts into page 2+.
 * **URLs** — bare URL resolves to page 1; suffix or query distinguishes later pages (for example `/changelog/` + `/changelog/2/` or `?page=2`). SoftNav and canonical links must agree.
 * **SoftNav** — paginated index segments may soft-load inside the article column while nav + TOC stay stable; TOC might list only the current segment or link sibling pages.
-* **Nav tree** — do not mirror every changelog day in `nav.adoc`; keep nav-hidden details + pagination in the index body.
+* **Nav tree** — do not mirror every changelog day in `nav.adoc`; keep hide-page details + pagination in the index body.
 
 == Non-goals
 
@@ -133,7 +126,7 @@ Post in https://antora.zulipchat.com/#narrow/stream/203078-community/general[Ant
 
 [quote]
 ____
-SoftNav + Default UI: the aside page TOC goes stale after in-component soft navigation because `site.js` only builds it on full load. We documented a proposal (nav-hidden pages + TOC rebuild lifecycle) here:
+SoftNav + Default UI: the aside page TOC goes stale after in-component soft navigation because `site.js` only builds it on full load. We documented a proposal (hide-page nav entries + TOC rebuild lifecycle) here:
 
 https://docs.antora-supplemental.org/docs/ROOT/proposals/soft-nav-page-toc.html
 
@@ -142,6 +135,5 @@ ____
 
 == References
 
-* https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/soft-nav[SoftNav (chassis)]
-* https://github.com/antora-supplemental/facto-stack[`facto-stack` compose pack]
-* https://github.com/antora-supplemental/orphan-finder[orphan-finder] — complementary; reports orphans at build time, does not change nav visibility rules
+* https://github.com/antora-supplemental/nav-drift[nav-drift] — `--require-in-nav` audits
+* https://github.com/dlang-supplemental/docs[D Lang Supplemental docs hub] — changelog-details pattern
