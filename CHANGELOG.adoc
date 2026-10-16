@@ -20,6 +20,10 @@
 * Pin `@antora-supplemental/page-edit` to `v0.2.4` so Antora component start pages get the Source | View | Edit row (empty lead shells no longer false-positive on page-context CSS).
 :toc:
 
+== 2026-10-16 — SoftNav page TOC proposal
+
+* Add xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC and nav-hidden pages] under xref:proposals/index.adoc[Proposals] — upstream ask for Default UI TOC rebuild + nav-hidden routable pages; Zulip link target for https://antora.zulipchat.com/[Antora Zulip^].
+
 == 2026-09-10 — page-context 0.6.6 author spacing
 
 * Pin `@antora-supplemental/page-context` to `v0.6.6` so the linked name, circular avatar, and via Agent stay separated in the lead byline and footer author cells.

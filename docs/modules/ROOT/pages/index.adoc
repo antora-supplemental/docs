@@ -20,3 +20,4 @@ Canonical dark-mode overlay docs (install, demo): link:https://antora-supplement
 * https://registry.antora-supplemental.org/themes[Theme gallery] (registry.antora-supplemental.org)
 * xref:dprint-asciidoc:ROOT:index.adoc[dprint-plugin-asciidoc]
 * xref:instruction-flow:ROOT:index.adoc[Instruction flow] — Interactive instruction flows (JSON5, `instructionflow` block)
+* xref:proposals/index.adoc[Proposals] — upstream design notes (link from https://antora.zulipchat.com/[Antora Zulip^] when pitching core/UI changes)
