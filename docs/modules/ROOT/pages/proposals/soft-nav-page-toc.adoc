@@ -16,7 +16,27 @@ After a soft navigation (for example from a changelog index to an xref:https://g
 This proposal separates two concerns:
 
 . **Near-term (UI bolt-on):** rebuild the page TOC when the article region changes — interim extension https://github.com/antora-supplemental/soft-nav-page-toc[`@antora-supplemental/soft-nav-page-toc`^], wired into https://github.com/antora-supplemental/facto-stack[`facto-stack`^] hub profiles.
-. **Medium-term (Antora core / nav model):** first-class **nav-hidden** (or similarly named) pages — routable, xref-able, and searchable, but omitted from the published left nav tree unless explicitly promoted.
+. **Medium-term (Antora core / nav model):** first-class **hide-from-navtree** pages — routable, xref-able, and searchable, but omitted from the published **left nav tree** unless explicitly promoted.
+
+== Author directive naming (explicit, long)
+
+Short or generic names read like they affect **in-page** navigation (TOC, pagination, “next” links), not membership in Antora's **`nav.adoc` left tree**.
+
+**Use (interim and preferred upstream):**
+
+* `:hide-from-navtree:` — this page is intentionally **not** listed in `nav.adoc`; it remains a normal routable page (URL, xref, search).
+* `:navtree-parent: parent-page.adoc` — when the page is hidden from the nav tree, which **nav tree parent** should breadcrumbs and contextual left-nav injection use (required when path heuristics such as `*-details/` do not apply).
+
+**Build-time associations (when one page links to another tree's hidden subpage):** colocate `navtree-registry.json` beside the component (prefix and per-page parent map) and/or `;; navtree-parent-association:` comment lines in `nav.adoc` (not rendered; parsed at compose time). Page-level `:navtree-parent:` wins over registry rules.
+
+**Avoid for this feature:**
+
+* `:omit-nav:`, `:no-nav:`, `:nav-hidden:` — ambiguous (omit what nav? hide from where?).
+* `:orphan:` — overloaded with Antora “orphan page” diagnostics.
+
+Legacy `:page-nav-hidden:` / `:page-nav-parent:` still parse during migration.
+
+Composed HTML meta names mirror the primary directives: `antora-supplemental:hide-from-navtree`, `antora-supplemental:navtree-parent`.
 
 == Problem (right-rail TOC)
 
@@ -57,7 +77,7 @@ Target: https://gitlab.com/antora/antora-ui-default[`antora-ui-default`^] (and V
 * Document a single navigation event contract (`doc-nav:loaded` or native equivalent) that fire-and-forget UI scripts can subscribe to after any in-place article swap — not only SoftNav.
 * Optional: register `aside.toc` as a fourth SoftNav region in chassis docs so fetch-and-replace works without rescanning (rebuild is still the minimal fix).
 
-== Upstream ask B — nav-hidden routable pages
+== Upstream ask B — hide-from-navtree routable pages
 
 Antora today has no first-class “listed in the site model but hidden from the left nav tree” entry type.
 
@@ -75,8 +95,9 @@ Authors want:
 
 Possible upstream directions (for discussion, not a finished API):
 
-* Promote `:hide-from-navtree:` (or equivalent imperative directive) in Antora core so generators and UI bundles understand nav-hidden pages without CLI scanning.
-* Nav file attribute on xref lines, for example `xref:path.adoc[Label, nav-hidden]` semantics.
+* Promote `:hide-from-navtree:` in Antora core so generators and UI bundles understand intentional nav-tree omission without CLI scanning.
+* Nav file attribute on xref lines with an **explicit** name, for example `xref:path.adoc[Label, hide-from-navtree]` (not `nav-hidden` or `omit-nav`).
+* Optional `navtree-parent-association` metadata in nav files or component registry for parent links when URL structure alone is insufficient.
 * Playbook key, for example `site.nav.hidden_pages` with explicit allow-list for sitemap/search.
 * Generator output: omit hidden pages from `nav-data.js` / menu partial but retain them in the content catalog and page manifest.
 
