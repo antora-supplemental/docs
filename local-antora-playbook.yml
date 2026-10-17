@@ -54,36 +54,28 @@ urls:
 
 antora:
   extensions:
-    - require: "@antora/lunr-extension"
-      index_latest_only: true
-      index_by_heading: true
-      snippet_length: 200
-    - require: "@antora-supplemental/antora-search-chat"
+    # Incremental builds are not part of the compose pack; keep before it.
     - require: "@antora-supplemental/incremental"
-    - require: "@antora-supplemental/unversioned-component-urls"
-    - require: "@antora-supplemental/site-nav-tree"
-      include: [docs, antora-live, instruction-flow, registry, dprint-asciidoc]
-      order: [docs, antora-live, instruction-flow, registry, dprint-asciidoc]
-    - require: "@antora-supplemental/nav-typology"
-    - require: "@antora-supplemental/nav-typology-diataxis"
-    - "@antora-supplemental/build-stack"
-    - "@antora-supplemental/page-edit"
-    - require: "@antora-supplemental/link-validator"
-      reportEmail: support@devcentr.org
-      softFail403: true
-      failLevel: none
-    - require: "@antora-supplemental/linkinator"
-      statusDefault: unchecked
-    - require: "@antora-supplemental/extension-lister"
-      layouts: [footer]
-    - require: "@antora-supplemental/orphan-finder/extension"
-      reportEmail: support@devcentr.org
-      failOnUnresolved: false
-    - require: "@antora-supplemental/soft-nav-page-toc"
-      injectScript: false
-    - require: "@antora-supplemental/page-context/antora"
-      component: docs
-      path: keywords
+    # Compose pack (hub profile): lunr, search-chat, unversioned URLs, site-nav-tree,
+    # nav-typology(+diataxis), build-stack, page-edit, link-validator, linkinator,
+    # soft-nav-page-toc, extension-lister, orphan-finder, page-context keyword pages.
+    - require: "@antora-supplemental/facto-stack"
+      profile: hub
+      lunr:
+        index_latest_only: true
+        index_by_heading: true
+        snippet_length: 200
+      siteNavTree:
+        enabled: true
+        filter: false
+        # Forest allowlist - samples stay published but are not a sidebar root.
+        include: [docs, antora-live, instruction-flow, registry, dprint-asciidoc]
+        order: [docs, antora-live, instruction-flow, registry, dprint-asciidoc]
+      softNavPageToc:
+        injectScript: false
+      pageContextAntora:
+        component: docs
+        path: keywords
 
 asciidoc:
   attributes:
@@ -95,6 +87,4 @@ asciidoc:
     source-highlighter: highlight.js
     icons: font
   extensions:
-    - asciidoctor-kroki
-    - "@antora-supplemental/page-context"
     - ./node_modules/@antora-supplemental/instruction-flow/lib/instruction-flow-extension.js

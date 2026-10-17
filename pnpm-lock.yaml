@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@antora-supplemental/build-stack':
-        specifier: github:antora-supplemental/build-stack#main
-        version: https://codeload.github.com/antora-supplemental/build-stack/tar.gz/591489fdbe53a2f4c99188f8ce17804a48f1dfc4(@antora/site-generator@3.1.14)
       '@antora-supplemental/incremental':
         specifier: github:antora-supplemental/antora-incremental
         version: https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/0ab497a665075d4d3fec05f3fc3893a100ddc951(@antora/site-generator@3.1.14)
@@ -18,75 +15,21 @@ importers:
         specifier: file:../asciidoc-interactive
         version: file:../asciidoc-interactive
     devDependencies:
-      '@antora-supplemental/antora-search-chat':
-        specifier: github:antora-supplemental/antora-search-chat#v0.1.4
-        version: https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/2cc2feb4a9c0aaae0e6e0b8458f26c747735a23d(@antora/lunr-extension@1.0.0-alpha.13)
-      '@antora-supplemental/deep-link-contracts':
-        specifier: github:antora-supplemental/deep-link-contracts#v0.1.1
-        version: https://codeload.github.com/antora-supplemental/deep-link-contracts/tar.gz/1e44a79d2d17c9106dab9660da181039ae701ae6
-      '@antora-supplemental/extension-lister':
-        specifier: github:antora-supplemental/extension-lister#v0.1.0
-        version: https://codeload.github.com/antora-supplemental/extension-lister/tar.gz/19149b332ead9cf681a118aa0e730f8cda325900(@antora/site-generator@3.1.14)
-      '@antora-supplemental/link-validator':
-        specifier: github:antora-supplemental/link-validator#v0.2.2
-        version: https://codeload.github.com/antora-supplemental/link-validator/tar.gz/f8892aaf9d9d3d2572591fe60280c55375ada160(@antora/site-generator@3.1.14)
-      '@antora-supplemental/linkinator':
-        specifier: github:antora-supplemental/linkinator#v0.1.9
-        version: https://codeload.github.com/antora-supplemental/linkinator/tar.gz/c8cbb909519ed8d18dec7b4953260f5296ad4841(@antora/site-generator@3.1.14)
-      '@antora-supplemental/nav-drift':
-        specifier: github:antora-supplemental/nav-drift#v0.1.1
-        version: https://codeload.github.com/antora-supplemental/nav-drift/tar.gz/2b5e8275ca91dbc9a0c2d391a3cd4b7606598571
-      '@antora-supplemental/nav-typology':
-        specifier: github:antora-supplemental/nav-typology#main
-        version: https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/c3e4006cd0bc3f5dbbee6e03f87e52bd93d61be0(@antora/site-generator@3.1.14)
-      '@antora-supplemental/nav-typology-diataxis':
-        specifier: github:antora-supplemental/nav-typology-diataxis#main
-        version: https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/92e0eca1675bafedb19dffe3239b78a80de0d17d(@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/c3e4006cd0bc3f5dbbee6e03f87e52bd93d61be0(@antora/site-generator@3.1.14))(@antora/site-generator@3.1.14)
-      '@antora-supplemental/orphan-finder':
-        specifier: github:antora-supplemental/orphan-finder#v0.1.1
-        version: https://codeload.github.com/antora-supplemental/orphan-finder/tar.gz/c75c5fd23f44724a59cc008b45e38e169be21f42(@antora/site-generator@3.1.14)
-      '@antora-supplemental/page-context':
-        specifier: github:antora-supplemental/page-context#v0.6.6
-        version: https://codeload.github.com/antora-supplemental/page-context/tar.gz/eb3080cf7efdbafc316d043ad1080ec851e1bb18(@antora/site-generator@3.1.14)
-      '@antora-supplemental/page-edit':
-        specifier: github:antora-supplemental/page-edit#v0.2.4
-        version: https://codeload.github.com/antora-supplemental/page-edit/tar.gz/207bc008e73b24673a813bfb9b0e0245cb0a47e3(@antora/site-generator@3.1.14)
-      '@antora-supplemental/playbook-pin-auditor':
-        specifier: github:antora-supplemental/playbook-pin-auditor#v0.1.1
-        version: https://codeload.github.com/antora-supplemental/playbook-pin-auditor/tar.gz/b92d67faf6de20180a3fd77c1b821420d3f7ecfa
+      '@antora-supplemental/facto-stack':
+        specifier: github:antora-supplemental/facto-stack#v0.2.22
+        version: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f4412b2f1c809635a4e41218dfde765d2bc2ddf2(@antora/site-generator@3.1.14)(@asciidoctor/core@2.2.9)
       '@antora-supplemental/serve':
         specifier: file:../antora-serve
         version: file:../antora-serve(@antora/playbook-builder@3.1.14)(@antora/site-generator@3.1.14)(@antora/user-require-helper@3.0.0)
-      '@antora-supplemental/site-nav-tree':
-        specifier: github:antora-supplemental/site-nav-tree#v0.6.1
-        version: https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/e2cf7d4ee80e03e40de929507685b1530616c45f(@antora/site-generator@3.1.14)
-      '@antora-supplemental/soft-nav-page-toc':
-        specifier: github:antora-supplemental/soft-nav-page-toc#v0.1.6
-        version: https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/e14807953757708297d2ac4f1ffac1a2810b3ccb(@antora/site-generator@3.1.14)
-      '@antora-supplemental/stale-page':
-        specifier: github:antora-supplemental/stale-page#v0.1.1
-        version: https://codeload.github.com/antora-supplemental/stale-page/tar.gz/5c24c9bf8d5755487dd8c9156e8c8c96c23d841a
-      '@antora-supplemental/triage-ux-kit':
-        specifier: github:antora-supplemental/triage-ux-kit#v0.1.0
-        version: https://codeload.github.com/antora-supplemental/triage-ux-kit/tar.gz/4b7888d2f18048e68e1176c9aca4abf7aa4bac40
-      '@antora-supplemental/unversioned-component-urls':
-        specifier: github:antora-supplemental/antora-unversioned-component-urls#v2.1.0
-        version: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e(@antora/site-generator@3.1.14)
-      '@antora/lunr-extension':
-        specifier: 1.0.0-alpha.13
-        version: 1.0.0-alpha.13
       antora:
         specifier: ^3.1.14
         version: 3.1.14
-      asciidoctor-kroki:
-        specifier: ^0.18.1
-        version: 0.18.1(@asciidoctor/core@2.2.9)
 
 packages:
 
-  '@antora-supplemental/antora-search-chat@https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/2cc2feb4a9c0aaae0e6e0b8458f26c747735a23d':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/2cc2feb4a9c0aaae0e6e0b8458f26c747735a23d}
-    version: 0.1.4
+  '@antora-supplemental/antora-search-chat@https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/7983d8174b709850a9317245b7507ebbcc7085c7':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/7983d8174b709850a9317245b7507ebbcc7085c7}
+    version: 0.1.5
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/lunr-extension': '>=1.0.0-alpha.12'
@@ -97,8 +40,15 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/591489fdbe53a2f4c99188f8ce17804a48f1dfc4':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/build-stack/tar.gz/591489fdbe53a2f4c99188f8ce17804a48f1dfc4}
+  '@antora-supplemental/asciidoctor-emoji-literals@https://codeload.github.com/antora-supplemental/asciidoctor-emoji-literals/tar.gz/353b32fba85bcced2c635fa96b59348f45d43315':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/asciidoctor-emoji-literals/tar.gz/353b32fba85bcced2c635fa96b59348f45d43315}
+    version: 0.1.0
+    peerDependencies:
+      '@asciidoctor/core': '>=2.2 <4.0'
+      asciidoctor-emoji: '>=0.5.0 <1.0.0'
+
+  '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/5ae83ffe23fdcb1a90a07280d300fcb72ce44cf5':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/build-stack/tar.gz/5ae83ffe23fdcb1a90a07280d300fcb72ce44cf5}
     version: 0.1.2
     engines: {node: '>=18'}
     peerDependencies:
@@ -110,6 +60,21 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
+  '@antora-supplemental/diagram-engines-shared@https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/shared':
+    resolution: {path: packages/shared, tarball: https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9}
+    version: 0.1.0
+    engines: {node: '>=18'}
+
+  '@antora-supplemental/diagram-lightbox@https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/diagram-lightbox':
+    resolution: {path: packages/diagram-lightbox, tarball: https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9}
+    version: 0.1.1
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
+    peerDependenciesMeta:
+      '@antora/site-generator':
+        optional: true
+
   '@antora-supplemental/extension-lister@https://codeload.github.com/antora-supplemental/extension-lister/tar.gz/19149b332ead9cf681a118aa0e730f8cda325900':
     resolution: {tarball: https://codeload.github.com/antora-supplemental/extension-lister/tar.gz/19149b332ead9cf681a118aa0e730f8cda325900}
     version: 0.1.0
@@ -119,6 +84,11 @@ packages:
     peerDependenciesMeta:
       '@antora/site-generator':
         optional: true
+
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f4412b2f1c809635a4e41218dfde765d2bc2ddf2':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f4412b2f1c809635a4e41218dfde765d2bc2ddf2}
+    version: 0.2.22
+    hasBin: true
 
   '@antora-supplemental/incremental@https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/0ab497a665075d4d3fec05f3fc3893a100ddc951':
     resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/0ab497a665075d4d3fec05f3fc3893a100ddc951}
@@ -142,9 +112,9 @@ packages:
       '@antora/site-generator':
         optional: true
 
-  '@antora-supplemental/linkinator@https://codeload.github.com/antora-supplemental/linkinator/tar.gz/c8cbb909519ed8d18dec7b4953260f5296ad4841':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/linkinator/tar.gz/c8cbb909519ed8d18dec7b4953260f5296ad4841}
-    version: 0.1.9
+  '@antora-supplemental/linkinator@https://codeload.github.com/antora-supplemental/linkinator/tar.gz/b5a024a56b1ce537e19dffe58b4882f4db60948f':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/linkinator/tar.gz/b5a024a56b1ce537e19dffe58b4882f4db60948f}
+    version: 0.1.10
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -152,23 +122,33 @@ packages:
       '@antora/site-generator':
         optional: true
 
-  '@antora-supplemental/nav-drift@https://codeload.github.com/antora-supplemental/nav-drift/tar.gz/2b5e8275ca91dbc9a0c2d391a3cd4b7606598571':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/nav-drift/tar.gz/2b5e8275ca91dbc9a0c2d391a3cd4b7606598571}
-    version: 0.1.1
+  '@antora-supplemental/mermaid-client@https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/mermaid-client':
+    resolution: {path: packages/mermaid-client, tarball: https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9}
+    version: 0.1.0
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
+    peerDependenciesMeta:
+      '@antora/site-generator':
+        optional: true
+
+  '@antora-supplemental/nav-drift@https://codeload.github.com/antora-supplemental/nav-drift/tar.gz/2e32b6fc7a859d9e124dec100816fa6304c1f5b6':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/nav-drift/tar.gz/2e32b6fc7a859d9e124dec100816fa6304c1f5b6}
+    version: 0.1.2
     engines: {node: '>=18'}
     hasBin: true
 
-  '@antora-supplemental/nav-typology-diataxis@https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/92e0eca1675bafedb19dffe3239b78a80de0d17d':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/92e0eca1675bafedb19dffe3239b78a80de0d17d}
+  '@antora-supplemental/nav-typology-diataxis@https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/5abd17261e76108c0f246d2bd90f1a3acdb10b20':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/5abd17261e76108c0f246d2bd90f1a3acdb10b20}
     version: 0.1.0
     engines: {node: '>=18'}
     peerDependencies:
       '@antora-supplemental/nav-typology': '>=0.1.0'
       '@antora/site-generator': '>=3.1.0'
 
-  '@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/c3e4006cd0bc3f5dbbee6e03f87e52bd93d61be0':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/c3e4006cd0bc3f5dbbee6e03f87e52bd93d61be0}
-    version: 0.1.8
+  '@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/ff7a7d96e1ba2bee9a7b2baf0a53f677c29ebc9c':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/ff7a7d96e1ba2bee9a7b2baf0a53f677c29ebc9c}
+    version: 0.1.9
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -184,9 +164,9 @@ packages:
       '@antora/site-generator':
         optional: true
 
-  '@antora-supplemental/page-context@https://codeload.github.com/antora-supplemental/page-context/tar.gz/eb3080cf7efdbafc316d043ad1080ec851e1bb18':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/page-context/tar.gz/eb3080cf7efdbafc316d043ad1080ec851e1bb18}
-    version: 0.6.6
+  '@antora-supplemental/page-context@https://codeload.github.com/antora-supplemental/page-context/tar.gz/ee6fb4d68f5daf10e3b51f4a817e2ebfd5d09d6d':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/page-context/tar.gz/ee6fb4d68f5daf10e3b51f4a817e2ebfd5d09d6d}
+    version: 0.6.7
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -194,9 +174,9 @@ packages:
       '@antora/site-generator':
         optional: true
 
-  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/207bc008e73b24673a813bfb9b0e0245cb0a47e3':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/page-edit/tar.gz/207bc008e73b24673a813bfb9b0e0245cb0a47e3}
-    version: 0.2.4
+  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/345c2c2a2d7a8eb23826c3f36031d3f8595d808f':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/page-edit/tar.gz/345c2c2a2d7a8eb23826c3f36031d3f8595d808f}
+    version: 0.2.5
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -216,9 +196,9 @@ packages:
       '@antora/site-generator': '>=3.1.0'
       '@antora/user-require-helper': '>=3.0.0'
 
-  '@antora-supplemental/site-nav-tree@https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/e2cf7d4ee80e03e40de929507685b1530616c45f':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/e2cf7d4ee80e03e40de929507685b1530616c45f}
-    version: 0.6.1
+  '@antora-supplemental/site-nav-tree@https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/e23dd3476dd93a8710bccdfef6f44a3564554aad':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/e23dd3476dd93a8710bccdfef6f44a3564554aad}
+    version: 0.6.7
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -244,9 +224,9 @@ packages:
     version: 0.1.0
     engines: {node: '>=18'}
 
-  '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e}
-    version: 2.1.0
+  '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0}
+    version: 2.1.2
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -354,6 +334,11 @@ packages:
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
+
+  asciidoctor-emoji@0.5.0:
+    resolution: {integrity: sha512-3lsYV2kdX1MseZAm1KgSPwny+P7Fr83ZPH4MxNISIZAz3cPEGaFgNxRbr/uha4Tyv+oarpoaY5cGI7Fe0HluZg==}
+    peerDependencies:
+      '@asciidoctor/core': '>=2.2 <4.0'
 
   asciidoctor-kroki@0.18.1:
     resolution: {integrity: sha512-eQxbBCaPTbyNoJtk62Gp+6h4LlJp2147g7eS0QIVjqaLpFa8sseH0BlMiBoATrJUYv1w3nR+FTzvloBJ/MioYg==}
@@ -897,7 +882,7 @@ packages:
 
 snapshots:
 
-  '@antora-supplemental/antora-search-chat@https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/2cc2feb4a9c0aaae0e6e0b8458f26c747735a23d(@antora/lunr-extension@1.0.0-alpha.13)':
+  '@antora-supplemental/antora-search-chat@https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/7983d8174b709850a9317245b7507ebbcc7085c7(@antora/lunr-extension@1.0.0-alpha.13)':
     dependencies:
       '@antora/lunr-extension': 1.0.0-alpha.13
 
@@ -905,7 +890,12 @@ snapshots:
     dependencies:
       js-yaml: 4.1.1
 
-  '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/591489fdbe53a2f4c99188f8ce17804a48f1dfc4(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/asciidoctor-emoji-literals@https://codeload.github.com/antora-supplemental/asciidoctor-emoji-literals/tar.gz/353b32fba85bcced2c635fa96b59348f45d43315(@asciidoctor/core@2.2.9)(asciidoctor-emoji@0.5.0(@asciidoctor/core@2.2.9))':
+    dependencies:
+      '@asciidoctor/core': 2.2.9
+      asciidoctor-emoji: 0.5.0(@asciidoctor/core@2.2.9)
+
+  '@antora-supplemental/build-stack@https://codeload.github.com/antora-supplemental/build-stack/tar.gz/5ae83ffe23fdcb1a90a07280d300fcb72ce44cf5(@antora/site-generator@3.1.14)':
     dependencies:
       '@antora/site-generator': 3.1.14
 
@@ -913,9 +903,52 @@ snapshots:
     dependencies:
       js-yaml: 4.1.1
 
+  '@antora-supplemental/diagram-engines-shared@https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/shared': {}
+
+  '@antora-supplemental/diagram-lightbox@https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/diagram-lightbox(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora-supplemental/diagram-engines-shared': https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/shared
+    optionalDependencies:
+      '@antora/site-generator': 3.1.14
+
   '@antora-supplemental/extension-lister@https://codeload.github.com/antora-supplemental/extension-lister/tar.gz/19149b332ead9cf681a118aa0e730f8cda325900(@antora/site-generator@3.1.14)':
     optionalDependencies:
       '@antora/site-generator': 3.1.14
+
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/f4412b2f1c809635a4e41218dfde765d2bc2ddf2(@antora/site-generator@3.1.14)(@asciidoctor/core@2.2.9)':
+    dependencies:
+      '@antora-supplemental/antora-search-chat': https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/7983d8174b709850a9317245b7507ebbcc7085c7(@antora/lunr-extension@1.0.0-alpha.13)
+      '@antora-supplemental/asciidoctor-emoji-literals': https://codeload.github.com/antora-supplemental/asciidoctor-emoji-literals/tar.gz/353b32fba85bcced2c635fa96b59348f45d43315(@asciidoctor/core@2.2.9)(asciidoctor-emoji@0.5.0(@asciidoctor/core@2.2.9))
+      '@antora-supplemental/build-stack': https://codeload.github.com/antora-supplemental/build-stack/tar.gz/5ae83ffe23fdcb1a90a07280d300fcb72ce44cf5(@antora/site-generator@3.1.14)
+      '@antora-supplemental/deep-link-contracts': https://codeload.github.com/antora-supplemental/deep-link-contracts/tar.gz/1e44a79d2d17c9106dab9660da181039ae701ae6
+      '@antora-supplemental/diagram-lightbox': https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/diagram-lightbox(@antora/site-generator@3.1.14)
+      '@antora-supplemental/extension-lister': https://codeload.github.com/antora-supplemental/extension-lister/tar.gz/19149b332ead9cf681a118aa0e730f8cda325900(@antora/site-generator@3.1.14)
+      '@antora-supplemental/facto-stack': 'link:'
+      '@antora-supplemental/link-validator': https://codeload.github.com/antora-supplemental/link-validator/tar.gz/f8892aaf9d9d3d2572591fe60280c55375ada160(@antora/site-generator@3.1.14)
+      '@antora-supplemental/linkinator': https://codeload.github.com/antora-supplemental/linkinator/tar.gz/b5a024a56b1ce537e19dffe58b4882f4db60948f(@antora/site-generator@3.1.14)
+      '@antora-supplemental/mermaid-client': https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/mermaid-client(@antora/site-generator@3.1.14)
+      '@antora-supplemental/nav-drift': https://codeload.github.com/antora-supplemental/nav-drift/tar.gz/2e32b6fc7a859d9e124dec100816fa6304c1f5b6
+      '@antora-supplemental/nav-typology': https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/ff7a7d96e1ba2bee9a7b2baf0a53f677c29ebc9c(@antora/site-generator@3.1.14)
+      '@antora-supplemental/nav-typology-diataxis': https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/5abd17261e76108c0f246d2bd90f1a3acdb10b20(@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/ff7a7d96e1ba2bee9a7b2baf0a53f677c29ebc9c(@antora/site-generator@3.1.14))(@antora/site-generator@3.1.14)
+      '@antora-supplemental/orphan-finder': https://codeload.github.com/antora-supplemental/orphan-finder/tar.gz/c75c5fd23f44724a59cc008b45e38e169be21f42(@antora/site-generator@3.1.14)
+      '@antora-supplemental/page-context': https://codeload.github.com/antora-supplemental/page-context/tar.gz/ee6fb4d68f5daf10e3b51f4a817e2ebfd5d09d6d(@antora/site-generator@3.1.14)
+      '@antora-supplemental/page-edit': https://codeload.github.com/antora-supplemental/page-edit/tar.gz/345c2c2a2d7a8eb23826c3f36031d3f8595d808f(@antora/site-generator@3.1.14)
+      '@antora-supplemental/playbook-pin-auditor': https://codeload.github.com/antora-supplemental/playbook-pin-auditor/tar.gz/b92d67faf6de20180a3fd77c1b821420d3f7ecfa
+      '@antora-supplemental/site-nav-tree': https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/e23dd3476dd93a8710bccdfef6f44a3564554aad(@antora/site-generator@3.1.14)
+      '@antora-supplemental/soft-nav-page-toc': https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/e14807953757708297d2ac4f1ffac1a2810b3ccb(@antora/site-generator@3.1.14)
+      '@antora-supplemental/stale-page': https://codeload.github.com/antora-supplemental/stale-page/tar.gz/5c24c9bf8d5755487dd8c9156e8c8c96c23d841a
+      '@antora-supplemental/triage-ux-kit': https://codeload.github.com/antora-supplemental/triage-ux-kit/tar.gz/4b7888d2f18048e68e1176c9aca4abf7aa4bac40
+      '@antora-supplemental/unversioned-component-urls': https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0(@antora/site-generator@3.1.14)
+      '@antora/lunr-extension': 1.0.0-alpha.13
+      '@antora/user-require-helper': 3.0.0
+      antora: 3.1.14
+      asciidoctor-emoji: 0.5.0(@asciidoctor/core@2.2.9)
+      asciidoctor-kroki: 0.18.1(@asciidoctor/core@2.2.9)
+    transitivePeerDependencies:
+      - '@antora/site-generator'
+      - '@asciidoctor/core'
+      - bare-abort-controller
+      - react-native-b4a
 
   '@antora-supplemental/incremental@https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/0ab497a665075d4d3fec05f3fc3893a100ddc951(@antora/site-generator@3.1.14)':
     dependencies:
@@ -931,20 +964,26 @@ snapshots:
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/linkinator@https://codeload.github.com/antora-supplemental/linkinator/tar.gz/c8cbb909519ed8d18dec7b4953260f5296ad4841(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/linkinator@https://codeload.github.com/antora-supplemental/linkinator/tar.gz/b5a024a56b1ce537e19dffe58b4882f4db60948f(@antora/site-generator@3.1.14)':
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/nav-drift@https://codeload.github.com/antora-supplemental/nav-drift/tar.gz/2b5e8275ca91dbc9a0c2d391a3cd4b7606598571':
+  '@antora-supplemental/mermaid-client@https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/mermaid-client(@antora/site-generator@3.1.14)':
+    dependencies:
+      '@antora-supplemental/diagram-engines-shared': https://codeload.github.com/antora-supplemental/antora-diagram-engines/tar.gz/5fcae8cfd7a555e1021e2b081f50e3d78df44ca9#path:packages/shared
+    optionalDependencies:
+      '@antora/site-generator': 3.1.14
+
+  '@antora-supplemental/nav-drift@https://codeload.github.com/antora-supplemental/nav-drift/tar.gz/2e32b6fc7a859d9e124dec100816fa6304c1f5b6':
     dependencies:
       '@antora-supplemental/triage-ux-kit': https://codeload.github.com/antora-supplemental/triage-ux-kit/tar.gz/4b7888d2f18048e68e1176c9aca4abf7aa4bac40
 
-  '@antora-supplemental/nav-typology-diataxis@https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/92e0eca1675bafedb19dffe3239b78a80de0d17d(@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/c3e4006cd0bc3f5dbbee6e03f87e52bd93d61be0(@antora/site-generator@3.1.14))(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/nav-typology-diataxis@https://codeload.github.com/antora-supplemental/nav-typology-diataxis/tar.gz/5abd17261e76108c0f246d2bd90f1a3acdb10b20(@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/ff7a7d96e1ba2bee9a7b2baf0a53f677c29ebc9c(@antora/site-generator@3.1.14))(@antora/site-generator@3.1.14)':
     dependencies:
-      '@antora-supplemental/nav-typology': https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/c3e4006cd0bc3f5dbbee6e03f87e52bd93d61be0(@antora/site-generator@3.1.14)
+      '@antora-supplemental/nav-typology': https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/ff7a7d96e1ba2bee9a7b2baf0a53f677c29ebc9c(@antora/site-generator@3.1.14)
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/c3e4006cd0bc3f5dbbee6e03f87e52bd93d61be0(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/nav-typology@https://codeload.github.com/antora-supplemental/nav-typology/tar.gz/ff7a7d96e1ba2bee9a7b2baf0a53f677c29ebc9c(@antora/site-generator@3.1.14)':
     dependencies:
       '@antora/site-generator': 3.1.14
 
@@ -954,11 +993,11 @@ snapshots:
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/page-context@https://codeload.github.com/antora-supplemental/page-context/tar.gz/eb3080cf7efdbafc316d043ad1080ec851e1bb18(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/page-context@https://codeload.github.com/antora-supplemental/page-context/tar.gz/ee6fb4d68f5daf10e3b51f4a817e2ebfd5d09d6d(@antora/site-generator@3.1.14)':
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/207bc008e73b24673a813bfb9b0e0245cb0a47e3(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/page-edit@https://codeload.github.com/antora-supplemental/page-edit/tar.gz/345c2c2a2d7a8eb23826c3f36031d3f8595d808f(@antora/site-generator@3.1.14)':
     dependencies:
       '@antora/site-generator': 3.1.14
 
@@ -972,7 +1011,7 @@ snapshots:
       '@antora/site-generator': 3.1.14
       '@antora/user-require-helper': 3.0.0
 
-  '@antora-supplemental/site-nav-tree@https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/e2cf7d4ee80e03e40de929507685b1530616c45f(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/site-nav-tree@https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/e23dd3476dd93a8710bccdfef6f44a3564554aad(@antora/site-generator@3.1.14)':
     dependencies:
       '@antora/site-generator': 3.1.14
 
@@ -986,7 +1025,7 @@ snapshots:
 
   '@antora-supplemental/triage-ux-kit@https://codeload.github.com/antora-supplemental/triage-ux-kit/tar.gz/4b7888d2f18048e68e1176c9aca4abf7aa4bac40': {}
 
-  '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/fab7292ee987bc1b479ad174f4a394fe8952998e(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/unversioned-component-urls@https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0(@antora/site-generator@3.1.14)':
     dependencies:
       '@antora/site-generator': 3.1.14
 
@@ -1175,6 +1214,10 @@ snapshots:
       - react-native-b4a
 
   argparse@2.0.1: {}
+
+  asciidoctor-emoji@0.5.0(@asciidoctor/core@2.2.9):
+    dependencies:
+      '@asciidoctor/core': 2.2.9
 
   asciidoctor-kroki@0.18.1(@asciidoctor/core@2.2.9):
     dependencies:
