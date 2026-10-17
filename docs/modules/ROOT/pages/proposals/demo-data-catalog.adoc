@@ -151,7 +151,7 @@ Prescribed pattern authority: link:https://github.com/antora-supplemental/demo-d
 
 * link:https://github.com/antora-supplemental/demo-data[`demo-data`^] — baseline `demo-pages` migrated from `valentus-theme` ROOT fixtures (see link:https://github.com/antora-supplemental/demo-data/blob/main/docs/demo-pages/modules/ROOT/pages/migration.adoc[migration.adoc^]); `site-nav-tree` supplement shipped.
 * **Valentus cutover (2026-10):** `valentus-theme` is guide-only; Pages composes `demo-data` @ `v0.3.0` (or newer tag). Fixture URLs under component `demo-pages` (`…/demo-pages/~/`; legacy `theme-demo/` redirects on Pages).
-* link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` composes `demo-pages` @ `v0.3.0` + `demo/home`; optional commented source for `site-nav-tree` fixture.
+* link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` composes `demo-pages` @ `v0.3.1` + `demo/home`; optional commented source for `site-nav-tree` fixture. Baseline forest root label **antora-core**; index nav **Overview** (v0.3.1+).
 * Agent policy: Dev-Centr skill `antora-org-site` → `demo-data.md`; stack demo UX pairs skill `demo-site-wiring`.
 
 == See also
