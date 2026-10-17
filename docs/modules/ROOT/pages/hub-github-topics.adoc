@@ -1,0 +1,66 @@
+= GitHub topics on docs hub playbooks
+:navtitle: Hub GitHub topics
+:description: Tag playbook repos with product topics for direct dependencies only — not transitive compose-pack members.
+
+Antora docs **hub** repositories (playbooks that publish a site) use GitHub **repository topics** so maintainers can find consumers after a release (`gh search repos --topic valentus-theme`).
+
+Topics must reflect **direct** dependencies only. Tagging transitive packages duplicates the compose pack and sends the wrong signal during fan-out.
+
+== Direct vs transitive
+
+[cols="1,2",options="header"]
+|===
+| Direct (tag the playbook repo)
+| Transitive (do **not** tag — communicate via the pack)
+
+| `ui.bundle.url` points at link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] releases
+| Individual Valentus ui-modules you did not pin separately
+
+| Top-level `antora.extensions` entry (for example `require: '@antora-supplemental/facto-stack'`)
+| Extensions registered **only** inside `@antora-supplemental/facto-stack` (linkinator, page-edit, antora-search-chat, nav-typology, build-stack, …)
+
+| `package.json` `dependencies` / `devDependencies` git or npm pin owned by the playbook repo
+| Packages that appear only in the lockfile because facto-stack pulled them in
+
+| Maint tooling pinned in the hub repo (link-validator, orphan-finder, …)
+| Same package when the hub does **not** list it in `package.json` and only gets it via facto-stack
+|===
+
+*Rule of thumb:* if the hub playbook repo does not **declare** the dependency (playbook YAML, `package.json`, or UI bundle URL), do not add that product topic.
+
+Compose packs exist so hubs list **one** footer line and one bump target. Topics follow the same boundary: tag `facto-stack` when that is the only Antora compose require; tag `linkinator` only on repos that directly `require` or pin linkinator.
+
+== How to decide (checklist)
+
+. List playbook `antora.extensions` — each distinct `require` → topic = GitHub repo name (kebab-case, no `@scope/`).
+. List hub `package.json` deps — each `@antora-supplemental/*` or sibling org package → topic = repo name after the scope.
+. UI bundle → theme product topic (`valentus-theme`, …).
+. Remove topics for packages you only get through facto-stack (or another compose pack) unless step 2 also pins them for supplemental-ui sync or CI.
+
+Example — DevCentr hub (`dev-centr/docs`):
+
+* Direct: `valentus-theme`, `facto-stack`, `page-context`, `link-validator`, `site-nav-tree`, `soft-nav-page-toc`, maint packages pinned in `package.json`.
+* Not tagged: `linkinator`, `page-edit`, `nav-typology`, `antora-search-chat`, `build-stack` (hub profile only).
+
+Example — lean hub (facto-stack + Valentus only):
+
+* Topics: `valentus-theme`, `facto-stack`.
+
+== Topic string
+
+Product topic = **upstream GitHub repository name** (not npm scope, not `uses-*`).
+
+Capability/gallery topics (`antora-theme`, `antora-docs`, …) stay separate; see xref:theme-products.adoc#github-topic-strings-gallery--dependents[Theme products — GitHub topics].
+
+== After wiring or removing a direct dep
+
+. Add or remove the matching topic on the playbook repository (merge-safe CLI in link:https://github.com/antora-supplemental/valentus-theme/blob/main/docs/modules/guide/pages/github-topics.adoc[Valentus GitHub Topics guide^]).
+. Document the change in the hub changelog when retagging is part of a deliberate stack change.
+
+Skills: `antora-extension-consumers` (topics + pins) and `update-consumers` (recursive bump). Registry: link:https://github.com/antora-supplemental/antora-extensions-registry/blob/main/docs/modules/ROOT/pages/contributing.adoc#product-dependency-topics[Product dependency topics^].
+
+== See also
+
+* xref:theme-products.adoc[Theme products]
+* xref:notify-docs-hub-link-changes.adoc[Hub link-cache invalidation]
+* link:https://github.com/antora-supplemental/facto-stack[facto-stack] — compose pack for hub profiles

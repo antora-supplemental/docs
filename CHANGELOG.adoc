@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* xref:hub-github-topics.adoc[Hub GitHub topics] — playbook repos tag **direct** dependencies only (exclude transitive `@antora-supplemental/facto-stack` members); cross-links from xref:theme-products.adoc[Theme products].
 * Pin `@antora-supplemental/linkinator` **v0.1.7** — prose-like links at rest; hover tint + floating **⧉** chip with zero layout footprint.
 * Pin `@antora-supplemental/site-nav-tree` **v0.6.1**; vendor companion `site-nav-tree-current.js` and `site-nav-tree-overview-label.css` in hub `supplemental-ui` (manual UI path; playbook does not use `filter: true` injection).
 * **Hub link-cache invalidation.** Deploy listens for `repository_dispatch` type `link-cache-invalidate`; maps payload `sources` / `urls` / `ref` to link-validator env, restores `.link-check-cache.json`, deploys on dispatch. How-to: xref:notify-docs-hub-link-changes.adoc[Notify the docs hub of link changes]. Reusable dispatch: `antora-supplemental/.github/.github/workflows/docs-hub-link-cache-invalidate-dispatch.yml`; exemplar caller `antora-supplemental/asciidoc-interactive`.

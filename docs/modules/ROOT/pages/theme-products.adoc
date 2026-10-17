@@ -45,6 +45,7 @@ On Valentus Pages, fixtures publish under link:https://antora-supplemental.githu
 * Dark mode overlay: link:https://antora-supplemental.github.io/antora-dark-mode/[GitHub Pages^] · hub stub xref:antora-dark-mode.adoc[Antora Dark Mode]
 * Migration from the old name: link:https://antora-supplemental.github.io/antora-dark-mode/antora-dark-mode/guide/legacy-names.html[Legacy names & migration^]
 
+[[github-topic-strings-gallery--dependents]]
 == GitHub topic strings (gallery + dependents)
 
 The theme gallery uses prescribed *capability* topics such as `antora-theme`, `antora-dark-theme`, and `antora-dark-mode` for appearance filters.
@@ -54,6 +55,8 @@ Separately, every site that *depends on* a named theme must add that theme’s *
 
 * Valentus consumers → topic `valentus-theme` (`gh search repos --topic valentus-theme`)
 * Dark-mode overlay consumers → topic `antora-dark-mode` when appropriate
+
+**Direct dependencies only:** playbook repos must not tag transitive compose-pack members (for example do not tag `linkinator` when only `@antora-supplemental/facto-stack` is required). Tag the pack (`facto-stack`) and any extension the hub pins or `require`s itself. Full checklist: xref:hub-github-topics.adoc[Hub GitHub topics].
 
 See the extensions-registry contributing guide (*Product dependency topics*) and the Valentus guide on GitHub Topics.
 

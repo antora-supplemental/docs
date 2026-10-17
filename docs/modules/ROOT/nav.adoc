@@ -5,6 +5,7 @@
 * xref:site-rebuild.adoc[Site rebuild (v1/v2)]
 * xref:live-docs.adoc[Live docs]
 * xref:theme-products.adoc[Theme products]
+* xref:hub-github-topics.adoc[Hub GitHub topics]
 * xref:antora-dark-mode.adoc[Antora Dark Mode]
 * xref:antora-deployment.adoc[Antora Deployment]
 * xref:notify-docs-hub-link-changes.adoc[Hub link-cache invalidation]
