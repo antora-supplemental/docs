@@ -246,13 +246,36 @@
     var root = doc && doc.querySelector ? doc : document
     var article = root.querySelector('article.doc')
     if (article) {
-      var h2 = article.querySelector('.sect1 > h2[id], h2[id]')
-      if (h2 && h2.textContent) return h2.textContent.trim()
       var h1 = article.querySelector('h1.page, h1[id].sect0')
       if (h1 && h1.textContent) return h1.textContent.trim()
     }
     var t = root.querySelector('title')
     return t ? t.textContent.replace(/\s*::.*$/, '').trim() : document.title
+  }
+
+  function labelFromSlug (slug) {
+    if (!slug) return 'Parent'
+    return slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ')
+  }
+
+  function parentPageHref (url, parentSlug) {
+    try {
+      var u = pageUrl(url)
+      var parts = u.pathname.split('/').filter(Boolean)
+      var idx = -1
+      for (var i = 0; i < parts.length; i++) {
+        if (parts[i].endsWith('-details')) {
+          idx = i
+          break
+        }
+      }
+      if (idx < 0) return null
+      var next = parts.slice(0, idx)
+      next.push(parentSlug)
+      return u.origin + '/' + next.join('/') + '/'
+    } catch (e) {
+      return null
+    }
   }
 
   function removeInjectedNavHidden (menu) {
@@ -333,14 +356,14 @@
       var parts = [articleSel]
       if (i) {
         for (var c = 1; c <= i; c++) {
-          parts.push(c === 2 ? '.sectionbody>' : '')
-          parts.push('.sect' + c)
+          // Same string site.js joins: ".sectionbody>" is part of the sect token, not its own ">".
+          parts.push((c === 2 ? '.sectionbody>' : '') + '.sect' + c)
         }
         parts.push('h' + (i + 1) + '[id]' + (i > 1 ? ':not(.discrete)' : ''))
       } else {
         parts.push('h1[id].sect0')
       }
-      selectors.push(parts.filter(Boolean).join('>'))
+      selectors.push(parts.join('>'))
     }
 
     var query = selectors.join(',')
@@ -447,9 +470,22 @@
     tocScrollHandler()
   }
 
+  function setCurrentCrumbLabel (current, label) {
+    var curLink = current.querySelector('a.adt-breadcrumb-trail-link')
+    if (curLink) {
+      curLink.textContent = label
+      return
+    }
+    var text = current.querySelector('.adt-breadcrumb-trail-text')
+    if (text) text.textContent = label
+  }
+
   function patchBreadcrumbs (url, fetchedDoc) {
     var meta = readPageNavMeta(fetchedDoc || document)
-    if (!meta.hideFromNavtree) return
+    var pathname = pageUrl(url).pathname
+    var parentSlug = parentSlugFromMeta(meta, pathname)
+    var treatAsHidden = meta.hideFromNavtree || !!(parentSlug && pathname.indexOf('-details') >= 0)
+    if (!treatAsHidden) return
 
     var list =
       document.querySelector('.adt-doc-mast-center nav.adt-breadcrumbs ul') ||
@@ -459,45 +495,49 @@
     var current = list.querySelector('.adt-breadcrumb-trail--current')
     if (!current) return
 
-    var label = pageLabelFromDoc(fetchedDoc || document)
-    var curLink = current.querySelector('a.adt-breadcrumb-trail-link')
-    if (curLink) {
-      curLink.href = url
-      curLink.textContent = label
-    }
+    setCurrentCrumbLabel(current, pageLabelFromDoc(fetchedDoc || document))
 
     if (list.querySelector('.adt-breadcrumb-trail[data-navtree-parent="1"]')) return
+    if (!parentSlug) return
 
-    var pathname = pageUrl(url).pathname
-    var parentSlug = parentSlugFromMeta(meta, pathname)
     var menu = document.querySelector('.nav-container [data-panel=menu]')
-    var parentItem = menu && parentSlug ? findParentNavItem(menu, parentSlug, url) : null
+    var parentItem = menu ? findParentNavItem(menu, parentSlug, url) : null
     var parentAnchor = parentItem && parentItem.querySelector('a.nav-link')
-    if (!parentAnchor) return
-
-    var parentText = parentAnchor.querySelector('.nav-text')
-    parentText = parentText ? parentText.textContent.trim() : parentSlug
-
-    function makeSep () {
-      var sep = document.createElement('li')
-      sep.className = 'adt-breadcrumb-sep'
-      sep.setAttribute('aria-hidden', 'true')
-      sep.textContent = '/'
-      return sep
+    var parentText = labelFromSlug(parentSlug)
+    var parentHref = parentPageHref(url, parentSlug)
+    if (parentAnchor) {
+      var navText = parentAnchor.querySelector('.nav-text')
+      parentText = (navText ? navText.textContent : parentAnchor.textContent || '').trim() || parentText
+      parentHref = parentAnchor.href || parentHref
     }
+    if (!parentHref) return
+
+    var sep = document.createElement('li')
+    sep.className = 'adt-breadcrumb-sep'
+    sep.setAttribute('aria-hidden', 'true')
+    sep.textContent = '/'
 
     var parentLi = document.createElement('li')
     parentLi.className = 'adt-breadcrumb-trail'
     parentLi.setAttribute('data-navtree-parent', '1')
     var pa = document.createElement('a')
     pa.className = 'adt-breadcrumb-trail-link'
-    pa.href = parentAnchor.href
+    pa.href = parentHref
     pa.textContent = parentText
     parentLi.appendChild(pa)
 
-    list.insertBefore(makeSep(), current)
+    // The trail already has a "/" immediately before the current crumb. Keep that
+    // separator in front of the parent and add only the separator between parent and current.
     list.insertBefore(parentLi, current)
-    list.insertBefore(makeSep(), current)
+    list.insertBefore(sep, current)
+  }
+
+  function safeRebuildPageToc () {
+    try {
+      rebuildPageToc()
+    } catch (err) {
+      console.warn('[soft-nav] toc rebuild failed', err)
+    }
   }
 
   function finishPageTransition (ctx) {
@@ -505,7 +545,7 @@
     if (dest.hash) scrollToHash(dest.hash)
     else if (SoftNav.scrollToTop !== false) window.scrollTo(0, 0)
 
-    rebuildPageToc()
+    safeRebuildPageToc()
     syncNavAfterNavigate(ctx.url, ctx.doc)
     patchBreadcrumbs(ctx.url, ctx.doc)
   }
@@ -682,7 +722,7 @@
   }
 
   function onInitialReady () {
-    rebuildPageToc()
+    safeRebuildPageToc()
     syncNavAfterNavigate(window.location.href, document)
     patchBreadcrumbs(window.location.href, document)
   }
