@@ -8,9 +8,8 @@ on:
     branches:
       - main
   workflow_dispatch:
-  # Content sources / extensions poke this via `gh api .../dispatches` (no polling).
   repository_dispatch:
-    types: [docs-source-updated, extension-updated]
+    types: [docs-source-updated, extension-updated, link-cache-invalidate]
 
 permissions:
   contents: read
@@ -25,10 +24,48 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Resolve dispatch checkout ref
+        if: github.event_name == 'repository_dispatch'
+        id: dispatch_ref
+        run: |
+          ref="${{ github.event.client_payload.ref }}"
+          if [ -z "$ref" ]; then
+            ref="main"
+          fi
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve link-cache-invalidate env
+        if: github.event_name == 'repository_dispatch' && github.event.action == 'link-cache-invalidate'
+        id: link_invalidate
+        env:
+          RAW_SOURCES: ${{ toJSON(github.event.client_payload.sources) }}
+          RAW_URLS: ${{ toJSON(github.event.client_payload.urls) }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const out = process.env.GITHUB_OUTPUT;
+          function csv(raw) {
+            if (raw === undefined || raw === null || raw === '' || raw === 'null') return '';
+            let v;
+            try {
+              v = JSON.parse(raw);
+            } catch {
+              v = raw;
+            }
+            if (Array.isArray(v)) return v.map(String).filter(Boolean).join(',');
+            return String(v);
+          }
+          const sources = csv(process.env.RAW_SOURCES);
+          const urls = csv(process.env.RAW_URLS);
+          fs.appendFileSync(out, `sources=${sources}\n`);
+          fs.appendFileSync(out, `urls=${urls}\n`);
+          NODE
+
       - name: Checkout
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'repository_dispatch' && steps.dispatch_ref.outputs.ref || github.ref }}
 
       - name: Clone asciidoc-interactive (pnpm file:../asciidoc-interactive)
         run: git clone --depth 1 https://github.com/antora-supplemental/asciidoc-interactive.git "${GITHUB_WORKSPACE}/../asciidoc-interactive"
@@ -46,10 +83,22 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: Restore link check cache
+        uses: actions/cache@v4
+        with:
+          path: .link-check-cache.json
+          key: link-check-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', '.antora-link-suppressions.yml') }}
+          restore-keys: |
+            link-check-cache-${{ runner.os }}-
 
       - name: Build Antora site
         id: antora
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINK_VALIDATOR_INVALIDATE_SOURCES: ${{ steps.link_invalidate.outputs.sources }}
+          LINK_VALIDATOR_INVALIDATE_URLS: ${{ steps.link_invalidate.outputs.urls }}
         uses: antora-supplemental/antora-build-action@v3
         with:
           playbook: antora-playbook.yml
@@ -71,7 +120,6 @@ jobs:
           path: ${{ steps.antora.outputs.site-path }}
 
   deploy:
-    # Deploy on main pushes, manual runs, and cross-repo repository_dispatch (not PRs).
     if: >
       github.event_name != 'pull_request' &&
       (github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch')

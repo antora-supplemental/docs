@@ -2,7 +2,9 @@
 
 == Unreleased
 
-* xref:antora-deployment.adoc#auto-rebuild-when-content-sources-or-extensions-update[Antora deployment]: document `link-cache-invalidate` dispatch type and Dev-Centr hub contract link.
+* **Hub link-cache invalidation.** Deploy listens for `repository_dispatch` type `link-cache-invalidate`; maps payload `sources` / `urls` / `ref` to link-validator env, restores `.link-check-cache.json`, deploys on dispatch. How-to: xref:notify-docs-hub-link-changes.adoc[Notify the docs hub of link changes]. Reusable dispatch: `antora-supplemental/.github/.github/workflows/docs-hub-link-cache-invalidate-dispatch.yml`; exemplar caller `antora-supplemental/asciidoc-interactive`.
+* Pin `@antora-supplemental/link-validator#v0.2.2` (surgical invalidation env).
+* xref:antora-deployment.adoc#auto-rebuild-when-content-sources-or-extensions-update[Antora deployment]: document `link-cache-invalidate` dispatch type and multi-hub contract links.
 * Register `@antora-supplemental/soft-nav-page-toc` **v0.1.6** (`injectScript: false`) for compose-time nav-hidden meta and breadcrumbs; hub `soft-nav.js` already rebuilds the aside TOC after SoftNav swaps.
 * Tutorial + demo-data catalog: reflect merged `home` component (no separate `stack`); `siteNavTree` `[home, demo-pages]`.
 * Demo-data catalog: **v0.3.5** **Demo pages** forest root with **Core** / **Extensions** sidebar; **v0.3.2** extensions topic split; facto-stack composes site-nav-tree fixtures nested under Extensions (`site-nav-tree` v0.5.7 avoids duplicate Overview).

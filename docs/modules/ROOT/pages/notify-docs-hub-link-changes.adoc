@@ -1,0 +1,74 @@
+= Notify the docs hub of link changes
+:navtitle: Hub link-cache invalidation
+:description: How content repos poke antora-supplemental/docs with repository_dispatch link-cache-invalidate and surgical link-validator invalidation.
+:page-audience: Hub maintainers and component-repo CI authors
+:page-usage-context: Multi-repo Antora aggregator on GitHub Actions
+:page-orig-author: Ryan Johnson
+:page-last-author: Cursor agent on behalf of Ryan Johnson
+:page-last-edited: 2026-10-17
+
+Live site: https://docs.antora-supplemental.org[+].
+
+Multi-repo hubs rebuild when a content repo *pokes* the playbook repo — see xref:antora-deployment.adoc#auto-rebuild-when-content-sources-or-extensions-update[Auto-rebuild when content sources or extensions update].
+
+**Link-cache invalidation** adds optional *surgical* recheck hints for `@antora-supplemental/link-validator` (env `LINK_VALIDATOR_INVALIDATE_*`, v0.2.2+) while the hub still runs a full Antora generate and GitHub Pages deploy.
+
+Agent skill: `docs-hub-link-invalidate` (`dev-centr/agent-rules`).
+
+== Hub subscriber (this repo)
+
+Workflow: `.github/workflows/deploy.yml` listens for:
+
+* `push` to `main`
+* `pull_request` (build only)
+* `workflow_dispatch`
+* `repository_dispatch` types `docs-source-updated`, `extension-updated`, `link-cache-invalidate`
+
+On `link-cache-invalidate`, the build maps `github.event.client_payload` to:
+
+| Payload field | Build env | Notes |
+|===|===|===
+| `sources` | `LINK_VALIDATOR_INVALIDATE_SOURCES` | Comma-separated string or JSON array |
+| `urls` | `LINK_VALIDATOR_INVALIDATE_URLS` | Comma-separated string or JSON array |
+| `ref` | checkout ref | Default `main` when omitted |
+| `source`, `sha` | (log context) | Calling repo |
+
+Deploy runs for `repository_dispatch` even when the hub checkout ref is not `refs/heads/main`.
+
+== Fire a dispatch with `gh`
+
+Org secret **`DOCS_HUB_DISPATCH_TOKEN`**: token with permission to create `repository_dispatch` on `antora-supplemental/docs`.
+
+[source,shell]
+----
+gh api repos/antora-supplemental/docs/dispatches \
+  -f event_type=link-cache-invalidate \
+  -f client_payload[source]=antora-supplemental/asciidoc-interactive \
+  -f client_payload[ref]=main \
+  -f client_payload[sha]=$(git rev-parse HEAD) \
+  -f client_payload[sources]=docs/modules/ROOT/pages/index.adoc
+----
+
+== Reusable caller workflow (org default)
+
+Path: `antora-supplemental/.github/.github/workflows/docs-hub-link-cache-invalidate-dispatch.yml`
+
+[source,yaml]
+----
+jobs:
+  notify:
+    uses: antora-supplemental/.github/.github/workflows/docs-hub-link-cache-invalidate-dispatch.yml@main
+    secrets:
+      DOCS_HUB_DISPATCH_TOKEN: ${{ secrets.DOCS_HUB_DISPATCH_TOKEN }}
+    with:
+      hub_repo: antora-supplemental/docs
+----
+
+Exemplar thin caller: `antora-supplemental/asciidoc-interactive/.github/workflows/notify-docs-hub-link-invalidate.yml`.
+
+== Related
+
+* xref:antora-deployment.adoc[Antora deployment]
+* https://docs.devcentr.org/docs-site/notify-docs-hub-link-changes.html[Dev-Centr hub contract]
+* https://dlang-supplemental.github.io/docs/notify-docs-hub-link-changes.html[D Lang Supplemental hub contract]
+* https://github.com/antora-supplemental/asciidoc-link-validator#environment[asciidoc-link-validator env vars]

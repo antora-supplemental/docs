@@ -7,6 +7,7 @@
 * xref:theme-products.adoc[Theme products]
 * xref:antora-dark-mode.adoc[Antora Dark Mode]
 * xref:antora-deployment.adoc[Antora Deployment]
+* xref:notify-docs-hub-link-changes.adoc[Hub link-cache invalidation]
 * xref:antora-github-actions.adoc[Antora on GitHub]
 * xref:org-github-config.adoc[Org GitHub config]
 * xref:diagram-engines.adoc[Diagram engines]

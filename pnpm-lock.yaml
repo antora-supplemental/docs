@@ -28,8 +28,8 @@ importers:
         specifier: github:antora-supplemental/extension-lister#v0.1.0
         version: https://codeload.github.com/antora-supplemental/extension-lister/tar.gz/19149b332ead9cf681a118aa0e730f8cda325900(@antora/site-generator@3.1.14)
       '@antora-supplemental/link-validator':
-        specifier: github:antora-supplemental/link-validator#v0.2.1
-        version: https://codeload.github.com/antora-supplemental/link-validator/tar.gz/fe35aaca8cdb4e2a5761189d592ea0492b4bd302(@antora/site-generator@3.1.14)
+        specifier: github:antora-supplemental/link-validator#v0.2.2
+        version: https://codeload.github.com/antora-supplemental/link-validator/tar.gz/f8892aaf9d9d3d2572591fe60280c55375ada160(@antora/site-generator@3.1.14)
       '@antora-supplemental/linkinator':
         specifier: github:antora-supplemental/linkinator#v0.1.1
         version: https://codeload.github.com/antora-supplemental/linkinator/tar.gz/8990ea6252cd62f68b39aaa4ab277761100f2b49(@antora/site-generator@3.1.14)
@@ -91,9 +91,9 @@ packages:
     peerDependencies:
       '@antora/lunr-extension': '>=1.0.0-alpha.12'
 
-  '@antora-supplemental/asciidoc-link-validator@https://codeload.github.com/antora-supplemental/asciidoc-link-validator/tar.gz/2595ec4f2a3c9a136ccfb94a15919e69798f9247':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/asciidoc-link-validator/tar.gz/2595ec4f2a3c9a136ccfb94a15919e69798f9247}
-    version: 0.2.1
+  '@antora-supplemental/asciidoc-link-validator@https://codeload.github.com/antora-supplemental/asciidoc-link-validator/tar.gz/41555a7b11d5c4eb12c730ab61192352ccf547fd':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/asciidoc-link-validator/tar.gz/41555a7b11d5c4eb12c730ab61192352ccf547fd}
+    version: 0.2.2
     engines: {node: '>=18'}
     hasBin: true
 
@@ -132,9 +132,9 @@ packages:
     resolution: {directory: ../asciidoc-interactive, type: directory}
     engines: {node: '>=18'}
 
-  '@antora-supplemental/link-validator@https://codeload.github.com/antora-supplemental/link-validator/tar.gz/fe35aaca8cdb4e2a5761189d592ea0492b4bd302':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/link-validator/tar.gz/fe35aaca8cdb4e2a5761189d592ea0492b4bd302}
-    version: 0.2.1
+  '@antora-supplemental/link-validator@https://codeload.github.com/antora-supplemental/link-validator/tar.gz/f8892aaf9d9d3d2572591fe60280c55375ada160':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/link-validator/tar.gz/f8892aaf9d9d3d2572591fe60280c55375ada160}
+    version: 0.2.2
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -901,7 +901,7 @@ snapshots:
     dependencies:
       '@antora/lunr-extension': 1.0.0-alpha.13
 
-  '@antora-supplemental/asciidoc-link-validator@https://codeload.github.com/antora-supplemental/asciidoc-link-validator/tar.gz/2595ec4f2a3c9a136ccfb94a15919e69798f9247':
+  '@antora-supplemental/asciidoc-link-validator@https://codeload.github.com/antora-supplemental/asciidoc-link-validator/tar.gz/41555a7b11d5c4eb12c730ab61192352ccf547fd':
     dependencies:
       js-yaml: 4.1.1
 
@@ -925,9 +925,9 @@ snapshots:
     dependencies:
       json5: 2.2.3
 
-  '@antora-supplemental/link-validator@https://codeload.github.com/antora-supplemental/link-validator/tar.gz/fe35aaca8cdb4e2a5761189d592ea0492b4bd302(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/link-validator@https://codeload.github.com/antora-supplemental/link-validator/tar.gz/f8892aaf9d9d3d2572591fe60280c55375ada160(@antora/site-generator@3.1.14)':
     dependencies:
-      '@antora-supplemental/asciidoc-link-validator': https://codeload.github.com/antora-supplemental/asciidoc-link-validator/tar.gz/2595ec4f2a3c9a136ccfb94a15919e69798f9247
+      '@antora-supplemental/asciidoc-link-validator': https://codeload.github.com/antora-supplemental/asciidoc-link-validator/tar.gz/41555a7b11d5c4eb12c730ab61192352ccf547fd
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
