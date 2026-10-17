@@ -204,6 +204,7 @@ This hub listens for:
 
 * `docs-source-updated` — a playbook content source pushed new docs
 * `extension-updated` — UI bundle / extension / theme change
+* `link-cache-invalidate` — content or outbound link targets changed; hub rebuild with optional `LINK_VALIDATOR_INVALIDATE_*` (see https://docs.devcentr.org/docs-site/notify-docs-hub-link-changes.html[Dev-Centr hub contract] and `@antora-supplemental/link-validator` v0.2.2+)
 
 === 1. Subscriber site (the Antora playbook repo)
 
@@ -263,6 +264,7 @@ Store org/repo secret `DOCS_DISPATCH_TOKEN` (fine-grained PAT or GitHub App) tha
 |---|---|
 | `docs-source-updated` | Content repo docs paths changed |
 | `extension-updated` | Theme, UI bundle, or playbook extension changed |
+| `link-cache-invalidate` | Docs/links changed; optional surgical link-validator cache invalidation on hub build |
 
 === Summary
 
