@@ -128,7 +128,7 @@ Post in https://antora.zulipchat.com/#narrow/stream/203078-community/general[Ant
 ____
 SoftNav + Default UI: the aside page TOC goes stale after in-component soft navigation because `site.js` only builds it on full load. We documented a proposal (hide-page nav entries + TOC rebuild lifecycle) here:
 
-https://docs.antora-supplemental.org/docs/ROOT/proposals/soft-nav-page-toc.html
+https://docs.antora-supplemental.org/docs/proposals/soft-nav-page-toc/
 
 Interim bolt-on: https://github.com/antora-supplemental/soft-nav-page-toc — feedback welcome on whether Default UI should export `buildPageToc()` and standardize `doc-nav:loaded`.
 ____
