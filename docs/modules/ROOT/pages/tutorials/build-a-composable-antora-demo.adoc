@@ -19,12 +19,12 @@ Naming, `start_path` layout, and versioning rules: link:https://github.com/antor
 The org uses a **three-layer** model:
 
 . **Baseline** — `demo-data` component `theme-demo` (`docs/theme-demo/`): rich AsciiDoc that exercises Valentus body styles (admonitions, tables, code, images, extension-oriented samples).
-. **Your demo pages** — a small Antora component under `{your-repo}/demo/docs` (or `examples/docs` for extension-only CI smoke).
+. **Your demo pages** — an Antora component under `{your-repo}/demo/home` (portal + product pages; or `examples/docs` for extension-only CI smoke).
 . **Compose playbook** — YAML that wires git sources, UI bundle, supplemental UI, and `@antora-supplemental/facto-stack` (or a slimmer extension list).
 
 Generic AsciiDoc syntax tutorials stay in link:https://github.com/antora-supplemental/antora-demo[`antora-demo`^] (`samples`); use `theme-demo` when you need Valentus-branded fixture pages on a stack or theme demo.
 
-Reference implementation: link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` → link:https://antora-supplemental.github.io/facto-stack/[published stack demo^].
+Reference implementation: link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` → link:https://antora-supplemental.github.io/facto-stack/home/[published stack demo (Overview)^].
 
 == Prerequisites
 
@@ -36,7 +36,7 @@ Reference implementation: link:https://github.com/antora-supplemental/facto-stac
 
 Copy one of these starting points:
 
-* **Stack demo (recommended)** — clone link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] and work in `demo/` (`playbook.yml`, `supplemental-ui/`, `demo/docs/`, `demo/home/`).
+* **Stack demo (recommended)** — clone link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] and work in `demo/` (`playbook.yml`, `supplemental-ui/`, `demo/home/`).
 * **Greenfield** — link:https://github.com/antora-supplemental/antora-github-deploy-template[`antora-github-deploy-template`^] (workflow + minimal playbook), then add the sources from the steps below.
 
 Set site metadata and folder URLs like the stack demo:
@@ -78,31 +78,27 @@ After publish, fixture pages appear under `{site.url}/theme-demo/~/` (same compo
 
 Create an Antora component for pages **only your repo owns** — stack behavior proofs, extension smoke, release notes, not the shared typography catalog.
 
-Example layout (facto-stack):
+Example layout (facto-stack): one **`home`** component holds the portal **Overview** and all stack demo pages (Mermaid, lightbox, SoftNav). Public entry: `…/facto-stack/home/`.
 
 [source,text]
 ----
 demo/
-  home/          # optional portal component (name: home)
-  docs/          # stack-local component (name: stack in facto-stack)
+  home/          # component name: home (portal + stack demo pages)
     antora.yml
     modules/ROOT/pages/...
     modules/ROOT/nav.adoc
 ----
 
-Register it as a second (or third) source pointing at **your** git root:
+Register it pointing at **your** git root:
 
 [source,yaml]
 ----
     - url: ./..
       start_path: demo/home
       branches: HEAD
-    - url: ./..
-      start_path: demo/docs
-      branches: HEAD
 ----
 
-Use `examples/docs` instead of `demo/docs` when the repo is a single npm extension and CI only needs a tiny nav.
+Use `examples/docs` when the repo is a single npm extension and CI only needs a tiny nav (separate component name, not `home`).
 
 == Step 4 — Valentus UI and supplemental UI
 
@@ -132,13 +128,13 @@ antora:
       profile: demo
       siteNavTree:
         enabled: true
-        include: [home, stack, theme-demo]
-        order: [home, stack, theme-demo]
+        include: [home, theme-demo]
+        order: [home, theme-demo]
 ----
 
 Notes:
 
-* **`include` uses Antora component names** (`stack` in facto-stack, `theme-demo` from demo-data), not repository names.
+* **`include` uses Antora component names** (`home`, `theme-demo` from demo-data), not repository names.
 * Adding a `content.sources` entry does **not** put that component in the sidebar — you must list it in `siteNavTree.include` when site-nav-tree is enabled.
 * Theme-only demos can omit Facto and use Valentus alone; see xref:theme-products.adoc[Theme products].
 

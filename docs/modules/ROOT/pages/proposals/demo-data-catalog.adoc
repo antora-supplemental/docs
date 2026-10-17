@@ -82,7 +82,7 @@ Target shape:
 . `theme-demo` from `demo-data` — typography, admonitions, tables, extension.adoc-style richness (post-migration).
 . `facto-stack` from `facto-stack/demo/docs` — stack-only behavior proofs.
 . `profile: demo` on `@antora-supplemental/facto-stack` — already enables site-nav-tree + client Mermaid + lightbox.
-. `siteNavTree.include: [facto-stack, theme-demo]` — curated sidebar forest.
+. `siteNavTree.include: [home, theme-demo]` — curated sidebar forest (facto-stack demo: portal + stack pages under component `home`).
 
 Org docs hub keeps its own forest (`docs`, `registry`, …) and may continue to use `antora-demo` for `samples` without pulling `theme-demo` unless we want redundant syntax pages.
 
