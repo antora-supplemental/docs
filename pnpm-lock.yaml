@@ -60,6 +60,9 @@ importers:
       '@antora-supplemental/site-nav-tree':
         specifier: github:antora-supplemental/site-nav-tree#main
         version: https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/54b6cbb504f29563a5fa97ee832aae06d6703154(@antora/site-generator@3.1.14)
+      '@antora-supplemental/soft-nav-page-toc':
+        specifier: github:antora-supplemental/soft-nav-page-toc#v0.1.6
+        version: https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/e14807953757708297d2ac4f1ffac1a2810b3ccb(@antora/site-generator@3.1.14)
       '@antora-supplemental/stale-page':
         specifier: github:antora-supplemental/stale-page#v0.1.1
         version: https://codeload.github.com/antora-supplemental/stale-page/tar.gz/5c24c9bf8d5755487dd8c9156e8c8c96c23d841a
@@ -219,6 +222,16 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
+
+  '@antora-supplemental/soft-nav-page-toc@https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/e14807953757708297d2ac4f1ffac1a2810b3ccb':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/e14807953757708297d2ac4f1ffac1a2810b3ccb}
+    version: 0.1.6
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@antora/site-generator': '>=3.1.0'
+    peerDependenciesMeta:
+      '@antora/site-generator':
+        optional: true
 
   '@antora-supplemental/stale-page@https://codeload.github.com/antora-supplemental/stale-page/tar.gz/5c24c9bf8d5755487dd8c9156e8c8c96c23d841a':
     resolution: {tarball: https://codeload.github.com/antora-supplemental/stale-page/tar.gz/5c24c9bf8d5755487dd8c9156e8c8c96c23d841a}
@@ -961,6 +974,10 @@ snapshots:
 
   '@antora-supplemental/site-nav-tree@https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/54b6cbb504f29563a5fa97ee832aae06d6703154(@antora/site-generator@3.1.14)':
     dependencies:
+      '@antora/site-generator': 3.1.14
+
+  '@antora-supplemental/soft-nav-page-toc@https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/e14807953757708297d2ac4f1ffac1a2810b3ccb(@antora/site-generator@3.1.14)':
+    optionalDependencies:
       '@antora/site-generator': 3.1.14
 
   '@antora-supplemental/stale-page@https://codeload.github.com/antora-supplemental/stale-page/tar.gz/5c24c9bf8d5755487dd8c9156e8c8c96c23d841a':
