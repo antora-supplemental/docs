@@ -66,7 +66,7 @@ From link:https://github.com/antora-supplemental/facto-stack/blob/main/demo/play
 content:
   sources:
     - url: https://github.com/antora-supplemental/demo-data.git
-      tags: [v0.2.0]
+      tags: [v0.2.1]
       start_path: docs/theme-demo
 ----
 

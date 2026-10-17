@@ -150,8 +150,8 @@ Prescribed pattern authority: link:https://github.com/antora-supplemental/demo-d
 == Implementation status
 
 * link:https://github.com/antora-supplemental/demo-data[`demo-data`^] — baseline `theme-demo` migrated from `valentus-theme` ROOT fixtures (see link:https://github.com/antora-supplemental/demo-data/blob/main/docs/theme-demo/modules/ROOT/pages/migration.adoc[migration.adoc^]); `site-nav-tree` supplement shipped.
-* **Valentus cutover (2026-10):** `valentus-theme` is guide-only; Pages composes `demo-data` @ `v0.2.0`. Fixture URLs moved from `…/valentus-theme/1.0/{page}.html` to link:https://antora-supplemental.github.io/valentus-theme/theme-demo/~/[`…/theme-demo/~/`^] (URL table in migration.adoc).
-* link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` composes `theme-demo` @ `v0.2.0` + `demo/docs`; optional commented source for `site-nav-tree` fixture.
+* **Valentus cutover (2026-10):** `valentus-theme` is guide-only; Pages composes `demo-data` @ `v0.2.1` (or newer tag). Fixture URLs moved from `…/valentus-theme/1.0/{page}.html` to link:https://antora-supplemental.github.io/valentus-theme/theme-demo/~/[`…/theme-demo/~/`^] (URL table in migration.adoc).
+* link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` composes `theme-demo` @ `v0.2.1` + `demo/docs`; optional commented source for `site-nav-tree` fixture.
 * Agent policy: Dev-Centr skill `antora-org-site` → `demo-data.md`; stack demo UX pairs skill `demo-site-wiring`.
 
 == See also
