@@ -31,8 +31,8 @@ importers:
         specifier: github:antora-supplemental/link-validator#v0.2.2
         version: https://codeload.github.com/antora-supplemental/link-validator/tar.gz/f8892aaf9d9d3d2572591fe60280c55375ada160(@antora/site-generator@3.1.14)
       '@antora-supplemental/linkinator':
-        specifier: github:antora-supplemental/linkinator#v0.1.7
-        version: https://codeload.github.com/antora-supplemental/linkinator/tar.gz/57bfd57e556a3060ada3c5bd456b7d39a2457093(@antora/site-generator@3.1.14)
+        specifier: github:antora-supplemental/linkinator#v0.1.8
+        version: https://codeload.github.com/antora-supplemental/linkinator/tar.gz/ee6efbee55da9aefe61229e1238627ba8b1102ee(@antora/site-generator@3.1.14)
       '@antora-supplemental/nav-drift':
         specifier: github:antora-supplemental/nav-drift#v0.1.1
         version: https://codeload.github.com/antora-supplemental/nav-drift/tar.gz/2b5e8275ca91dbc9a0c2d391a3cd4b7606598571
@@ -142,9 +142,9 @@ packages:
       '@antora/site-generator':
         optional: true
 
-  '@antora-supplemental/linkinator@https://codeload.github.com/antora-supplemental/linkinator/tar.gz/57bfd57e556a3060ada3c5bd456b7d39a2457093':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/linkinator/tar.gz/57bfd57e556a3060ada3c5bd456b7d39a2457093}
-    version: 0.1.7
+  '@antora-supplemental/linkinator@https://codeload.github.com/antora-supplemental/linkinator/tar.gz/ee6efbee55da9aefe61229e1238627ba8b1102ee':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/linkinator/tar.gz/ee6efbee55da9aefe61229e1238627ba8b1102ee}
+    version: 0.1.8
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -931,7 +931,7 @@ snapshots:
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/linkinator@https://codeload.github.com/antora-supplemental/linkinator/tar.gz/57bfd57e556a3060ada3c5bd456b7d39a2457093(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/linkinator@https://codeload.github.com/antora-supplemental/linkinator/tar.gz/ee6efbee55da9aefe61229e1238627ba8b1102ee(@antora/site-generator@3.1.14)':
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
