@@ -3,7 +3,7 @@
 == Unreleased
 
 * Tutorial + demo-data catalog: reflect merged `home` component (no separate `stack`); `siteNavTree` `[home, demo-pages]`.
-* Demo-data catalog: **v0.3.3** **Demo pages** forest root with **Core** / **Extensions** sidebar; **v0.3.2** extensions topic split (`demo-pages/extensions/`); facto-stack composes site-nav-tree fixtures nested under Extensions.
+* Demo-data catalog: **v0.3.2** extensions nav section (`demo-pages/extensions/`); facto-stack composes site-nav-tree fixtures nested under Extensions.
 * Fix published example URL in xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC] (unversioned hub path).
 * Tutorial xref:tutorials/build-a-composable-antora-demo.adoc[Build a composable Antora demo] — compose `demo-data` `demo-pages`, stack-local pages, Facto `profile: demo`, optional site-nav-tree supplements, local `pnpm` build, and GitHub Pages; nav + cross-links from xref:theme-products.adoc[Theme products] and xref:proposals/demo-data-catalog.adoc[Demo data catalog].
 * xref:proposals/demo-data-catalog.adoc[Demo data catalog]: valentus-theme cutover complete — fixture URLs on Pages under `demo-pages/~/` (see migration.adoc in demo-data).
