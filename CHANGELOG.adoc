@@ -1,12 +1,12 @@
-ï»¿= Changelog
+= Changelog
 
 == Unreleased
 
-* Tutorial + demo-data catalog: reflect merged `home` component (no separate `stack`); `siteNavTree` `[home, theme-demo]`.
-* Tutorial + demo-data catalog: pin examples to `demo-data` **v0.2.1** (matches facto-stack demo playbook).
+* Tutorial + demo-data catalog: reflect merged `home` component (no separate `stack`); `siteNavTree` `[home, demo-pages]`.
+* Tutorial + demo-data catalog: baseline component renamed **`demo-pages`** (was `theme-demo`); pin examples to `demo-data` **v0.3.0** (matches facto-stack demo playbook).
 * Fix published example URL in xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC] (unversioned hub path).
-* Tutorial xref:tutorials/build-a-composable-antora-demo.adoc[Build a composable Antora demo] â€” compose `demo-data` `theme-demo`, stack-local pages, Facto `profile: demo`, optional site-nav-tree supplements, local `pnpm` build, and GitHub Pages; nav + cross-links from xref:theme-products.adoc[Theme products] and xref:proposals/demo-data-catalog.adoc[Demo data catalog].
-* xref:proposals/demo-data-catalog.adoc[Demo data catalog]: valentus-theme cutover complete â€” fixture URLs on Pages under `theme-demo/~/` (see migration.adoc in demo-data).
+* Tutorial xref:tutorials/build-a-composable-antora-demo.adoc[Build a composable Antora demo] — compose `demo-data` `demo-pages`, stack-local pages, Facto `profile: demo`, optional site-nav-tree supplements, local `pnpm` build, and GitHub Pages; nav + cross-links from xref:theme-products.adoc[Theme products] and xref:proposals/demo-data-catalog.adoc[Demo data catalog].
+* xref:proposals/demo-data-catalog.adoc[Demo data catalog]: valentus-theme cutover complete — fixture URLs on Pages under `demo-pages/~/` (see migration.adoc in demo-data).
 * xref:proposals/demo-data-catalog.adoc[Demo data catalog] published: shared `demo-data` git sources, extension survey, cross-links from xref:theme-products.adoc[Theme products].
 * Hub `supplemental-ui/js/soft-nav.js` rebuilds the aside TOC with the Default UI heading selector and appends a nav-hidden parent crumb (Changelog / detail) on soft navigation.
 * Proposal xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC]: single `:hide-page:` author directive; build-time `navtree-registry.json` and `navtree-parent-association` nav comments.
@@ -21,72 +21,72 @@
 
 == 2026-09-25 -- Diagram engines (bake vs client) + zoom pointer
 
-* Add `diagram-engines.adoc` â€” supported Option A (Kroki/Themed SVG bake), Option B (client Mermaid), hybrid `[.mermaid-client]` how-to, and chassis `diagram-zoom` enable steps.
+* Add `diagram-engines.adoc` — supported Option A (Kroki/Themed SVG bake), Option B (client Mermaid), hybrid `[.mermaid-client]` how-to, and chassis `diagram-zoom` enable steps.
 * Nav + portal index entries; canonical deep how-to remains on docs.devcentr.org diagram formats page.
 == 2026-09-15 -- page-edit 0.2.4 component-home Source
 
 * Pin `@antora-supplemental/page-edit` to `v0.2.4` so Antora component start pages get the Source | View | Edit row (empty lead shells no longer false-positive on page-context CSS).
 :toc:
 
-== 2026-10-16 â€” SoftNav page TOC proposal
+== 2026-10-16 — SoftNav page TOC proposal
 
-* Add xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC and nav-hidden pages] under xref:proposals/index.adoc[Proposals] â€” upstream ask for Default UI TOC rebuild + nav-hidden routable pages; Zulip link target for https://antora.zulipchat.com/[Antora Zulip^].
+* Add xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC and nav-hidden pages] under xref:proposals/index.adoc[Proposals] — upstream ask for Default UI TOC rebuild + nav-hidden routable pages; Zulip link target for https://antora.zulipchat.com/[Antora Zulip^].
 
-== 2026-09-10 â€” page-context 0.6.6 author spacing
+== 2026-09-10 — page-context 0.6.6 author spacing
 
 * Pin `@antora-supplemental/page-context` to `v0.6.6` so the linked name, circular avatar, and via Agent stay separated in the lead byline and footer author cells.
 
-== 2026-09-10 â€” Facto stack on the hub
+== 2026-09-10 — Facto stack on the hub
 
 * Register Facto on the org playbook: indexify folder URLs, Lunr + search-chat, page-context, Kroki, site-nav-tree allowlist, nav-typology.
-* Fixes `/docs/live-docs/` (and other folder URLs) that 404â€™d without indexify.
+* Fixes `/docs/live-docs/` (and other folder URLs) that 404’d without indexify.
 
-== 2026-09-10 â€” Publish robots.txt with sitemap
+== 2026-09-10 — Publish robots.txt with sitemap
 
 * Antora `site.robots` now emits `/robots.txt` with an absolute `Sitemap:` line for the production host.
 
-== 2026-09-10 â€” Antora Live design filing
+== 2026-09-10 — Antora Live design filing
 
-* Add `live-docs.adoc` â€” canonical short architecture page for DB-backed concurrent authoring (link from PRs).
+* Add `live-docs.adoc` — canonical short architecture page for DB-backed concurrent authoring (link from PRs).
 * Wire `antora-live` content source into hub and local playbooks; nav entry **Live docs**; cross-link from `site-rebuild.adoc`.
 
-== 2026-07-31 â€” antora-supplemental.org domain map
+== 2026-07-31 — antora-supplemental.org domain map
 
-* `site.url` â†’ `https://docs.antora-supplemental.org`; `site_home_url` â†’ apex `https://antora-supplemental.org/`.
+* `site.url` ? `https://docs.antora-supplemental.org`; `site_home_url` ? apex `https://antora-supplemental.org/`.
 * Deploy writes `CNAME` (`docs.antora-supplemental.org`) into the Pages artifact.
 * Registry / themes discovery points at `registry.antora-supplemental.org` (standalone themes gallery archived).
 
-== 2026-07-31 â€” Rolling Valentus v2 pin
+== 2026-07-31 — Rolling Valentus v2 pin
 
 * Subscribe the hub UI bundle to the rolling major line `releases/download/v2/ui-bundle.zip` (with `snapshot: true`) instead of an exact patch tag, so sticky-footer and other 2.x fixes land on the next deploy without a playbook bump.
 
-== 2026-07-31 â€” Valentus 2.0.2 sticky footer
+== 2026-07-31 — Valentus 2.0.2 sticky footer
 
 * Pin UI bundle to Valentus `v2.0.2` (`2.0.2+antora.3`) so the hub picks up the sticky footer (shell fills leftover viewport; footer stays natural height / full-bleed).
 * Refresh `pnpm-lock.yaml` for `@antora-supplemental/incremental` and `@antora-supplemental/serve`; clone `antora-serve` on CI so the `file:` serve dep resolves.
 
-== 2026-07-30 â€” Org config & theme product roles
+== 2026-07-30 — Org config & theme product roles
 
-* Add `theme-products.adoc` â€” product map for `valentus-theme`, `antora-dark-mode`, and retired `antora-dark-theme`.
-* Add `org-github-config.adoc` â€” `.github` vs `.github-private`, retired personal private bootstrap, `antora-dark-theme` successor pointers, org rename history (folds `ORG_RENAME.adoc`).
+* Add `theme-products.adoc` — product map for `valentus-theme`, `antora-dark-mode`, and retired `antora-dark-theme`.
+* Add `org-github-config.adoc` — `.github` vs `.github-private`, retired personal private bootstrap, `antora-dark-theme` successor pointers, org rename history (folds `ORG_RENAME.adoc`).
 * Portal: dark-mode page documents successor split (valentus / antora-dark-mode) and obsolete personal forks.
 * Cross-link private workflow templates from `antora-github-actions.adoc`; expand component list on the portal index.
 
-== 2026-07-25 â€” Content-source dispatch rebuild
+== 2026-07-25 — Content-source dispatch rebuild
 
 * Deploy workflow listens for `repository_dispatch` types `docs-source-updated` and `extension-updated` (push-triggered full site rebuild, no polling).
 * Document agent-friendly notify via `gh api .../dispatches` in `antora-deployment.adoc`.
-* Add `site-rebuild.adoc` â€” canonical v1/v2 architecture page for short PR/discussion links.
+* Add `site-rebuild.adoc` — canonical v1/v2 architecture page for short PR/discussion links.
 
-== 2026-07-25 â€” Valentus 2.0.0
+== 2026-07-25 — Valentus 2.0.0
 
 * Pin UI bundle to Valentus `v2.0.0` (`2.0.0+antora.3`) release `ui-bundle.zip` (was broken `antora-dark-mode` pin / duplicate YAML keys on `main`).
-* Refit org brand overlay for Valentus 2.x: token overrides (`--adt-canvas` / `--adt-accent` / â€¦) instead of element scrapes that fight `site-visual.css`.
-* Update `head-meta.hbs` for 2.x contract â€” read-width FOUC, Plus Jakarta Sans + IBM Plex Mono fonts, load `site-visual.css` + `site-read-width.css`, then `site-org-brand.css`.
+* Refit org brand overlay for Valentus 2.x: token overrides (`--adt-canvas` / `--adt-accent` / …) instead of element scrapes that fight `site-visual.css`.
+* Update `head-meta.hbs` for 2.x contract — read-width FOUC, Plus Jakarta Sans + IBM Plex Mono fonts, load `site-visual.css` + `site-read-width.css`, then `site-org-brand.css`.
 * Expand `local-antora-playbook.yml` to a full playbook (Antora has no YAML `extends`); keep duplicate-key fix from the prior Valentus prep.
 
 
-== 2026-07-24 â€” Valentus + org brand
+== 2026-07-24 — Valentus + org brand
 
 * Switch UI bundle from `antora-dark-mode` to link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] (1.x line).
 * Green brand overlay retargeted at Valentus CSS variables (`site-org-brand.css`); header mark `img/logo.svg`.

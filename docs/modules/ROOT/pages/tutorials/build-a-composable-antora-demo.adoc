@@ -1,7 +1,7 @@
 = Build a composable Antora demo
 :navtitle: Composable Antora demo
 :description: Step-by-step tutorial — compose demo-data fixtures, stack-local pages, Facto, and optional supplements into a published GitHub Pages demo.
-:page-tags: tutorial, demo, antora, demo-data, theme-demo, facto-stack
+:page-tags: tutorial, demo, antora, demo-data, demo-pages, facto-stack
 :page-audience: Extension and theme maintainers shipping a Valentus or Facto demo site
 :page-usage-context: Org docs hub — follow after reading the demo data catalog proposal
 :page-orig-author: Cursor agent on behalf of Ryan Johnson
@@ -18,11 +18,11 @@ Naming, `start_path` layout, and versioning rules: link:https://github.com/antor
 
 The org uses a **three-layer** model:
 
-. **Baseline** — `demo-data` component `theme-demo` (`docs/theme-demo/`): rich AsciiDoc that exercises Valentus body styles (admonitions, tables, code, images, extension-oriented samples).
+. **Baseline** — `demo-data` component `demo-pages` (`docs/demo-pages/`): rich AsciiDoc that exercises Valentus body styles (admonitions, tables, code, images, extension-oriented samples).
 . **Your demo pages** — an Antora component under `{your-repo}/demo/home` (portal + product pages; or `examples/docs` for extension-only CI smoke).
 . **Compose playbook** — YAML that wires git sources, UI bundle, supplemental UI, and `@antora-supplemental/facto-stack` (or a slimmer extension list).
 
-Generic AsciiDoc syntax tutorials stay in link:https://github.com/antora-supplemental/antora-demo[`antora-demo`^] (`samples`); use `theme-demo` when you need Valentus-branded fixture pages on a stack or theme demo.
+Generic AsciiDoc syntax tutorials stay in link:https://github.com/antora-supplemental/antora-demo[`antora-demo`^] (`samples`); use `demo-pages` when you need Valentus-branded fixture pages on a stack or Demo pages.
 
 Reference implementation: link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` → link:https://antora-supplemental.github.io/facto-stack/home/[published stack demo (Overview)^].
 
@@ -54,7 +54,7 @@ urls:
 
 Hub-style demos name the portal component `home` / title `Home` and point `site.start_page` at `home::index.adoc` so Pages URLs stay readable (see link:https://github.com/antora-supplemental/facto-stack/blob/main/README.adoc#hub-component-naming[facto-stack README — hub component naming^]).
 
-== Step 2 — Wire `demo-data` (`theme-demo`)
+== Step 2 — Wire `demo-data` (`demo-pages`)
 
 Add a **git content source** for the baseline catalog.
 Pin a SemVer **tag** for reproducible CI; track `main` only for local preview if you accept drift.
@@ -67,10 +67,10 @@ content:
   sources:
     - url: https://github.com/antora-supplemental/demo-data.git
       tags: [v0.2.1]
-      start_path: docs/theme-demo
+      start_path: docs/demo-pages
 ----
 
-After publish, fixture pages appear under `{site.url}/theme-demo/~/` (same component name, host-agnostic content).
+After publish, fixture pages appear under `{site.url}/demo-pages/~/` (same component name, host-agnostic content).
 
 **Local dev with a sibling clone:** replace the HTTPS URL with a relative path to your `demo-data` checkout; keep the same `start_path`.
 
@@ -128,13 +128,13 @@ antora:
       profile: demo
       siteNavTree:
         enabled: true
-        include: [home, theme-demo]
-        order: [home, theme-demo]
+        include: [home, demo-pages]
+        order: [home, demo-pages]
 ----
 
 Notes:
 
-* **`include` uses Antora component names** (`home`, `theme-demo` from demo-data), not repository names.
+* **`include` uses Antora component names** (`home`, `demo-pages` from demo-data), not repository names.
 * Adding a `content.sources` entry does **not** put that component in the sidebar — you must list it in `siteNavTree.include` when site-nav-tree is enabled.
 * Theme-only demos can omit Facto and use Valentus alone; see xref:theme-products.adoc[Theme products].
 
@@ -174,13 +174,13 @@ Then extend `siteNavTree.include` with `catalog-alpha`, `catalog-beta`, or other
 | Situation | Location
 
 | One repo, CI-only smoke
-| `{extension}/examples/docs` — minimal nav; compose `theme-demo` in the playbook instead of duplicating baseline pages
+| `{extension}/examples/docs` — minimal nav; compose `demo-pages` in the playbook instead of duplicating baseline pages
 
 | Two or more published demos need the same extra pages
 | `demo-data` → `docs/fixtures/{scope}/` (one `start_path` per supplement folder)
 
 | Rich Valentus body samples
-| Always `demo-data` → `docs/theme-demo` — never fork the full catalog into your extension repo
+| Always `demo-data` → `docs/demo-pages` — never fork the full catalog into your extension repo
 
 | Generated listings (narrow exception)
 | Extension `contentCatalog` injection — e.g. page-context keyword pages — not general mock docs
@@ -210,7 +210,7 @@ pnpm exec http-server build/site -p 8082
 Open `http://localhost:8082/` and confirm:
 
 * Portal / stack pages from your component(s)
-* `theme-demo/~/` fixture routes
+* `demo-pages/~/` fixture routes
 * Sidebar forest matches your `siteNavTree.include` list
 
 == Step 9 — Publish to GitHub Pages
@@ -244,16 +244,16 @@ Example header block (match xref:live-docs.adoc[Live docs architecture] and real
 :page-last-edited: 2026-10-16
 ----
 
-Reuse attrs on stack-local pages; rely on `theme-demo` for pre-built samples that already exercise extensions.
+Reuse attrs on stack-local pages; rely on `demo-pages` for pre-built samples that already exercise extensions.
 
 == Verify success
 
 You should be able to:
 
 * Build without fetch errors from pinned `demo-data` tags
-* Navigate across `home`, your product component, and `theme-demo` when site-nav-tree is enabled
+* Navigate across `home`, your product component, and `demo-pages` when site-nav-tree is enabled
 * See Lunr search index content from composed sources (Facto hub profile)
-* Open the published URL with `theme-demo/~/` fixture paths resolving under your `site.url`
+* Open the published URL with `demo-pages/~/` fixture paths resolving under your `site.url`
 
 == See also
 

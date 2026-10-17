@@ -33,11 +33,11 @@ Do **not** put Valentus in `ui.bundle` *and* also layer `antora-dark-mode` on to
 
 == Demo content (fixtures)
 
-Valentus **body** fixtures for theme and stack demos live in link:https://github.com/antora-supplemental/demo-data[`demo-data`^] (`theme-demo`), composed via git `content.sources` — not copied into each theme/extension repo.
+Valentus **body** fixtures for theme and stack demos live in link:https://github.com/antora-supplemental/demo-data[`demo-data`^] (`demo-pages`), composed via git `content.sources` — not copied into each theme/extension repo.
 Catalog: xref:proposals/demo-data-catalog.adoc[Demo data catalog].
 Tutorial: xref:tutorials/build-a-composable-antora-demo.adoc[Build a composable Antora demo].
 
-On Valentus Pages, fixtures publish under link:https://antora-supplemental.github.io/valentus-theme/theme-demo/~/[theme-demo/~/^]; the Facto stack demo uses link:https://antora-supplemental.github.io/facto-stack/theme-demo/~/[the same component^] at its site URL.
+On Valentus Pages, fixtures publish under link:https://antora-supplemental.github.io/valentus-theme/demo-pages/~/[demo-pages/~/^]; the Facto stack demo uses link:https://antora-supplemental.github.io/facto-stack/demo-pages/~/[the same component^] at its site URL.
 
 == Canonical docs
 
