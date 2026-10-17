@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* CI: escape `\{extension\}` / `\{scope\}` placeholders in tutorial and demo-data catalog (AsciiDoc attribute warnings).
 * xref:hub-github-topics.adoc[Hub GitHub topics] — playbook repos tag **direct** dependencies only (exclude transitive `@antora-supplemental/facto-stack` members); cross-links from xref:theme-products.adoc[Theme products].
 * Pin `@antora-supplemental/linkinator` **v0.1.7** — prose-like links at rest; hover tint + floating **⧉** chip with zero layout footprint.
 * Pin `@antora-supplemental/site-nav-tree` **v0.6.1**; vendor companion `site-nav-tree-current.js` and `site-nav-tree-overview-label.css` in hub `supplemental-ui` (manual UI path; playbook does not use `filter: true` injection).

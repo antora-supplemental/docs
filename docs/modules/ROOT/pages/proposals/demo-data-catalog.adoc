@@ -27,7 +27,7 @@ This proposal picks a composable layout and rejects alternatives that hide fixtu
 
 | Generic AsciiDoc | Keep link:https://github.com/antora-supplemental/antora-demo[`antora-demo`^]; do not merge into `demo-data` unless we later want one clone URL
 
-| Extension-specific smoke | Stay in each extension's `examples/docs` or `demo/docs` until a page is reused by 2+ demos — then optional `docs/fixtures/{extension}/` under `demo-data`
+| Extension-specific smoke | Stay in each extension's `examples/docs` or `demo/docs` until a page is reused by 2+ demos — then optional `docs/fixtures/\{extension\}/` under `demo-data`
 
 | Runtime injection | **Do not** build a general-purpose extension that injects demo pages via `contentCatalog.addFile` — exception: narrow generators (e.g. page-context keyword listings)
 
@@ -143,7 +143,7 @@ Prescribed pattern authority: link:https://github.com/antora-supplemental/demo-d
 
 == Resolved naming (2026-10)
 
-* **Repo:** `demo-data` (umbrella); split to `demo-data-{scope}` only when size/license/cadence requires it.
+* **Repo:** `demo-data` (umbrella); split to `demo-data-\{scope\}` only when size/license/cadence requires it.
 * **Baseline component:** `demo-pages` (`docs/demo-pages`).
 * **Org hub:** keep `antora-demo` `samples` for generic syntax; add `demo-pages` only when Valentus-branded fixture pages are wanted on the hub.
 

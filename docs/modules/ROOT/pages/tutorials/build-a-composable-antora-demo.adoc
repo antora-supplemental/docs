@@ -19,7 +19,7 @@ Naming, `start_path` layout, and versioning rules: link:https://github.com/antor
 The org uses a **three-layer** model:
 
 . **Baseline** — `demo-data` component `demo-pages` (`docs/demo-pages/`): rich AsciiDoc that exercises Valentus body styles (admonitions, tables, code, images, extension-oriented samples).
-. **Your demo pages** — an Antora component under `{your-repo}/demo/home` (portal + product pages; or `examples/docs` for extension-only CI smoke).
+. **Your demo pages** — an Antora component under `\{your-repo\}/demo/home` (portal + product pages; or `examples/docs` for extension-only CI smoke).
 . **Compose playbook** — YAML that wires git sources, UI bundle, supplemental UI, and `@antora-supplemental/facto-stack` (or a slimmer extension list).
 
 Generic AsciiDoc syntax tutorials stay in link:https://github.com/antora-supplemental/antora-demo[`antora-demo`^] (`samples`); use `demo-pages` when you need Valentus-branded fixture pages on a stack or Demo pages.
@@ -174,10 +174,10 @@ Then extend `siteNavTree.include` with `catalog-alpha`, `catalog-beta`, or other
 | Situation | Location
 
 | One repo, CI-only smoke
-| `{extension}/examples/docs` — minimal nav; compose `demo-pages` in the playbook instead of duplicating baseline pages
+| `\{extension\}/examples/docs` — minimal nav; compose `demo-pages` in the playbook instead of duplicating baseline pages
 
 | Two or more published demos need the same extra pages
-| `demo-data` → `docs/fixtures/{scope}/` (one `start_path` per supplement folder)
+| `demo-data` → `docs/fixtures/\{scope\}/` (one `start_path` per supplement folder)
 
 | Rich Valentus body samples
 | Always `demo-data` → `docs/demo-pages` — never fork the full catalog into your extension repo
