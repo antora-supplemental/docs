@@ -1,5 +1,6 @@
 * xref:proposals/index.adoc[Proposals]
 ** xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC]
+** xref:proposals/demo-data-catalog.adoc[Demo data catalog]
 * xref:site-rebuild.adoc[Site rebuild (v1/v2)]
 * xref:live-docs.adoc[Live docs]
 * xref:theme-products.adoc[Theme products]

@@ -8,3 +8,4 @@ Draft proposals live here before they become extension READMEs, GitHub issues on
 == Active
 
 * xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC and nav-hidden pages] — right-rail TOC after soft navigation; optional nav entries omitted from the left tree
+* xref:proposals/demo-data-catalog.adoc[Demo data catalog] — shared Antora fixtures for Valentus and extension demos (`demo-data` repo)

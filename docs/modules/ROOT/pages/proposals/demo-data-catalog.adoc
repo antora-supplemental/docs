@@ -1,0 +1,141 @@
+= Demo data catalog for supplemental demos
+:navtitle: Demo data catalog
+:page-tags: proposal, demo, valentus, antora
+:description: Where mock Antora content lives, how playbooks compose it, and how it relates to Valentus design tokens and extension fixtures.
+:page-audience: Maintainers wiring facto-stack, valentus-theme, or extension demo sites
+:page-status: draft
+
+Demo and preview sites need *rich AsciiDoc* to exercise Valentus chrome and supplemental extensions.
+Production org hubs must not depend on this content.
+This proposal picks a composable layout and rejects alternatives that hide fixtures inside extension code.
+
+== Problem
+
+* link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/docs` ships only stack-specific pages (client Mermaid, lightbox, SoftNav) — not the full *Theme Demo* set from link:https://github.com/antora-supplemental/valentus-theme[`valentus-theme`^].
+* link:https://github.com/antora-supplemental/antora-demo[`antora-demo`^] (`samples`) covers generic AsciiDoc syntax and is already a `content.sources` entry on the org docs hub — but it is not Valentus-branded and lacks extension-oriented samples (tabs, themed diagrams, page-context attrs).
+* Extensions increasingly need pages to demo UI (nav filter, search chat, linkinator). Duplicating fixtures per repo does not scale.
+
+== Recommendation (summary)
+
+[cols="1,3", options="header"]
+|===
+| Decision | Choice
+
+| Primary transport | Git repositories wired as Antora `content.sources` (multiple `start_path` values per repo allowed)
+
+| Shared base catalog | New link:https://github.com/antora-supplemental/demo-data[`demo-data`^] repo — component `theme-demo` for Valentus body fixtures (migrated from `valentus-theme/docs/modules/ROOT`)
+
+| Generic AsciiDoc | Keep link:https://github.com/antora-supplemental/antora-demo[`antora-demo`^]; do not merge into `demo-data` unless we later want one clone URL
+
+| Extension-specific smoke | Stay in each extension's `examples/docs` or `demo/docs` until a page is reused by 2+ demos — then optional `docs/fixtures/{extension}/` under `demo-data`
+
+| Runtime injection | **Do not** build a general-purpose extension that injects demo pages via `contentCatalog.addFile` — exception: narrow generators (e.g. page-context keyword listings)
+
+| Styles / tokens | Stay in Valentus `ui.bundle` (`site-visual.css`, `--adt-*`); extensions reference tokens with CSS fallbacks; demo-data is content-only
+
+| Versioning | SemVer tags on `demo-data`; demo playbooks pin tags or track `main` explicitly
+|===
+
+== Design language split (foundational vs extension)
+
+The split you started in `valentus-theme` remains the source of truth:
+
+* **Chassis / layout contracts** — `antora-ui-chassis` (consumed, not owned); see `valentus-theme/CHASSIS.md`.
+* **Foundational paint + body** — bundled in Valentus `ui-bundle.zip` (`site-visual.css`, `--adt-canvas`, `--adt-elevated`, `--adt-ink`, `--adt-accent`, …).
+* **Extension supplemental UI** — per-package CSS/JS under `ui/` copied into `supplemental-ui` (Antora does not auto-merge extension UI). Styles should use `var(--adt-*, fallback)` so demos work on Valentus and degrade on Default UI.
+* **Content fixtures** — AsciiDoc pages that *use* those styles; they belong in `demo-data` or extension-local `examples/docs`, not in the theme repo long term.
+
+Fixture-only CSS classes (e.g. `.adt-logo-fixture-grid` in guide pages) stay in the theme bundle; demo pages reference them by class name.
+
+== Antora wiring patterns
+
+=== Pattern A — extra content source (preferred)
+
+[source,yaml]
+----
+content:
+  sources:
+    - url: https://github.com/antora-supplemental/demo-data.git
+      branches: main
+      start_path: docs/theme-demo
+    - url: .
+      branches: HEAD
+      start_path: demo/docs   # consumer-owned stack pages
+----
+
+Pros: normal Antora aggregation, xrefs, Lunr index, no custom extension.
+Cons: multi-component nav needs `@antora-supplemental/site-nav-tree` `include` allowlist.
+
+=== Pattern B — extension `contentCatalog` injection
+
+Used today only for generated artifacts (keyword index pages in page-context).
+Not recommended for tens of static demo pages — harder to edit, review, and version than git content.
+
+=== Pattern C — submodule
+
+Avoid for org demos; prefer plain git URLs (same as `docs/antora-playbook.yml` remotes).
+
+== facto-stack demo composition
+
+Target shape:
+
+. `theme-demo` from `demo-data` — typography, admonitions, tables, extension.adoc-style richness (post-migration).
+. `facto-stack` from `facto-stack/demo/docs` — stack-only behavior proofs.
+. `profile: demo` on `@antora-supplemental/facto-stack` — already enables site-nav-tree + client Mermaid + lightbox.
+. `siteNavTree.include: [facto-stack, theme-demo]` — curated sidebar forest.
+
+Org docs hub keeps its own forest (`docs`, `registry`, …) and may continue to use `antora-demo` for `samples` without pulling `theme-demo` unless we want redundant syntax pages.
+
+== valentus-theme demo site
+
+Today: one component (`valentus-theme`) with *guide* + *ROOT* modules; Pages builds from `docs/` in-repo.
+
+After migration:
+
+* **In repo:** guide module only (product docs).
+* **Optional second source:** `demo-data` `theme-demo` on `antora-playbook.yml` if the public Valentus site should still show fixtures without bloating the theme release tarball.
+* **Visual overlay worktree:** `antora-playbook-visual-demo.yml` should reference `demo-data` (not sibling clone hack) once fixtures move.
+
+== What valentus demo contains today (migration scope)
+
+* *8+ ROOT pages:* index, typography, code-blocks, admonitions, tables, blocks, lists, images, extensions.
+* *Diagram assets:* `docs/modules/ROOT/images/diagrams/*` (mmd, svg, host svg, theme json).
+* *Guide module (~15 pages):* stays in `valentus-theme`.
+* *Not copied blindly:* GitHub README chrome, `supplemental-ui`, ui-bundle build artifacts, `node_modules`.
+
+Detail: link:https://github.com/antora-supplemental/demo-data/blob/main/docs/theme-demo/modules/ROOT/pages/migration.adoc[migration.adoc in demo-data^].
+
+== Other extensions (survey)
+
+[cols="2,3", options="header"]
+|===
+| Repo | Demo / examples today
+
+| site-nav-tree, nav-typology | README + hub integration; no standalone fixture site
+
+| page-context | Doc attrs on real extension README; keyword generator needs live pages
+
+| antora-search-chat | Consumes Lunr index from whatever content sources exist
+
+| asciidoc-interactive | `docs/modules/ROOT/pages/demo.adoc` in product repo
+
+| linkinator, extension-lister | Tooling pages generated at site publish; need outbound links in content sources
+
+| soft-nav-page-toc | Needs multi-page nav; facto-stack demo is the integration proof
+|===
+
+== Open naming questions (for approval)
+
+* Repo name: `demo-data` (umbrella) vs split `demo-data-valentus` + later repos.
+* Component name: `theme-demo` vs `valentus-fixtures` (affects URLs and site-nav-tree `include`).
+* Whether org hub should add `theme-demo` or keep `samples` only.
+
+== Implementation status
+
+* Scaffold repo link:https://github.com/antora-supplemental/demo-data[`demo-data`^] with placeholder `theme-demo` component and migration inventory.
+* link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` wired to fetch `theme-demo` (pending content migration for full parity).
+
+== See also
+
+* xref:theme-products.adoc[Theme products]
+* link:https://github.com/antora-supplemental/facto-stack/blob/main/README.adoc[facto-stack README — published demos^]
