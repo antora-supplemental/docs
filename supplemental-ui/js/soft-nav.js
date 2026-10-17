@@ -695,15 +695,20 @@
     document.querySelector('article.doc')
   if (!root || !articleHost) return
 
-  root.addEventListener('click', function (ev) {
-    var a = ev.target.closest('a')
-    if (!a) return
-    if (a.closest('.nav-container')) {
+  // Capture on document, not bubble on .body: Antora Default UI (01-nav.js,
+  // bundled by Valentus) registers a click stopPropagation on .nav-container,
+  // so bubble-phase listeners above the nav never see tree clicks and every
+  // nav click fell through to a hard page load. Capture runs first.
+  document.addEventListener(
+    'click',
+    function (ev) {
+      if (!ev.target || !ev.target.closest) return
+      var a = ev.target.closest('a')
+      if (!a) return
       handleLinkClick(ev, a)
-      return
-    }
-    handleLinkClick(ev, a)
-  })
+    },
+    true
+  )
 
   var lastPopPath = normalizePathname(window.location.pathname) + window.location.search
 
