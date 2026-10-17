@@ -30,7 +30,7 @@
     "@antora-supplemental/page-edit": "github:antora-supplemental/page-edit#v0.2.4",
     "@antora-supplemental/playbook-pin-auditor": "github:antora-supplemental/playbook-pin-auditor#v0.1.1",
     "@antora-supplemental/serve": "file:../antora-serve",
-    "@antora-supplemental/site-nav-tree": "github:antora-supplemental/site-nav-tree#main",
+    "@antora-supplemental/site-nav-tree": "github:antora-supplemental/site-nav-tree#v0.6.1",
     "@antora-supplemental/soft-nav-page-toc": "github:antora-supplemental/soft-nav-page-toc#v0.1.6",
     "@antora-supplemental/stale-page": "github:antora-supplemental/stale-page#v0.1.1",
     "@antora-supplemental/triage-ux-kit": "github:antora-supplemental/triage-ux-kit#v0.1.0",

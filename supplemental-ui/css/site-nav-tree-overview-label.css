@@ -1,0 +1,25 @@
+/*
+ * Overview-landing parent labels (unlinked .nav-text from promoteLinkedSectionLandings)
+ * share Valentus nav-tree row chrome with .nav-link but stock CSS only hovers links.
+ * Mark items with .snt-overview-label in site-nav-tree-current.js.
+ */
+nav.nav-menu.nav-tree-only .nav-item.snt-overview-label > .nav-text:hover,
+nav.nav-menu.adt-nav-tree-only .nav-item.snt-overview-label > .nav-text:hover,
+nav.nav-menu.nav-tree-only .nav-item.snt-overview-label > .nav-text:focus-visible,
+nav.nav-menu.adt-nav-tree-only .nav-item.snt-overview-label > .nav-text:focus-visible {
+  color: var(--adt-ink) !important;
+  background: var(--adt-accent-soft);
+  text-decoration: none;
+}
+
+nav.nav-menu.nav-tree-only .nav-item.snt-overview-label.is-current-path > .nav-text,
+nav.nav-menu.adt-nav-tree-only .nav-item.snt-overview-label.is-current-path > .nav-text {
+  color: var(--adt-accent) !important;
+  font-weight: 600 !important;
+  background: var(--adt-accent-soft);
+}
+
+nav.nav-menu.nav-tree-only .nav-item.snt-overview-label > .nav-text,
+nav.nav-menu.adt-nav-tree-only .nav-item.snt-overview-label > .nav-text {
+  cursor: pointer;
+}
