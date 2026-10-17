@@ -1,0 +1,269 @@
+= Build a composable Antora demo
+:navtitle: Composable Antora demo
+:description: Step-by-step tutorial — compose demo-data fixtures, stack-local pages, Facto, and optional supplements into a published GitHub Pages demo.
+:page-tags: tutorial, demo, antora, demo-data, theme-demo, facto-stack
+:page-audience: Extension and theme maintainers shipping a Valentus or Facto demo site
+:page-usage-context: Org docs hub — follow after reading the demo data catalog proposal
+:page-orig-author: Cursor agent on behalf of Ryan Johnson
+:page-last-author: Cursor agent on behalf of Ryan Johnson
+:page-last-edited: 2026-10-16
+:page-status: published
+
+You will end with a **multi-component Antora site** on GitHub Pages: shared body fixtures from link:https://github.com/antora-supplemental/demo-data[`demo-data`^], your product pages in-repo, Valentus chrome, and (optionally) Facto stack extensions — without copying mock AsciiDoc into every extension repository.
+
+Architecture and rejected alternatives: xref:proposals/demo-data-catalog.adoc[Demo data catalog].
+Naming, `start_path` layout, and versioning rules: link:https://github.com/antora-supplemental/demo-data/blob/main/README.adoc[demo-data README — pattern authority^].
+
+== What you are building
+
+The org uses a **three-layer** model:
+
+. **Baseline** — `demo-data` component `theme-demo` (`docs/theme-demo/`): rich AsciiDoc that exercises Valentus body styles (admonitions, tables, code, images, extension-oriented samples).
+. **Your demo pages** — a small Antora component under `{your-repo}/demo/docs` (or `examples/docs` for extension-only CI smoke).
+. **Compose playbook** — YAML that wires git sources, UI bundle, supplemental UI, and `@antora-supplemental/facto-stack` (or a slimmer extension list).
+
+Generic AsciiDoc syntax tutorials stay in link:https://github.com/antora-supplemental/antora-demo[`antora-demo`^] (`samples`); use `theme-demo` when you need Valentus-branded fixture pages on a stack or theme demo.
+
+Reference implementation: link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` → link:https://antora-supplemental.github.io/facto-stack/[published stack demo^].
+
+== Prerequisites
+
+* Node.js 20+ and `pnpm`
+* Git access to clone `demo-data` (public HTTPS is enough for Antora `runtime.fetch`)
+* A repository layout with the playbook at the **repo root** (see xref:antora-deployment.adoc#_1_the_root_strategy_recommended[Root strategy in Antora deployment])
+
+== Step 1 — Start from a playbook skeleton
+
+Copy one of these starting points:
+
+* **Stack demo (recommended)** — clone link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] and work in `demo/` (`playbook.yml`, `supplemental-ui/`, `demo/docs/`, `demo/home/`).
+* **Greenfield** — link:https://github.com/antora-supplemental/antora-github-deploy-template[`antora-github-deploy-template`^] (workflow + minimal playbook), then add the sources from the steps below.
+
+Set site metadata and folder URLs like the stack demo:
+
+[source,yaml]
+----
+site:
+  title: My extension demo
+  url: https://YOUR_ORG.github.io/YOUR_REPO
+  start_page: home::index.adoc
+
+urls:
+  html_extension_style: indexify
+----
+
+Hub-style demos name the portal component `home` / title `Home` and point `site.start_page` at `home::index.adoc` so Pages URLs stay readable (see link:https://github.com/antora-supplemental/facto-stack/blob/main/README.adoc#hub-component-naming[facto-stack README — hub component naming^]).
+
+== Step 2 — Wire `demo-data` (`theme-demo`)
+
+Add a **git content source** for the baseline catalog.
+Pin a SemVer **tag** for reproducible CI; track `main` only for local preview if you accept drift.
+
+From link:https://github.com/antora-supplemental/facto-stack/blob/main/demo/playbook.yml[`facto-stack/demo/playbook.yml`^] (paths sanitized for copy-paste):
+
+[source,yaml]
+----
+content:
+  sources:
+    - url: https://github.com/antora-supplemental/demo-data.git
+      tags: [v0.2.0]
+      start_path: docs/theme-demo
+----
+
+After publish, fixture pages appear under `{site.url}/theme-demo/~/` (same component name, host-agnostic content).
+
+**Local dev with a sibling clone:** replace the HTTPS URL with a relative path to your `demo-data` checkout; keep the same `start_path`.
+
+== Step 3 — Add your product component
+
+Create an Antora component for pages **only your repo owns** — stack behavior proofs, extension smoke, release notes, not the shared typography catalog.
+
+Example layout (facto-stack):
+
+[source,text]
+----
+demo/
+  home/          # optional portal component (name: home)
+  docs/          # stack-local component (name: stack in facto-stack)
+    antora.yml
+    modules/ROOT/pages/...
+    modules/ROOT/nav.adoc
+----
+
+Register it as a second (or third) source pointing at **your** git root:
+
+[source,yaml]
+----
+    - url: ./..
+      start_path: demo/home
+      branches: HEAD
+    - url: ./..
+      start_path: demo/docs
+      branches: HEAD
+----
+
+Use `examples/docs` instead of `demo/docs` when the repo is a single npm extension and CI only needs a tiny nav.
+
+== Step 4 — Valentus UI and supplemental UI
+
+Point `ui.bundle` at the rolling Valentus v2 release (same pattern as the stack demo):
+
+[source,yaml]
+----
+ui:
+  bundle:
+    url: https://github.com/antora-supplemental/valentus-theme/releases/download/v2/ui-bundle.zip
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+----
+
+Copy `supplemental-ui/` patterns from `facto-stack/demo/supplemental-ui` or xref:theme-products.adoc[Theme products] — brand CSS, math/Mermaid assets, and partial overrides live here.
+Antora does **not** auto-merge extension UI; Facto members that ship `ui/` still need those files copied or loaded via the compose pack.
+
+== Step 5 — Register Facto (`profile: demo`) or a slimmer hub
+
+For a **full stack demo** (Lunr, page-context, client Mermaid, lightbox, SoftNav, site-nav-tree hooks), register the compose pack:
+
+[source,yaml]
+----
+antora:
+  extensions:
+    - require: '@antora-supplemental/facto-stack'
+      profile: demo
+      siteNavTree:
+        enabled: true
+        include: [home, stack, theme-demo]
+        order: [home, stack, theme-demo]
+----
+
+Notes:
+
+* **`include` uses Antora component names** (`stack` in facto-stack, `theme-demo` from demo-data), not repository names.
+* Adding a `content.sources` entry does **not** put that component in the sidebar — you must list it in `siteNavTree.include` when site-nav-tree is enabled.
+* Theme-only demos can omit Facto and use Valentus alone; see xref:theme-products.adoc[Theme products].
+
+Match AsciiDoc attributes the stack demo sets for Mermaid client mode and page-context (trim to what you need):
+
+[source,yaml]
+----
+asciidoc:
+  attributes:
+    source-highlighter: highlight.js
+    icons: font
+    stem: latexmath
+    mermaid-client-mode: client
+    page-context-active: ''
+----
+
+Install dependencies the same way as facto-stack: `pnpm install` at the repo root with `antora`, `@antora-supplemental/facto-stack`, and peers listed in that repo's `package.json`.
+
+== Step 6 — Optional site-nav-tree fixture supplement
+
+When you need a **multi-root nav forest** shared across demos (not just your single component), add a supplement from `demo-data`:
+
+[source,yaml]
+----
+    # Optional — uncomment when testing site-nav-tree fixtures
+    # - url: https://github.com/antora-supplemental/demo-data.git
+    #   branches: main
+    #   start_path: docs/fixtures/site-nav-tree
+----
+
+Then extend `siteNavTree.include` with `catalog-alpha`, `catalog-beta`, or other component names documented in link:https://github.com/antora-supplemental/demo-data/blob/main/docs/fixtures/site-nav-tree/README.adoc[site-nav-tree fixture README^].
+
+== Step 7 — Extension-specific demo data (where it lives)
+
+[cols="2,3", options="header"]
+|===
+| Situation | Location
+
+| One repo, CI-only smoke
+| `{extension}/examples/docs` — minimal nav; compose `theme-demo` in the playbook instead of duplicating baseline pages
+
+| Two or more published demos need the same extra pages
+| `demo-data` → `docs/fixtures/{scope}/` (one `start_path` per supplement folder)
+
+| Rich Valentus body samples
+| Always `demo-data` → `docs/theme-demo` — never fork the full catalog into your extension repo
+
+| Generated listings (narrow exception)
+| Extension `contentCatalog` injection — e.g. page-context keyword pages — not general mock docs
+|===
+
+Promote fixtures into `demo-data` only when reuse justifies shared versioning; document the playbook snippet in your extension README under *Demo data*.
+
+== Step 8 — Build locally
+
+From the repo root (where `package.json` and the playbook live):
+
+[source,shell]
+----
+pnpm install
+pnpm exec antora demo/playbook.yml
+----
+
+Output defaults to `build/site` (set `output.dir` in the playbook if you prefer another path).
+
+Preview:
+
+[source,shell]
+----
+pnpm exec http-server build/site -p 8082
+----
+
+Open `http://localhost:8082/` and confirm:
+
+* Portal / stack pages from your component(s)
+* `theme-demo/~/` fixture routes
+* Sidebar forest matches your `siteNavTree.include` list
+
+== Step 9 — Publish to GitHub Pages
+
+Use **Actions-based** Pages (artifact upload + deploy), not a hand-maintained `gh-pages` branch.
+Workflow patterns: xref:antora-github-actions.adoc[Antora on GitHub] and xref:antora-deployment.adoc[Antora deployment].
+
+Typical checklist:
+
+. Repo **Settings → Pages → Source** = **GitHub Actions**
+. Workflow checks out the repo, runs `pnpm install`, runs `antora` on your playbook path
+. Upload `build/site` with `actions/upload-pages-artifact`, deploy with `actions/deploy-pages`
+. Set `site.url` in the playbook to the final Pages URL (including repo path segment)
+
+The stack demo workflow lives at link:https://github.com/antora-supplemental/facto-stack/blob/main/.github/workflows/deploy.yml[`facto-stack/.github/workflows/deploy.yml`^].
+
+== Step 10 — Author demo pages with page-context
+
+Teaching and hub docs use `page-*` AsciiDoc attributes so `@antora-supplemental/page-context` can render audience, author, and usage context.
+Set `page-context-active` in the playbook (Facto demo profile does this) so optional fallback blocks stay hidden when the extension runs.
+
+Example header block (match xref:live-docs.adoc[Live docs architecture] and real hub pages):
+
+[source,asciidoc]
+----
+= My demo page
+:page-audience: Users evaluating my extension on Valentus
+:page-usage-context: Published demo site — not production product docs
+:page-orig-author: Your Name
+:page-last-author: Your Name
+:page-last-edited: 2026-10-16
+----
+
+Reuse attrs on stack-local pages; rely on `theme-demo` for pre-built samples that already exercise extensions.
+
+== Verify success
+
+You should be able to:
+
+* Build without fetch errors from pinned `demo-data` tags
+* Navigate across `home`, your product component, and `theme-demo` when site-nav-tree is enabled
+* See Lunr search index content from composed sources (Facto hub profile)
+* Open the published URL with `theme-demo/~/` fixture paths resolving under your `site.url`
+
+== See also
+
+* xref:proposals/demo-data-catalog.adoc[Demo data catalog] — architecture and extension survey
+* xref:theme-products.adoc[Theme products] — Valentus vs dark-mode overlay vs demo fixtures
+* link:https://github.com/antora-supplemental/demo-data/blob/main/README.adoc[demo-data README^]
+* link:https://github.com/antora-supplemental/facto-stack/blob/main/README.adoc[facto-stack README — published demos and local commands^]
+* xref:antora-github-actions.adoc[Antora on GitHub Actions]
+* xref:antora-deployment.adoc[Antora deployment strategies]

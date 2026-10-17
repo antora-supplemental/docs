@@ -1,3 +1,4 @@
+* xref:tutorials/build-a-composable-antora-demo.adoc[Build a composable demo]
 * xref:proposals/index.adoc[Proposals]
 ** xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC]
 ** xref:proposals/demo-data-catalog.adoc[Demo data catalog]

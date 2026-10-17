@@ -2,6 +2,8 @@
 
 == Unreleased
 
+* Tutorial xref:tutorials/build-a-composable-antora-demo.adoc[Build a composable Antora demo] — compose `demo-data` `theme-demo`, stack-local pages, Facto `profile: demo`, optional site-nav-tree supplements, local `pnpm` build, and GitHub Pages; nav + cross-links from xref:theme-products.adoc[Theme products] and xref:proposals/demo-data-catalog.adoc[Demo data catalog].
+* xref:proposals/demo-data-catalog.adoc[Demo data catalog]: valentus-theme cutover complete — fixture URLs on Pages under `theme-demo/~/` (see migration.adoc in demo-data).
 * xref:proposals/demo-data-catalog.adoc[Demo data catalog] published: shared `demo-data` git sources, extension survey, cross-links from xref:theme-products.adoc[Theme products].
 * Hub `supplemental-ui/js/soft-nav.js` rebuilds the aside TOC with the Default UI heading selector and appends a nav-hidden parent crumb (Changelog / detail) on soft navigation.
 * Proposal xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC]: single `:hide-page:` author directive; build-time `navtree-registry.json` and `navtree-parent-association` nav comments.
