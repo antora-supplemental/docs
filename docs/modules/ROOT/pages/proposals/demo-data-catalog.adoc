@@ -1,9 +1,9 @@
 = Demo data catalog for supplemental demos
 :navtitle: Demo data catalog
-:page-tags: proposal, demo, valentus, antora
+:page-tags: proposal, demo, valentus, antora, demo-data, theme-demo
 :description: Where mock Antora content lives, how playbooks compose it, and how it relates to Valentus design tokens and extension fixtures.
 :page-audience: Maintainers wiring facto-stack, valentus-theme, or extension demo sites
-:page-status: draft
+:page-status: published
 
 Demo and preview sites need *rich AsciiDoc* to exercise Valentus chrome and supplemental extensions.
 Production org hubs must not depend on this content.
@@ -107,35 +107,54 @@ Detail: link:https://github.com/antora-supplemental/demo-data/blob/main/docs/the
 
 == Other extensions (survey)
 
+Prescribed pattern authority: link:https://github.com/antora-supplemental/demo-data/blob/main/README.adoc[`demo-data` README^].
+
 [cols="2,3", options="header"]
 |===
 | Repo | Demo / examples today
 
-| site-nav-tree, nav-typology | README + hub integration; no standalone fixture site
+| site-nav-tree
+| Supplement in `demo-data` → `docs/fixtures/site-nav-tree` (`catalog-alpha`, `catalog-beta`); README playbook snippet. Pair with nav-typology on hubs.
 
-| page-context | Doc attrs on real extension README; keyword generator needs live pages
+| nav-typology
+| No separate fixture component; enable on playbooks that already compose `site-nav-tree` supplements or hub components. See extension README *Demo data*.
 
-| antora-search-chat | Consumes Lunr index from whatever content sources exist
+| page-context
+| Teaching pages use `page-*` attrs on real docs; stack demos compose `theme-demo` + Facto. Keyword generator needs live pages in `content.sources`.
 
-| asciidoc-interactive | `docs/modules/ROOT/pages/demo.adoc` in product repo
+| antora-search-chat
+| Lunr corpus comes from composed sources — add `theme-demo` (and hub components) rather than duplicating pages in the extension repo.
 
-| linkinator, extension-lister | Tooling pages generated at site publish; need outbound links in content sources
+| asciidoc-interactive
+| Product demo page in-repo (`docs/modules/ROOT/pages/demo.adoc`); not part of `demo-data` baseline.
 
-| soft-nav-page-toc | Needs multi-page nav; facto-stack demo is the integration proof
+| linkinator
+| Needs outbound links in article prose — compose `theme-demo` or hub docs; probe wiring stays extension-local (`examples/`).
+
+| extension-lister (Facto)
+| Generated at publish from registered extensions; demo site needs normal `content.sources` (facto-stack demo).
+
+| soft-nav-page-toc
+| Multi-page nav + SoftNav: link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/docs` + `theme-demo`; not a separate `demo-data` supplement yet.
+
+| mermaid-client / diagram-lightbox
+| Stack behavior proofs in `facto-stack/demo/docs`; diagram assets also in `theme-demo` after migration.
 |===
 
-== Open naming questions (for approval)
+== Resolved naming (2026-10)
 
-* Repo name: `demo-data` (umbrella) vs split `demo-data-valentus` + later repos.
-* Component name: `theme-demo` vs `valentus-fixtures` (affects URLs and site-nav-tree `include`).
-* Whether org hub should add `theme-demo` or keep `samples` only.
+* **Repo:** `demo-data` (umbrella); split to `demo-data-{scope}` only when size/license/cadence requires it.
+* **Baseline component:** `theme-demo` (`docs/theme-demo`).
+* **Org hub:** keep `antora-demo` `samples` for generic syntax; add `theme-demo` only when Valentus-branded fixture pages are wanted on the hub.
 
 == Implementation status
 
-* Scaffold repo link:https://github.com/antora-supplemental/demo-data[`demo-data`^] with placeholder `theme-demo` component and migration inventory.
-* link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` wired to fetch `theme-demo` (pending content migration for full parity).
+* link:https://github.com/antora-supplemental/demo-data[`demo-data`^] — baseline `theme-demo` migrated from `valentus-theme` ROOT fixtures (see link:https://github.com/antora-supplemental/demo-data/blob/main/docs/theme-demo/modules/ROOT/pages/migration.adoc[migration.adoc^]); `site-nav-tree` supplement shipped.
+* link:https://github.com/antora-supplemental/facto-stack[`facto-stack`^] `demo/playbook.yml` composes `theme-demo` + `demo/docs`; optional commented source for `site-nav-tree` fixture.
+* Agent policy: Dev-Centr skill `antora-org-site` → `demo-data.md`; stack demo UX pairs skill `demo-site-wiring`.
 
 == See also
 
 * xref:theme-products.adoc[Theme products]
+* link:https://github.com/antora-supplemental/demo-data/blob/main/README.adoc[demo-data README — prescribed pattern^]
 * link:https://github.com/antora-supplemental/facto-stack/blob/main/README.adoc[facto-stack README — published demos^]

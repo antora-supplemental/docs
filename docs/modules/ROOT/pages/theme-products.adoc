@@ -31,6 +31,11 @@ How the organization splits doc-site chrome and dark mode across repositories.
 
 Do **not** put Valentus in `ui.bundle` *and* also layer `antora-dark-mode` on top — Valentus already includes dark mode.
 
+== Demo content (fixtures)
+
+Valentus **body** fixtures for theme and stack demos live in link:https://github.com/antora-supplemental/demo-data[`demo-data`^] (`theme-demo`), composed via git `content.sources` — not copied into each theme/extension repo.
+Catalog: xref:proposals/demo-data-catalog.adoc[Demo data catalog].
+
 == Canonical docs
 
 * Valentus: link:https://antora-supplemental.github.io/valentus-theme/[GitHub Pages^]
