@@ -1,61 +1,93 @@
 = GitHub topics on docs hub playbooks
 :navtitle: Hub GitHub topics
-:description: Tag playbook repos with product topics for direct dependencies only — not transitive compose-pack members.
+:description: Tag hub playbook repos with the provider they depend on (facto-stack) — not the extensions, theme bundle, or maint tools the pack already supplies.
 
-Antora docs **hub** repositories (playbooks that publish a site) use GitHub **repository topics** so maintainers can find consumers after a release (`gh search repos --topic valentus-theme`).
+Antora docs **hub** repositories (playbooks that publish a site) use GitHub **repository topics** so maintainers can find consumers after a release (`gh search repos --topic facto-stack`).
 
-Topics must reflect **direct** dependencies only. Tagging transitive packages duplicates the compose pack and sends the wrong signal during fan-out.
+*Provider rule:* a hub tags the **provider** it declares. When that provider is a compose pack, the pack owns its members, so the hub carries the pack topic only.
 
-== Direct vs transitive
+== Provider rule
+
+`@antora-supplemental/facto-stack` is the provider for the standard hub stack. Declare the pack plus `antora` in `package.json` and tag the repo `facto-stack`.
 
 [cols="1,2",options="header"]
 |===
-| Direct (tag the playbook repo)
-| Transitive (do **not** tag — communicate via the pack)
+| Provided by facto-stack (do not pin or tag in the hub)
+| Why
 
-| `ui.bundle.url` points at link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] releases
-| Individual Valentus ui-modules you did not pin separately
+| Extensions: page-context, site-nav-tree, soft-nav-page-toc, nav-typology(+diataxis), link-validator, linkinator, page-edit, antora-search-chat, build-stack, extension-lister, orphan-finder, unversioned-component-urls, Lunr
+| Pack `dependencies`; the pack registers them and merges AsciiDoc extensions and attributes into the playbook. Bumping the pack bumps them.
 
-| Top-level `antora.extensions` entry (for example `require: '@antora-supplemental/facto-stack'`)
-| Extensions registered **only** inside `@antora-supplemental/facto-stack` (linkinator, page-edit, antora-search-chat, nav-typology, build-stack, …)
+| Maint CLIs: orphan-finder, nav-drift, stale-page, playbook-pin-auditor, deep-link-contracts
+| Run as `facto-maint <tool> …` (the pack's `bin`). No extra `package.json` pins.
 
-| `package.json` `dependencies` / `devDependencies` git or npm pin owned by the playbook repo
-| Packages that appear only in the lockfile because facto-stack pulled them in
-
-| Maint tooling pinned in the hub repo (link-validator, orphan-finder, …)
-| Same package when the hub does **not** list it in `package.json` and only gets it via facto-stack
+| Valentus UI bundle
+| The playbook still names `ui.bundle.url`, but the pack is its paired theme. The bundle is a rolling `v2` release asset with no pin to bump, so there is nothing to fan out to.
 |===
 
-*Rule of thumb:* if the hub playbook repo does not **declare** the dependency (playbook YAML, `package.json`, or UI bundle URL), do not add that product topic.
+*Valentus is not an npm dependency of the pack.* `facto-stack` does not set `ui.bundle.url`; the hub playbook does. Treat the bundle as the pack's paired theme, not a member extension.
 
-Compose packs exist so hubs list **one** footer line and one bump target. Topics follow the same boundary: tag `facto-stack` when that is the only Antora compose require; tag `linkinator` only on repos that directly `require` or pin linkinator.
+== What a hub still owns
+
+* **`supplemental-ui` copies.** Antora does not merge extension UI automatically. The hub keeps its own copies of partials, helpers, CSS, and `soft-nav.js`. They are hub-owned files, not a dependency pin. Re-sync them from the member repos when a member changes its `ui/` files.
+* **Non-pack extensions** the hub genuinely needs (for example `incremental` or a local `./lib/*.js`). Those are direct and may carry their own topic.
+* **Playbook config:** `siteNavTree.include`, `lunr`, `softNavPageToc`, `pageContextAntora`, …
+
+== Topics to apply
+
+[cols="2,2",options="header"]
+|===
+| Hub shape
+| Topics
+
+| Hub uses facto-stack (the standard case)
+| `facto-stack` only. Add `antora-docs` only if the repo is deliberately listed in a gallery.
+
+| Hub uses Valentus but no compose pack
+| `valentus-theme`, plus any extension it directly `require`s.
+
+| Hub with a separate, non-pack reason to pin a member (rare)
+| `facto-stack` plus that member — and say why in the hub changelog.
+|===
+
+*Rule of thumb:* if facto-stack supplies it, do not tag it. The topic search for a member (`topic:page-context`) should list real direct consumers, not every hub that happens to run the pack.
 
 == How to decide (checklist)
 
-. List playbook `antora.extensions` — each distinct `require` → topic = GitHub repo name (kebab-case, no `@scope/`).
-. List hub `package.json` deps — each `@antora-supplemental/*` or sibling org package → topic = repo name after the scope.
-. UI bundle → theme product topic (`valentus-theme`, …).
-. Remove topics for packages you only get through facto-stack (or another compose pack) unless step 2 also pins them for supplemental-ui sync or CI.
+. List playbook `antora.extensions`. If the only Antora entry is the pack (plus local files), the hub is `facto-stack`.
+. List hub `package.json` deps. Drop members the pack already pulls; keep only `facto-stack`, `antora`, local tooling, and non-pack extensions.
+. Check the UI bundle. With the pack, no `valentus-theme` topic. Without the pack, tag the theme.
+. Replace the repo's topics (see below).
 
-Example — DevCentr hub (`dev-centr/docs`):
+Example — DevCentr hub (`dev-centr/docs`): topics `facto-stack` only.
 
-* Direct: `valentus-theme`, `facto-stack`, `page-context`, `link-validator`, `site-nav-tree`, `soft-nav-page-toc`, maint packages pinned in `package.json`.
-* Not tagged: `linkinator`, `page-edit`, `nav-typology`, `antora-search-chat`, `build-stack` (hub profile only).
+== Replace the topics
 
-Example — lean hub (facto-stack + Valentus only):
+Use the full intended list. `PUT /repos/{owner}/{repo}/topics` replaces every topic, so list any non-provider topics you want to keep.
 
-* Topics: `valentus-theme`, `facto-stack`.
+[source,powershell]
+----
+$body = @{ names = @('facto-stack') } | ConvertTo-Json -Compress
+$body | gh api -X PUT repos/dev-centr/docs/topics --input -
+----
 
-== Topic string
+Before overwriting, read the current set with `gh api repos/dev-centr/docs/topics --jq .names` and decide what else to keep.
 
-Product topic = **upstream GitHub repository name** (not npm scope, not `uses-*`).
+== soft-nav-page-toc vs `soft-nav.js`
+
+Two things share the "soft nav" name:
+
+* `@antora-supplemental/soft-nav-page-toc` is a **build-time Antora extension** (pack member). It adds compose-time nav-hidden meta and breadcrumbs and can inject a small script that rebuilds the right-hand page TOC after a SoftNav swap.
+* `supplemental-ui/js/soft-nav.js` is the **in-browser SoftNav script** copied from link:https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/soft-nav[antora-ui-chassis]. It does the actual content swap on link clicks. Hub copies already rebuild the aside TOC, so hubs set `softNavPageToc: { injectScript: false }`.
+
+The extension is a package you get through the pack; `soft-nav.js` is a file the hub owns. Neither replaces the other.
 
 Capability/gallery topics (`antora-theme`, `antora-docs`, …) stay separate; see xref:theme-products.adoc#github-topic-strings-gallery--dependents[Theme products — GitHub topics].
 
 == After wiring or removing a direct dep
 
-. Add or remove the matching topic on the playbook repository (merge-safe CLI in link:https://github.com/antora-supplemental/valentus-theme/blob/main/docs/modules/guide/pages/github-topics.adoc[Valentus GitHub Topics guide^]).
-. Document the change in the hub changelog when retagging is part of a deliberate stack change.
+. Update the topics on the playbook repository.
+. Note the change in the hub changelog when retagging is part of a deliberate stack change.
 
 Skills: `antora-extension-consumers` (topics + pins) and `update-consumers` (recursive bump). Registry: link:https://github.com/antora-supplemental/antora-extensions-registry/blob/main/docs/modules/ROOT/pages/contributing.adoc#product-dependency-topics[Product dependency topics^].
 

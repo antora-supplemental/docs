@@ -53,10 +53,10 @@ Those topic strings describe capability (full theme vs slipstream overlay) — t
 
 Separately, every site that *depends on* a named theme must add that theme’s **product topic** (exact GitHub repository name) so dependents stay rediscoverable:
 
-* Valentus consumers → topic `valentus-theme` (`gh search repos --topic valentus-theme`)
+* Valentus consumers that do *not* use a compose pack → topic `valentus-theme` (`gh search repos --topic valentus-theme`); hubs on `facto-stack` tag the pack only
 * Dark-mode overlay consumers → topic `antora-dark-mode` when appropriate
 
-**Direct dependencies only:** playbook repos must not tag transitive compose-pack members (for example do not tag `linkinator` when only `@antora-supplemental/facto-stack` is required). Tag the pack (`facto-stack`) and any extension the hub pins or `require`s itself. Full checklist: xref:hub-github-topics.adoc[Hub GitHub topics].
+**Provider rule:** a playbook repo tags the provider it declares. Hubs on `@antora-supplemental/facto-stack` carry `facto-stack` only — not the Valentus bundle, and not pack members such as `page-context`, `site-nav-tree`, `soft-nav-page-toc`, or `linkinator`. Full checklist: xref:hub-github-topics.adoc[Hub GitHub topics].
 
 See the extensions-registry contributing guide (*Product dependency topics*) and the Valentus guide on GitHub Topics.
 

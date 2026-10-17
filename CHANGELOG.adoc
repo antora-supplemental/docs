@@ -2,6 +2,8 @@
 
 == Unreleased
 
+* **Hub on facto-stack as provider.** `antora-playbook.yml` and `local-antora-playbook.yml` now register `@antora-supplemental/facto-stack` (hub profile) instead of listing each member extension; `package.json` drops the member pins (page-context, site-nav-tree, soft-nav-page-toc, link-validator, linkinator, nav-typology, page-edit, search-chat, build-stack, Lunr, Kroki, maint CLIs) for `facto-stack` **v0.2.22**, and maint scripts run through `facto-maint`. `incremental` stays a direct non-pack extension.
+* xref:hub-github-topics.adoc[Hub GitHub topics] — provider rule: hubs on facto-stack carry topic `facto-stack` only (no `valentus-theme`, no member topics); documents what the pack provides vs what the hub owns, and `soft-nav-page-toc` vs hub `soft-nav.js`.
 * CI: escape `\{extension\}` / `\{scope\}` placeholders in tutorial and demo-data catalog (AsciiDoc attribute warnings).
 * xref:hub-github-topics.adoc[Hub GitHub topics] — playbook repos tag **direct** dependencies only (exclude transitive `@antora-supplemental/facto-stack` members); cross-links from xref:theme-products.adoc[Theme products].
 * Pin `@antora-supplemental/linkinator` **v0.1.7** — prose-like links at rest; hover tint + floating **⧉** chip with zero layout footprint.

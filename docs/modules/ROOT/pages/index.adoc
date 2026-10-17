@@ -10,7 +10,7 @@ Canonical dark-mode overlay docs (install, demo): link:https://antora-supplement
 == Components
 
 * xref:theme-products.adoc[Theme products] — Roles of Valentus, antora-dark-mode, and the retired `antora-dark-theme` name
-* xref:hub-github-topics.adoc[Hub GitHub topics] — Direct-dependency topics only (exclude transitive facto-stack members)
+* xref:hub-github-topics.adoc[Hub GitHub topics] — Tag the provider (acto-stack), not the members it supplies
 * xref:antora-dark-mode.adoc[Antora Dark Mode] — Links to the canonical dark-mode extension docs (install, demo, troubleshooting); not duplicated here
 * xref:antora-deployment.adoc[Antora Deployment] — Root vs. subfolder strategy, CI, GitHub Pages, multi-repo playbooks
 * xref:antora-github-actions.adoc[Antora on GitHub] — Actions, workflow templates, template repos, Pages
