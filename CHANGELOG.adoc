@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* Pin `@antora-supplemental/facto-stack` **v0.2.40** (search bar stays on screen above the footer).
 * `pnpm antora` installs when the lockfile is newer than node_modules (git tag bumps). It does not move the facto-stack pin by itself; pull the repo first.
 * Pin `@antora-supplemental/facto-stack` **v0.2.39** (desktop disk-search dialog).
 * Pin `@antora-supplemental/facto-stack` **v0.2.38** (disk-search banner wraps inside the frame).
