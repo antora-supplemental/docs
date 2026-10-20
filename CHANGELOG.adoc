@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* Pin `@antora-supplemental/facto-stack` **v0.2.39** (desktop disk-search dialog).
 * Pin `@antora-supplemental/facto-stack` **v0.2.38** (disk-search banner wraps inside the frame).
 * Pin `@antora-supplemental/facto-stack` **v0.2.37** (disk-search banner prints once, as ASCII, on Windows).
 * Pin `@antora-supplemental/facto-stack` **v0.2.36** (opaque search chrome).
