@@ -91,46 +91,17 @@ When working locally, cloning is slow. You want to point to your sibling folders
 
 By using the **Root Strategy**, your local dev references are cleaner and match the standard "folder per project" structure of most developers.
 
-=== The "Best of Both Worlds" Solution
+=== Local clones without a second playbook
 
-Do not manually toggle URLs in your main playbook. Instead, use a **Local Dev Playbook Extension**.
+Do not maintain a duplicate playbook with `../sibling` URLs. Antora playbooks also do **not** support YAML `extends`.
 
-1.  Create `antora-playbook-local.yml` (and Git-ignore it).
-2.  Define only the local overrides:
-+
-[source,yaml]
-----
-extends: ./antora-playbook.yml
-content:
-  sources:
-    - url: ../msi-generator
-      branches: HEAD
-      start_path: docs
-----
+Hubs on `@antora-supplemental/facto-stack` register link:https://github.com/antora-supplemental/antora-local-content-sources[antora-local-content-sources] automatically (`mode: auto`, disabled when `CI` / `GITHUB_ACTIONS` is set). The same committed `antora-playbook.yml` keeps GitHub `content.sources` URLs for CI; on a developer machine the extension rewrites remotes to local git checkouts when it finds them.
 
-3.  Run locally with: `antora antora-playbook-local.yml` (or `pnpm run build:local` if that script points at it).
+1. Add a marker file at each content repo root: `.antora-source-id` (see the extension README for the `id` + `url` body format).
+2. Run `pnpm build` / `antora antora-playbook.yml` locally — no `build:local` script required.
+3. Optional: gitignored `.antora-local-sources.yml` when multiple clones share one marker id; debug snapshot at `build/.antora/antora-playbook-local.generated.yml`.
 
-This keeps your **Root Strategy** intact for the repo's specific CI, while allowing the global "hub" site to aggregate everything seamlessly.
-
-=== Playbook file naming: why `antora-playbook.yml` and `antora-playbook-local.yml`
-
-Use these names even though you might prefer a different scheme (e.g. `playbook.yml` for local and `playbook-online.yml` for production). The reason is **ecosystem convention**.
-
-* **`antora-playbook.yml`** = production/online playbook (remote URLs, used by CI).
-* **`antora-playbook-local.yml`** = local-only playbook (sibling paths, git-ignored); extends the main playbook.
-
-**Why the main playbook must be "online":**
-
-In npm/pnpm, the script name `build` is the standard default. CI, READMEs, and tooling assume `pnpm build` (or `npm run build`) runs the *main* build—i.e. the one that produces the deployable site. So:
-
-* The **`build`** script in `package.json` should run the production playbook (`antora-playbook.yml`). That way `pnpm build` does what everyone expects.
-* The **`build:local`** script runs the local playbook (`antora-playbook-local.yml`) when you want to use sibling repos.
-
-**Reasoning chain (what we tried):**
-
-* First we tried naming by suffix: `playbook.yml` (local) and `playbook-online.yml` (online). Clean, but then the default `pnpm build` would run the local playbook—wrong for CI and for anyone running a plain `pnpm build`.
-* Then we swapped so `build` = online and added `build:online`. That fixed CI, but we had to give up the nice short names and accept that "build" is a reserved default.
-* Conclusion: the whole world expects `pnpm build` to be production. So the *file* that production uses should be the one that has the conventional name: `antora-playbook.yml`. The local override is `antora-playbook-local.yml`. Not our first choice, but it matches how the ecosystem works.
+This keeps the **Root Strategy** and a single production playbook while still aggregating many org repos from your hive layout (`%code%/github.com/...`).
 
 === Private repos: GITHUB_TOKEN vs PAT (why you needed days of debugging)
 

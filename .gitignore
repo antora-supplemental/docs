@@ -1,3 +1,6 @@
 node_modules/
 build/
 MEMORIES.md
+.link-check-cache.json
+.antora-local-sources.yml
+.antora-local-sources.yaml

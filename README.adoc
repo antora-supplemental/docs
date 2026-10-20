@@ -89,8 +89,7 @@ pnpm install
 ++++
 == Usage
 
-* Production (fetch from GitHub): `pnpm build`
-* Local (sibling repos): `pnpm run build:local`
+* Build (CI and local): `pnpm build` — local git clones are picked up via `antora-local-content-sources` (through facto-stack) when `.antora-source-id` markers exist; use `antora --fetch` to refresh remotes.
 
 === Content sources
 

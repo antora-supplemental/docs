@@ -1,5 +1,7 @@
 # Antora Supplemental documentation site
 # Aggregates antora-supplemental org repos (Root Strategy)
+# Local clones: same playbook; @antora-supplemental/facto-stack registers antora-local-content-sources (auto off in CI).
+# Snapshot: build/.antora/antora-playbook-local.generated.yml (gitignored).
 
 site:
   title: Antora Supplemental

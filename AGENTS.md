@@ -16,7 +16,7 @@ Project facts live in this file; machine-wide notes in `$CODE_ROOT/MEMORIES.md`.
 
 ## Antora playbooks
 
-- Playbooks do **not** support YAML `extends`. `local-antora-playbook.yml` must be a full playbook (duplicate site/ui/asciidoc; only content sources differ).
+- One committed `antora-playbook.yml` (GitHub `content.sources` URLs). Local clones: `@antora-supplemental/facto-stack` registers `antora-local-content-sources` (`mode: auto`, off in CI). Markers: repo-root `.antora-source-id`; optional gitignored `.antora-local-sources.yml`. Debug snapshot: `build/.antora/antora-playbook-local.generated.yml`.
 
 ## Valentus
 

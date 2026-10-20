@@ -1,0 +1,6 @@
+# Copy to .antora-local-sources.yml (gitignored) when multiple clones share the same marker id.
+sources:
+  https://github.com/antora-supplemental/docs:
+    path: C:/code/github.com/antora-supplemental/docs
+  f893d683ac3f6fc51cedd44a4f9deb4e:
+    path: C:/code/github.com/antora-supplemental/docs
