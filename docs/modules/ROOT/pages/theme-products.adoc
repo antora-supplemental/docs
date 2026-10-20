@@ -37,13 +37,13 @@ Valentus **body** fixtures for theme and stack demos live in link:https://github
 Catalog: xref:proposals/demo-data-catalog.adoc[Demo data catalog].
 Tutorial: xref:tutorials/build-a-composable-antora-demo.adoc[Build a composable Antora demo].
 
-On Valentus Pages, fixtures publish under link:https://antora-supplemental.github.io/valentus-theme/demo-pages/~/[demo-pages/~/^]; the Facto stack demo uses link:https://antora-supplemental.github.io/facto-stack/demo-pages/~/[the same component^] at its site URL.
+On Valentus and Facto stack demo sites, fixtures publish under the shared `demo-pages` component from link:https://github.com/antora-supplemental/demo-data[`demo-data`^] (path shape `{site-url}/demo-pages/…` after indexify).
 
 == Canonical docs
 
 * Valentus (guide + composed fixtures): link:https://antora-supplemental.github.io/valentus-theme/[GitHub Pages^]
 * Dark mode overlay: link:https://antora-supplemental.github.io/antora-dark-mode/[GitHub Pages^] · hub stub xref:antora-dark-mode.adoc[Antora Dark Mode]
-* Migration from the old name: link:https://antora-supplemental.github.io/antora-dark-mode/antora-dark-mode/guide/legacy-names.html[Legacy names & migration^]
+* Migration from the old name: xref:antora-dark-mode.adoc#legacy-names-and-migration[Legacy names & migration]
 
 [[github-topic-strings-gallery--dependents]]
 == GitHub topic strings (gallery + dependents)

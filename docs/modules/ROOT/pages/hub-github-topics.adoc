@@ -63,7 +63,7 @@ Example — DevCentr hub (`dev-centr/docs`): topics `facto-stack` only.
 
 == Replace the topics
 
-Use the full intended list. `PUT /repos/{owner}/{repo}/topics` replaces every topic, so list any non-provider topics you want to keep.
+Use the full intended list. `PUT /repos/\{owner\}/\{repo\}/topics` replaces every topic, so list any non-provider topics you want to keep.
 
 [source,powershell]
 ----

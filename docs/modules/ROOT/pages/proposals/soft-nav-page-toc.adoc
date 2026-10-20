@@ -90,7 +90,7 @@ Authors want:
 Possible upstream directions (for discussion, not a finished API):
 
 * Promote `:hide-page:` in Antora core so generators and UI bundles understand intentional nav-tree omission without CLI scanning.
-* Nav file attribute on xref lines, for example `xref:path.adoc[Label, hide-page]`.
+* Nav file attribute on xref lines, for example `+++xref:path.adoc[Label, hide-page]+++` (illustrative syntax only).
 * Optional `navtree-parent-association` metadata in nav files or component registry for parent links when URL structure alone is insufficient.
 * Playbook key, for example `site.nav.hidden_pages` with explicit allow-list for sitemap/search.
 * Generator output: omit hidden pages from `nav-data.js` / menu partial but retain them in the content catalog and page manifest.

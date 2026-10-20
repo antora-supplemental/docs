@@ -11,6 +11,7 @@ Full install steps, configuration, and the live demo are documented on link:http
 This org hub uses a green-themed shell so it stays visually distinct from that product site.
 ====
 
+[[legacy-names-and-migration]]
 == Successor to `antora-dark-theme`
 
 The former monolithic **`antora-dark-theme`** package was split:
@@ -20,7 +21,7 @@ The former monolithic **`antora-dark-theme`** package was split:
 
 Canonical homes are the **antora-supplemental** org repositories above.
 Personal forks of the old package name are obsolete leftovers — do not treat them as the source of truth.
-Migration steps: link:https://antora-supplemental.github.io/antora-dark-mode/antora-dark-mode/guide/legacy-names.html[Legacy names & migration^] in the dark-mode guide; Valentus has the matching install section for full-stack sites.
+Migration steps: see xref:theme-products.adoc[Theme products] and the link:https://github.com/antora-supplemental/antora-dark-mode/blob/main/docs/modules/guide/pages/legacy-names.adoc[`legacy-names.adoc` in the product repo^]; Valentus has the matching install section for full-stack sites.
 Org-wide product map: xref:theme-products.adoc[Theme products].
 
 == Canonical documentation

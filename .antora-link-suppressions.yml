@@ -1,0 +1,30 @@
+# Suppressions for @antora-supplemental/link-validator (local + CI).
+# Placeholders, private org repos, and GitHub Actions template tokens are not live GET targets.
+
+suppressions:
+  - glob: https://example.com/*
+    reason: AsciiDoc / demo-data fixture placeholder
+  - glob: https://github.com/example/*
+    reason: Demo-data fixture placeholder
+  - glob: https://docs.example.com/*
+    reason: Demo-data fixture placeholder
+  - glob: https://github.com/org/*
+    reason: Documentation placeholder org/repo names
+  - url: https://github.com/org/private-repo.git
+    reason: Private-repo example in deployment doc (not a public clone URL)
+  - regex: '^\$\{\{'
+    reason: GitHub Actions expression fragments misparsed as URLs
+  - regex: '^https://\$\{\{'
+    reason: Workflow secret URL rewrite examples
+  - glob: https://YOUR_ORG.github.io/*
+    reason: Tutorial placeholder site URL
+  - glob: https://your_org.github.io/*
+    reason: Tutorial placeholder site URL
+  - url: https://github.com/antora-supplemental/.github-private
+    reason: Private org config repo (not reachable without auth)
+  - glob: https://registry.antora-supplemental.org/*
+    reason: Theme registry host not deployed yet; use GitHub registry repo for now
+  - glob: https://antora-supplemental.github.io/*/demo-pages/~/*
+    reason: Antora indexify path shape; Pages preview URLs vary by site prefix
+  - glob: https://antora-supplemental.github.io/antora-dark-mode/*
+    reason: Legacy dark-mode Pages site retired; migration copy retained in theme-products

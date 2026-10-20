@@ -204,7 +204,7 @@ This hub listens for:
 
 * `docs-source-updated` — a playbook content source pushed new docs
 * `extension-updated` — UI bundle / extension / theme change
-* `link-cache-invalidate` — content or outbound link targets changed; hub rebuild with optional `LINK_VALIDATOR_INVALIDATE_*` (see xref:notify-docs-hub-link-changes.adoc[this hub's contract], https://docs.devcentr.org/docs-site/notify-docs-hub-link-changes.html[Dev-Centr], https://dlang-supplemental.github.io/docs/notify-docs-hub-link-changes.html[D Lang Supplemental]; `@antora-supplemental/link-validator` v0.2.2+)
+* `link-cache-invalidate` — content or outbound link targets changed; hub rebuild with optional `LINK_VALIDATOR_INVALIDATE_*` (see xref:notify-docs-hub-link-changes.adoc[Notify the docs hub of link changes]; `@antora-supplemental/link-validator` v0.2.2+)
 
 === 1. Subscriber site (the Antora playbook repo)
 

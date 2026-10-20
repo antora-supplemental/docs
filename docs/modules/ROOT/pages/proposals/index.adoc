@@ -3,7 +3,7 @@
 :page-tags: proposal
 :description: Upstream and cross-org design proposals for Antora and the supplemental ecosystem.
 
-Draft proposals live here before they become extension READMEs, GitHub issues on https://github.com/antora/antora[antora/antora^], or Zulip threads on https://antora.zulipchat.com/[Antora Zulip^].
+Draft proposals live here before they become extension READMEs, GitLab issues on https://gitlab.com/antora/antora[antora/antora^], or Zulip threads on https://antora.zulipchat.com/[Antora Zulip^].
 
 == Active
 

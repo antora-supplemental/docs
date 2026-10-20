@@ -69,6 +69,5 @@ Exemplar thin caller: `antora-supplemental/asciidoc-interactive/.github/workflow
 == Related
 
 * xref:antora-deployment.adoc[Antora deployment]
-* https://docs.devcentr.org/docs-site/notify-docs-hub-link-changes.html[Dev-Centr hub contract]
-* https://dlang-supplemental.github.io/docs/notify-docs-hub-link-changes.html[D Lang Supplemental hub contract]
+* Dev-Centr and D Lang Supplemental hubs mirror this pattern in their own `notify-docs-hub-link-changes` pages (same dispatch contract; URLs differ per `site.url`).
 * https://github.com/antora-supplemental/asciidoc-link-validator#environment[asciidoc-link-validator env vars]
