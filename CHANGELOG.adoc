@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* Pin `@antora-supplemental/facto-stack` **v0.2.37** (disk-search banner prints once, as ASCII, on Windows).
 * Pin `@antora-supplemental/facto-stack` **v0.2.36** (opaque search chrome).
 * **Local content via facto-stack.** Removed `local-antora-playbook.yml` and `build:local`; pin `@antora-supplemental/facto-stack` **v0.2.34** (registers `antora-local-content-sources`). Hub + wired content repos carry `.antora-source-id`; example overrides in `.antora-local-sources.example.yml`.
 * Hub local build hygiene: AsciiDoc fixes (`hub-github-topics` `\{owner\}/\{repo\}` placeholders, illustrative `xref:` in xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC]); link-validator suppressions (`.antora-link-suppressions.yml`); broken external links replaced with in-hub xrefs or stable GitHub URLs.
