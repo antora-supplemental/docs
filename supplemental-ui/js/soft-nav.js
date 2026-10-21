@@ -8,6 +8,7 @@
  * Public API:
  *   SoftNav.swapNav — replace left nav panel from fetched doc (default false)
  *   SoftNav.scrollToTop — scroll window to top on cross-page nav (default true)
+ *   SoftNav.crossComponentForest — true | false | 'auto' (default 'auto'; site-nav-tree forest)
  *   SoftNav.on('before'|'loaded'|'failed', handler)
  *   SoftNav.registerRegion({ id, extract(doc), apply(fresh, ctx) })
  *   SoftNav.navigate(url)
@@ -26,6 +27,7 @@
     transition: 'crossfade',
     swapNav: false,
     scrollToTop: true,
+    crossComponentForest: 'auto',
     on: function (event, handler) {
       if (!listeners[event]) listeners[event] = []
       listeners[event].push(handler)
@@ -119,6 +121,42 @@
 
   function sameComponent (url) {
     return componentName(url) === componentName(window.location.href)
+  }
+
+  function navForestMenuLink (a) {
+    return (
+      a &&
+      a.classList &&
+      a.classList.contains('nav-link') &&
+      a.closest &&
+      a.closest('.nav-container [data-panel=menu]')
+    )
+  }
+
+  function siteForestEnabled () {
+    var mode = SoftNav.crossComponentForest
+    if (mode === false) return false
+    if (mode === true) return true
+    var menu = document.querySelector('.nav-container [data-panel=menu]')
+    if (!menu) return false
+    return menu.querySelectorAll('li.nav-item[data-depth="0"]').length > 1
+  }
+
+  function resolveForestNavHref (a) {
+    if (!a) return ''
+    if (typeof global.siteNavTreePrepareNavMenu === 'function') {
+      global.siteNavTreePrepareNavMenu(document.querySelector('.nav-container [data-panel=menu]'))
+    }
+    var raw = a.getAttribute('href') || a.href
+    if (typeof global.siteNavTreeResolveNavLink === 'function') {
+      var resolved = global.siteNavTreeResolveNavLink(raw)
+      if (resolved) return resolved
+    }
+    try {
+      return pageUrl(raw).href
+    } catch (e) {
+      return a.href
+    }
   }
 
   function navLinkMatchesPath (linkHref, targetUrl) {
@@ -671,7 +709,18 @@
     if (!sameOrigin(a.href)) return false
     var dest = pageUrl(a.href)
     if (samePath(dest.href)) {
-      if (dest.hash) {
+      if (navForestMenuLink(a)) {
+        ev.preventDefault()
+        var li = a.closest('li.nav-item')
+        var menu = document.querySelector('.nav-container [data-panel=menu]')
+        if (li && menu) {
+          menu.querySelectorAll('.nav-item.is-current-page').forEach(function (el) {
+            el.classList.remove('is-current-page')
+          })
+          li.classList.add('is-current-page')
+          if (typeof global.siteNavTreeCurrent === 'function') global.siteNavTreeCurrent()
+        }
+      } else if (dest.hash) {
         ev.preventDefault()
         scrollToHash(dest.hash)
         if (dest.href !== window.location.href) {
@@ -680,9 +729,10 @@
       }
       return true
     }
-    if (!sameComponent(a.href)) return false
+    var forestNav = navForestMenuLink(a) && siteForestEnabled()
+    if (!sameComponent(a.href) && !forestNav) return false
     ev.preventDefault()
-    navigate(a.href, true)
+    navigate(forestNav ? resolveForestNavHref(a) : a.href, true)
     return true
   }
 
