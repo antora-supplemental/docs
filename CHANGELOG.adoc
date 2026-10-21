@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* Pin `@antora-supplemental/facto-stack` **v0.2.51** (search-chat **v0.1.23** — dock shell without outer ring; results aligned to compound).
 * Pin `@antora-supplemental/facto-stack` **v0.2.50** (pack registers `incremental`; search-chat **v0.1.22** with bottom dock default). Drop direct `@antora-supplemental/incremental` playbook require and `package.json` pin; set `searchChat.placement: dock` on the pack override.
 * xref:hub-github-topics.adoc[Hub GitHub topics] — `incremental` is a pack member (not a separate hub pin).
 * xref:proposals/antora-next-shell.adoc[Antora next shell proposal] — Pattern C split artifact, SolidStart reader, asciidoctor-d via IPC/CLI, parallel semver, upstream contribution not fork; links site-rebuild, live-docs, SoftNavContext ARCHITECTURE; working name **antora-solidstart** (https://github.com/antora-supplemental/antora-solidstart[repo^]); agent skill `antora-solidstart` (`antora-next` deprecated alias).
