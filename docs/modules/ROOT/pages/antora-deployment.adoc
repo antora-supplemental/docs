@@ -231,6 +231,9 @@ https://github.com/antora-supplemental/antora-workflow-templates[antora-workflow
 
 Each workflow is one job: call `repository_dispatch` on the hub.
 Store org/repo secret `DOCS_DISPATCH_TOKEN` (fine-grained PAT or GitHub App) that can dispatch into `antora-supplemental/docs`.
+Org-wide: add the same secret under **Settings → Secrets and variables → Actions** for the `antora-supplemental` organization so every extension repo’s notify workflow can use it without per-repo setup. If the secret is missing, notify jobs no-op (safe for forks).
+
+**Compose packs (`facto-stack`):** `extension-updated` triggers a full hub rebuild but does *not* bump the hub’s pinned pack tag in `package.json` / lockfile. After a pack release that changes member pins, still run skill `update-consumers` (specialization `antora-extension-consumers`) to bump `topic:facto-stack` hubs, then push—or commit the pin on the hub manually. Member-only notify without a new pack tag + hub pin often rebuilds unchanged extension graph.
 
 === 4. Event types
 
