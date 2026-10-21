@@ -223,10 +223,13 @@ Permissions: the token needs permission to trigger workflows on the **subscriber
 
 === 3. Optional: auto-notify on push (minimal workflow)
 
-If you want push → site rebuild without a manual `gh` step, copy the template from
-https://github.com/antora-supplemental/antora-workflow-templates[antora-workflow-templates]
-(`.github/workflows/notify-docs-hub.yml`) into the **content source** repo.
-It is one job: call `repository_dispatch` on the hub.
+If you want push → site rebuild without a manual `gh` step, copy templates from
+https://github.com/antora-supplemental/antora-workflow-templates[antora-workflow-templates]:
+
+* **Content sources** — `.github/workflows/notify-docs-hub.yml` (`docs-source-updated`, typically `docs/**` paths).
+* **Extensions / themes / compose packs** — `.github/workflows/notify-docs-hub-extension.yml` (`extension-updated`, `lib/` / `supplemental-ui/` / `package.json` paths). Bulk install: `node scripts/install-notify-docs-hub-extension.mjs` (manifest `notify-extension-repos.json`).
+
+Each workflow is one job: call `repository_dispatch` on the hub.
 Store org/repo secret `DOCS_DISPATCH_TOKEN` (fine-grained PAT or GitHub App) that can dispatch into `antora-supplemental/docs`.
 
 === 4. Event types
