@@ -86,10 +86,9 @@ Hub `site-mermaid.js` collects `.mermaid-client` / `pre.mermaid` and re-runs on 
 
 == Diagram zoom / lightbox
 
-Chassis package: link:https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/diagram-zoom[`diagram-zoom`].
-
 .Enable
-. Prefer `@antora-supplemental/diagram-lightbox` (injects `site-diagram-lightbox.js/css`), or copy chassis `js/site-diagram-zoom.js` and `css/site-diagram-zoom.css` into `supplemental-ui/`.
+. Prefer `@antora-supplemental/diagram-lightbox` (injects `site-diagram-lightbox.js/css`).
+. Legacy only: copy chassis link:https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/diagram-zoom[`diagram-zoom`] assets into `supplemental-ui/` (deprecated; do not start new hubs on `diagram-zoom`).
 . Link the stylesheet in `head-meta.hbs`; load the script after SoftNav in the footer partial.
 . No AsciiDoc role required — attaches to `.doc .imageblock` and client Mermaid hosts.
 
