@@ -56,7 +56,7 @@ urls:
 antora:
   extensions:
     # Compose pack (hub profile): incremental, lunr, search-chat, unversioned URLs, site-nav-tree,
-    # nav-typology(+diataxis), build-stack, page-edit, link-validator, linkinator,
+    # nav-typology(+diataxis), build-stack, article-zones, page-edit, link-validator, linkinator,
     # soft-nav-page-toc, extension-lister, orphan-finder, page-context keyword pages.
     - require: "@antora-supplemental/facto-stack"
       profile: hub

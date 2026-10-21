@@ -1,0 +1,14 @@
+<article class="doc" data-zone-root>
+<header class="doc-zone doc-zone--header" data-zone="header">
+{{#with page.title}}
+<div class="valentus-page-header">
+  <h1 class="page valentus-page-title">{{{this}}}</h1>
+</div>
+{{/with}}
+</header>
+<div class="doc-zone doc-zone--meta" data-zone="meta"></div>
+<div class="doc-zone doc-zone--body" data-zone="body">{{{page.contents}}}</div>
+<footer class="doc-zone doc-zone--footer" data-zone="footer">
+{{> pagination}}
+</footer>
+</article>
