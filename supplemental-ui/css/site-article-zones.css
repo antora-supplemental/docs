@@ -4,5 +4,9 @@
 }
 
 .doc[data-zone-root] .doc-zone--header .page-context-source-line {
-  margin-top: 0.35rem;
+  margin: 0 0 0.2rem;
+}
+
+.doc[data-zone-root] .doc-zone--header .valentus-page-header {
+  margin-bottom: 0.85rem;
 }

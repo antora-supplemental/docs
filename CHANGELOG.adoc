@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* Pin `@antora-supplemental/facto-stack` **v0.2.62** — `@antora-supplemental/page-edit` **v0.3.3** (Source line above the title in `[data-zone="header"]`). Hub `site-article-zones.css` spacing until rolling Valentus **v3** ui-bundle **3.0.7** rebuilds.
 * Pin `@antora-supplemental/facto-stack` **v0.2.61** — `chassis-compose` **v0.1.4** / `soft-nav` **0.1.3** (forest cross-component sidebar soft-nav; prior pack pin still resolved nested `soft-nav-v0.1.1`).
 * **Mobile nav-tree drawer:** `@antora-supplemental/site-nav-tree` **v0.6.14** ships `site-nav-tree-mobile-drawer.css` and always injects companion styles at build (even when `filter: false` / manual JS partial). Hub drops vendored overview-label link from `head-meta` (extension appends stylesheet tags). `site-org-brand.css` no longer resets `--valentus-nav-bg` after `site-visual.css`.
 * **Theme toggle:** interim `button.theme-toggle` rules in `site-org-brand.css` until live **`_/js/site-dark-mode.js`** serves **antora-dark-mode 1.4.6** (Valentus rolling **v3** ui-bundle **3.0.6**). Drop hub overlay once production JS includes `valentus-header-icon-btn`.
