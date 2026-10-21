@@ -103,3 +103,37 @@ html.dark-theme .navbar .button:hover,
 html.dark-theme .navbar .button.is-primary:hover {
   background-color: #234d32;
 }
+
+/* Theme toggle — match GitHub icon btn when rolling v3 bundle still ships pre-1.4.6 dark-mode JS (no valentus-header-icon-btn). Remove after v3.0.4 ui-bundle is live. */
+.header.valentus-header .navbar .navbar-end button.theme-toggle {
+  min-width: var(--valentus-header-ctrl) !important;
+  min-height: var(--valentus-header-ctrl) !important;
+  width: var(--valentus-header-ctrl) !important;
+  height: var(--valentus-header-ctrl) !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 0.2rem;
+  color: var(--valentus-header-bar-fg) !important;
+  background: transparent !important;
+  cursor: pointer;
+}
+
+.header.valentus-header .navbar .navbar-end button.theme-toggle:hover {
+  background: var(--valentus-header-bar-hover) !important;
+}
+
+.header.valentus-header .navbar .navbar-end button.theme-toggle:focus {
+  outline: none;
+  background: transparent !important;
+}
+
+.header.valentus-header .navbar .navbar-end button.theme-toggle:focus-visible {
+  background: var(--valentus-header-bar-hover) !important;
+  outline: 2px solid var(--valentus-header-bar-fg);
+  outline-offset: 2px;
+}
