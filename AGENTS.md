@@ -20,7 +20,7 @@ Project facts live in this file; machine-wide notes in `$CODE_ROOT/MEMORIES.md`.
 
 ## Valentus
 
-- Brand overlays should override `--adt-*` tokens after `site-visual.css` / `site-read-width.css`; element scrapes lose to `!important` in site-visual.
+- Brand overlays should override `--valentus-*` tokens after `site-visual.css` / `site-read-width.css`; element scrapes lose to `!important` in site-visual.
 - Pin rolling major `v2` (`…/releases/download/v2/ui-bundle.zip` + `snapshot: true`). Public label `VALENTUS_SEMVER+antora.N` (e.g. `2.0.2+antora.3`); git/download tags stay pure semver.
 
 ## Org config & domains

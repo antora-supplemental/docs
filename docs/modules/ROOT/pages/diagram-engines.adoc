@@ -1,4 +1,4 @@
-﻿= Diagram engines (bake vs client)
+= Diagram engines (bake vs client)
 :navtitle: Diagram engines
 :description: Supported Antora diagram options — bake SVG at build (Kroki/Themed SVG), ship client Mermaid, hybrid per diagram, and diagram lightbox (zoom/pan).
 
@@ -93,7 +93,7 @@ Chassis package: link:https://github.com/antora-supplemental/antora-ui-chassis/t
 . Link the stylesheet in `head-meta.hbs`; load the script after SoftNav in the footer partial.
 . No AsciiDoc role required — attaches to `.doc .imageblock` and client Mermaid hosts.
 
-In-article: zoom in/out/reset + expand. Lightbox: drag-pan, wheel-zoom, Esc/close. Uses `--adt-*` tokens.
+In-article: zoom in/out/reset + expand. Lightbox: drag-pan, wheel-zoom, Esc/close. Uses `--valentus-*` tokens.
 
 == Canonical how-to
 

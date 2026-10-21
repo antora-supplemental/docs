@@ -10,7 +10,7 @@
   const AUTO_JS = `https://cdn.jsdelivr.net/npm/katex@${KATEX_VER}/dist/contrib/auto-render.min.js`
 
   function loadCss(href) {
-    if (document.querySelector(`link[data-adt-katex="${href}"]`)) return
+    if (document.querySelector(`link[data-valentus-katex="${href}"]`)) return
     const link = document.createElement('link')
     link.rel = 'stylesheet'
     link.href = href
@@ -20,7 +20,7 @@
 
   function loadScript(src) {
     return new Promise((resolve, reject) => {
-      const existing = document.querySelector(`script[data-adt-katex="${src}"]`)
+      const existing = document.querySelector(`script[data-valentus-katex="${src}"]`)
       if (existing) {
         if (existing.dataset.loaded === '1') resolve()
         else {
@@ -60,7 +60,7 @@
   }
 
   function start() {
-    boot().catch((err) => console.warn('[adt-math]', err))
+    boot().catch((err) => console.warn('[valentus-math]', err))
   }
 
   if (document.readyState === 'loading') {

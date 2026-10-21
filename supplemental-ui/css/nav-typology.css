@@ -22,21 +22,21 @@ html.dark-theme {
 }
 
 nav.nav-menu.nav-tree-only,
-nav.nav-menu.adt-nav-tree-only {
+nav.nav-menu.valentus-nav-tree-only {
   overflow-x: auto;
 }
 
 nav.nav-menu.nav-tree-only .nav-item > .nav-link,
-nav.nav-menu.adt-nav-tree-only .nav-item > .nav-link,
+nav.nav-menu.valentus-nav-tree-only .nav-item > .nav-link,
 nav.nav-menu.nav-tree-only .nav-item > .nav-text,
-nav.nav-menu.adt-nav-tree-only .nav-item > .nav-text {
+nav.nav-menu.valentus-nav-tree-only .nav-item > .nav-text {
   display: flex;
   align-items: flex-start;
   gap: 0.35rem;
 }
 
 nav.nav-menu.nav-tree-only .nav-typology-icon,
-nav.nav-menu.adt-nav-tree-only .nav-typology-icon {
+nav.nav-menu.valentus-nav-tree-only .nav-typology-icon {
   width: var(--nav-typology-icon-size);
   height: var(--nav-typology-icon-size);
   min-width: var(--nav-typology-icon-size);
@@ -48,7 +48,7 @@ nav.nav-menu.adt-nav-tree-only .nav-typology-icon {
 }
 
 nav.nav-menu.nav-tree-only .nav-component-logo,
-nav.nav-menu.adt-nav-tree-only .nav-component-logo {
+nav.nav-menu.valentus-nav-tree-only .nav-component-logo {
   width: var(--nav-typology-icon-size);
   height: var(--nav-typology-icon-size);
   min-width: var(--nav-typology-icon-size);
@@ -59,9 +59,9 @@ nav.nav-menu.adt-nav-tree-only .nav-component-logo {
 }
 
 nav.nav-menu.nav-tree-only .nav-item > .nav-link > .nav-text,
-nav.nav-menu.adt-nav-tree-only .nav-item > .nav-link > .nav-text,
+nav.nav-menu.valentus-nav-tree-only .nav-item > .nav-link > .nav-text,
 nav.nav-menu.nav-tree-only .nav-item > .nav-text > .nav-typology-label,
-nav.nav-menu.adt-nav-tree-only .nav-item > .nav-text > .nav-typology-label {
+nav.nav-menu.valentus-nav-tree-only .nav-item > .nav-text > .nav-typology-label {
   min-width: 0;
   flex: 1 1 auto;
   white-space: nowrap;
@@ -77,8 +77,8 @@ nav.nav-menu.adt-nav-tree-only .nav-item > .nav-text > .nav-typology-label {
 .nav-typology-icon--changelog { color: var(--typology-changelog); font-weight: 600; }
 
 nav.nav-menu.nav-tree-only .nav-item[data-nav-typology="changelog"] > .nav-link,
-nav.nav-menu.adt-nav-tree-only .nav-item[data-nav-typology="changelog"] > .nav-link,
+nav.nav-menu.valentus-nav-tree-only .nav-item[data-nav-typology="changelog"] > .nav-link,
 nav.nav-menu.nav-tree-only .nav-item[data-nav-typology="changelog"] > .nav-text,
-nav.nav-menu.adt-nav-tree-only .nav-item[data-nav-typology="changelog"] > .nav-text {
+nav.nav-menu.valentus-nav-tree-only .nav-item[data-nav-typology="changelog"] > .nav-text {
   font-weight: 600;
 }

@@ -31,7 +31,7 @@ This proposal picks a composable layout and rejects alternatives that hide fixtu
 
 | Runtime injection | **Do not** build a general-purpose extension that injects demo pages via `contentCatalog.addFile` — exception: narrow generators (e.g. page-context keyword listings)
 
-| Styles / tokens | Stay in Valentus `ui.bundle` (`site-visual.css`, `--adt-*`); extensions reference tokens with CSS fallbacks; demo-data is content-only
+| Styles / tokens | Stay in Valentus `ui.bundle` (`site-visual.css`, `--valentus-*`); extensions reference tokens with CSS fallbacks; demo-data is content-only
 
 | Versioning | SemVer tags on `demo-data`; demo playbooks pin tags or track `main` explicitly
 |===
@@ -41,11 +41,11 @@ This proposal picks a composable layout and rejects alternatives that hide fixtu
 The split you started in `valentus-theme` remains the source of truth:
 
 * **Chassis / layout contracts** — `antora-ui-chassis` (consumed, not owned); see `valentus-theme/CHASSIS.md`.
-* **Foundational paint + body** — bundled in Valentus `ui-bundle.zip` (`site-visual.css`, `--adt-canvas`, `--adt-elevated`, `--adt-ink`, `--adt-accent`, …).
-* **Extension supplemental UI** — per-package CSS/JS under `ui/` copied into `supplemental-ui` (Antora does not auto-merge extension UI). Styles should use `var(--adt-*, fallback)` so demos work on Valentus and degrade on Default UI.
+* **Foundational paint + body** — bundled in Valentus `ui-bundle.zip` (`site-visual.css`, `--valentus-canvas`, `--valentus-elevated`, `--valentus-ink`, `--valentus-accent`, …).
+* **Extension supplemental UI** — per-package CSS/JS under `ui/` copied into `supplemental-ui` (Antora does not auto-merge extension UI). Styles should use `var(--valentus-*, fallback)` so demos work on Valentus and degrade on Default UI.
 * **Content fixtures** — AsciiDoc pages that *use* those styles; they belong in `demo-data` or extension-local `examples/docs`, not in the theme repo long term.
 
-Fixture-only CSS classes (e.g. `.adt-logo-fixture-grid` in guide pages) stay in the theme bundle; demo pages reference them by class name.
+Fixture-only CSS classes (e.g. `.valentus-logo-fixture-grid` in guide pages) stay in the theme bundle; demo pages reference them by class name.
 
 == Antora wiring patterns
 

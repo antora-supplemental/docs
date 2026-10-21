@@ -19,28 +19,28 @@
   --as-accent-soft: rgba(27, 94, 32, 0.1);
 
   /* Valentus 2.x visual tokens */
-  --adt-canvas: var(--as-paper);
-  --adt-elevated: var(--as-elevated);
-  --adt-ink: var(--as-ink);
-  --adt-ink-muted: var(--as-ink-muted);
-  --adt-accent: var(--as-leaf);
-  --adt-accent-hover: var(--as-leaf-bright);
-  --adt-accent-soft: var(--as-accent-soft);
-  --adt-border: var(--as-border);
-  --adt-chrome: var(--as-paper-deep);
-  --adt-chrome-border: var(--as-border);
-  --adt-nav-bg: transparent;
-  --adt-shadow-float: 0 0.35rem 1rem rgba(13, 26, 18, 0.1);
-  --adt-shadow-sticky: 0 4px 16px rgba(13, 26, 18, 0.07);
+  --valentus-canvas: var(--as-paper);
+  --valentus-elevated: var(--as-elevated);
+  --valentus-ink: var(--as-ink);
+  --valentus-ink-muted: var(--as-ink-muted);
+  --valentus-accent: var(--as-leaf);
+  --valentus-accent-hover: var(--as-leaf-bright);
+  --valentus-accent-soft: var(--as-accent-soft);
+  --valentus-border: var(--as-border);
+  --soft-nav-context: var(--as-paper-deep);
+  --valentus-chrome-border: var(--as-border);
+  --valentus-nav-bg: transparent;
+  --valentus-shadow-float: 0 0.35rem 1rem rgba(13, 26, 18, 0.1);
+  --valentus-shadow-sticky: 0 4px 16px rgba(13, 26, 18, 0.07);
 
   /* Bridged layout / header tokens */
-  --adt-bc-kicker-fg: var(--adt-accent);
-  --adt-bc-kicker-bg: var(--adt-accent-soft);
-  --adt-bc-kicker-border: color-mix(in srgb, var(--adt-accent) 28%, transparent);
-  --adt-header-bar-bg: var(--adt-chrome);
-  --adt-header-bar-fg: var(--adt-ink);
-  --adt-header-bar-border: var(--adt-chrome-border);
-  --adt-header-bar-hover: var(--adt-accent-soft);
+  --valentus-bc-kicker-fg: var(--valentus-accent);
+  --valentus-bc-kicker-bg: var(--valentus-accent-soft);
+  --valentus-bc-kicker-border: color-mix(in srgb, var(--valentus-accent) 28%, transparent);
+  --valentus-header-bar-bg: var(--valentus-chrome);
+  --valentus-header-bar-fg: var(--valentus-ink);
+  --valentus-header-bar-border: var(--valentus-chrome-border);
+  --valentus-header-bar-hover: var(--valentus-accent-soft);
 }
 
 html.dark-theme {
@@ -56,34 +56,34 @@ html.dark-theme {
   --as-border: rgba(46, 125, 50, 0.45);
   --as-accent-soft: rgba(129, 199, 132, 0.12);
 
-  --adt-canvas: var(--as-paper);
-  --adt-elevated: var(--as-elevated);
-  --adt-ink: var(--as-ink);
-  --adt-ink-muted: var(--as-ink-muted);
-  --adt-accent: var(--as-leaf);
-  --adt-accent-hover: var(--as-leaf-bright);
-  --adt-accent-soft: var(--as-accent-soft);
-  --adt-border: var(--as-border);
-  --adt-chrome: var(--as-paper-deep);
-  --adt-chrome-border: var(--as-border);
-  --adt-nav-bg: transparent;
-  --adt-shadow-float: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.45);
-  --adt-shadow-sticky: 0 6px 18px rgba(0, 0, 0, 0.35);
-  --adt-header-vcs-icon-filter: none;
+  --valentus-canvas: var(--as-paper);
+  --valentus-elevated: var(--as-elevated);
+  --valentus-ink: var(--as-ink);
+  --valentus-ink-muted: var(--as-ink-muted);
+  --valentus-accent: var(--as-leaf);
+  --valentus-accent-hover: var(--as-leaf-bright);
+  --valentus-accent-soft: var(--as-accent-soft);
+  --valentus-border: var(--as-border);
+  --soft-nav-context: var(--as-paper-deep);
+  --valentus-chrome-border: var(--as-border);
+  --valentus-nav-bg: transparent;
+  --valentus-shadow-float: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.45);
+  --valentus-shadow-sticky: 0 6px 18px rgba(0, 0, 0, 0.35);
+  --valentus-header-vcs-icon-filter: none;
 
-  --adt-bc-kicker-fg: var(--adt-accent);
-  --adt-bc-kicker-bg: var(--adt-accent-soft);
-  --adt-bc-kicker-border: color-mix(in srgb, var(--adt-accent) 35%, transparent);
-  --adt-header-bar-bg: var(--adt-chrome);
-  --adt-header-bar-fg: var(--adt-ink);
-  --adt-header-bar-border: var(--adt-chrome-border);
-  --adt-header-bar-hover: var(--adt-accent-soft);
+  --valentus-bc-kicker-fg: var(--valentus-accent);
+  --valentus-bc-kicker-bg: var(--valentus-accent-soft);
+  --valentus-bc-kicker-border: color-mix(in srgb, var(--valentus-accent) 35%, transparent);
+  --valentus-header-bar-bg: var(--valentus-chrome);
+  --valentus-header-bar-fg: var(--valentus-ink);
+  --valentus-header-bar-border: var(--valentus-chrome-border);
+  --valentus-header-bar-hover: var(--valentus-accent-soft);
 }
 
 /* Display headings lean moss on light; keep ink for dark via tokens. */
 html:not(.dark-theme) .doc h1,
 html:not(.dark-theme) .doc h1.page,
-html:not(.dark-theme) .doc .adt-page-title,
+html:not(.dark-theme) .doc .valentus-page-title,
 html:not(.dark-theme) .doc h2 {
   color: var(--as-moss) !important;
 }

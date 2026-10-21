@@ -5,10 +5,10 @@
   before the paint-hold release (fonts.ready) script.
 --}}
 <style>
-html.adt-fouc-pending { visibility: hidden !important; }
+html.valentus-fouc-pending { visibility: hidden !important; }
 </style>
 <script>
-document.documentElement.classList.add('adt-fouc-pending')
+document.documentElement.classList.add('valentus-fouc-pending')
 </script>
 <link rel="stylesheet" href="{{{uiRootPath}}}/css/site-extra.css">
 <meta name="dm-navbar" content="{{or site.keys.darkModeNavbar 'light'}}">
@@ -52,27 +52,27 @@ document.documentElement.classList.add('adt-fouc-pending')
 <script>
 (function () {
   try {
-    var w = localStorage.getItem('adt-read-width')
+    var w = localStorage.getItem('valentus-read-width')
     document.documentElement.setAttribute(
-      'data-adt-read-width',
+      'data-valentus-read-width',
       w === 'narrow' || w === 'comfortable' || w === 'wide' ? w : 'comfortable'
     )
   } catch (e) {
-    document.documentElement.setAttribute('data-adt-read-width', 'comfortable')
+    document.documentElement.setAttribute('data-valentus-read-width', 'comfortable')
   }
 })()
 </script>
-{{!-- font-size FOUC (same as ui-modules/packages/font-size/ui/js/adt-font-size-fouc.js) --}}
+{{!-- font-size FOUC (same as ui-modules/packages/font-size/ui/js/valentus-font-size-fouc.js) --}}
 <script>
 (function () {
   try {
-    var s = localStorage.getItem('adt-font-size')
+    var s = localStorage.getItem('valentus-font-size')
     document.documentElement.setAttribute(
-      'data-adt-font-size',
+      'data-valentus-font-size',
       s === 'small' || s === 'medium' || s === 'large' ? s : 'medium'
     )
   } catch (e) {
-    document.documentElement.setAttribute('data-adt-font-size', 'medium')
+    document.documentElement.setAttribute('data-valentus-font-size', 'medium')
   }
 })()
 </script>
@@ -83,7 +83,7 @@ document.documentElement.classList.add('adt-fouc-pending')
   function release () {
     if (released) return
     released = true
-    document.documentElement.classList.remove('adt-fouc-pending')
+    document.documentElement.classList.remove('valentus-fouc-pending')
   }
   var fallback = setTimeout(release, 3000)
   function finish () {
