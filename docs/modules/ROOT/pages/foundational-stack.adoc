@@ -12,7 +12,7 @@ The *engine* is Antora itself. *Chassis* lives in link:https://github.com/antora
 
 | `@antora-supplemental/chassis-compose`
 | Meta extension: registers bundled chassis members (today `@antora-supplemental/soft-nav-context`)
-| `github:antora-supplemental/antora-ui-chassis#chassis-v0.1.0&path:packages/chassis-compose`
+| `github:antora-supplemental/antora-ui-chassis#chassis-v0.1.2&path:packages/chassis-compose`
 
 | `@antora-supplemental/soft-nav-context`
 | Injects `soft-nav-page-context` partial + runtime after `soft-nav.js`
