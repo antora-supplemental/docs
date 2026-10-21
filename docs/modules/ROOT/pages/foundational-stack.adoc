@@ -1,0 +1,50 @@
+= Foundational chassis stack
+:navtitle: Foundational stack
+:description: Unthemed chassis packages (SoftNav, SoftNavContext, chassis-compose) and how Facto stack registers them.
+
+The *engine* is Antora itself. *Chassis* lives in link:https://github.com/antora-supplemental/antora-ui-chassis[`antora-ui-chassis`^] — unthemed region contracts and optional playbook extensions. Valentus (or Default UI) supplies body kit + paint.
+
+== Playbook extensions (build time)
+
+[cols="2,3,2", options="header"]
+|===
+| Package | Role | Typical pin
+
+| `@antora-supplemental/chassis-compose`
+| Meta extension: registers bundled chassis members (today `@antora-supplemental/soft-nav-context`)
+| `github:antora-supplemental/antora-ui-chassis#chassis-v0.1.0&path:packages/chassis-compose`
+
+| `@antora-supplemental/soft-nav-context`
+| Injects `soft-nav-page-context` partial + runtime after `soft-nav.js`
+| Same repo, `path:packages/soft-nav-context`, or via chassis-compose
+
+| `@antora-supplemental/facto-stack`
+| Compose pack — hub/demo profiles register chassis-compose automatically (override key `softNavContext`)
+| SemVer tag on `facto-stack` (see pack changelog)
+|===
+
+Registry catalog: link:https://registry.antora-supplemental.org/extensions[registry.antora-supplemental.org/extensions^] (also xref:registry:ROOT:index.adoc[registry docs component] on this hub).
+
+== Copy-only chassis (browser)
+
+These are **not** npm playbook extensions — copy into hub `supplemental-ui/` (or consume via a theme slot when available):
+
+* `packages/soft-nav/js/soft-nav.js` — region swap bus (`soft-nav:*`, compat `doc-nav:loaded`)
+* Pair with SoftNavContext when persistent chrome must track page metadata (search omnibox, dock)
+
+Minimal wiring without Valentus: link:https://github.com/antora-supplemental/antora-ui-chassis/tree/main/examples/minimal-soft-nav[`antora-ui-chassis/examples/minimal-soft-nav`^].
+
+== Integration guide
+
+* link:https://github.com/antora-supplemental/antora-ui-chassis/blob/main/packages/soft-nav-context/INTEGRATION.adoc[SoftNavContext INTEGRATION.adoc^]
+* link:https://github.com/antora-supplemental/antora-ui-chassis/blob/main/packages/soft-nav-context/ARCHITECTURE.adoc[ARCHITECTURE.adoc^] — SoftNav transport → context store → `bindSoftNavContext`
+
+== GitHub topics (dependents)
+
+Playbooks that **directly** require an extension add the GitHub topic equal to the **repo product id** (`soft-nav-context`, `chassis-compose`). Hubs on `@antora-supplemental/facto-stack` tag `facto-stack` only — see xref:hub-github-topics.adoc[Hub GitHub topics].
+
+== See also
+
+* xref:proposals/soft-nav-page-toc.adoc[SoftNav page TOC proposal]
+* xref:theme-products.adoc[Theme products]
+* xref:tutorials/build-a-composable-antora-demo.adoc[Build a composable Antora demo]

@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* xref:foundational-stack.adoc[Foundational chassis stack] — documents `chassis-compose`, `soft-nav-context`, and minimal Default UI example.
 * xref:diagram-engines.adoc[Diagram engines]: zoom/lightbox steps are diagram-lightbox-only (removed chassis `diagram-zoom` copy path); point at facto-stack `examples/` and demo wiring.
 * Pin `@antora-supplemental/facto-stack` **v0.2.48** (examples on diagram-lightbox; build dir gitignore).
 * Pin `@antora-supplemental/facto-stack` **v0.2.47** (chassis-compose meta extension for soft-nav-context; chassis **d619558**).
