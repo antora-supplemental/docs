@@ -31,7 +31,8 @@
   /* Opaque bar surface. v3 ui-bundle omits --valentus-chrome (lost in the adt->valentus rename), so define it here. */
   --valentus-chrome: var(--as-paper);
   --valentus-chrome-border: var(--as-border);
-  --valentus-nav-bg: transparent;
+  /* Do not set --valentus-nav-bg here (loads after site-visual.css). Transparent desktop +
+     opaque mobile drawer are owned by site-visual; overriding the token breaks the overlay. */
   --valentus-shadow-float: 0 0.35rem 1rem rgba(13, 26, 18, 0.1);
   --valentus-shadow-sticky: 0 4px 16px rgba(13, 26, 18, 0.07);
 
@@ -70,7 +71,6 @@ html.dark-theme {
   /* Opaque bar surface. v3 ui-bundle omits --valentus-chrome (lost in the adt->valentus rename), so define it here. */
   --valentus-chrome: var(--as-paper);
   --valentus-chrome-border: var(--as-border);
-  --valentus-nav-bg: transparent;
   --valentus-shadow-float: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.45);
   --valentus-shadow-sticky: 0 6px 18px rgba(0, 0, 0, 0.35);
   --valentus-header-vcs-icon-filter: none;
