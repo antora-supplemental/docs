@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* Vendor `site-nav-tree-current.js` **v0.6.12**; load it `defer` after SoftNav/context (script order). Remove duplicate hub `soft-nav.js` tag (chassis-compose injects once).
 * Vendor `site-nav-tree-current.js` **v0.6.11** (forest-base nav highlight matching; SoftNav cross-component forest nav in hub `soft-nav.js`).
 * Pin `@antora-supplemental/facto-stack` **v0.2.52** (nav-typology **v0.1.12** — companion UI injects at build; remove vendored typology assets from `supplemental-ui/`).
 * Pin `@antora-supplemental/facto-stack` **v0.2.51** (search-chat **v0.1.23** — dock shell without outer ring; results aligned to compound).

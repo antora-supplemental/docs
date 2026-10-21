@@ -140,9 +140,15 @@
     if (!panel) return
     var menu = panel.querySelector('nav.nav-menu')
     if (!menu || menu.querySelector('li.nav-item')) return
-    var start = '/home/'
+    var start = '/docs/'
     var startAnchor = document.querySelector('article.doc a[href^="/"]')
     if (startAnchor && startAnchor.getAttribute('href')) start = startAnchor.getAttribute('href')
+    else {
+      var forestRoot = document.querySelector(
+        '.nav-container [data-panel=menu] li.nav-item[data-depth="0"] > a.nav-link[href^="/"]'
+      )
+      if (forestRoot && forestRoot.getAttribute('href')) start = forestRoot.getAttribute('href')
+    }
     var startAbs
     try {
       startAbs = new URL(start, window.location.origin).href
