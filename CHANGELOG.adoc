@@ -3,6 +3,7 @@
 == Unreleased
 
 * xref:diagram-engines.adoc[Diagram engines]: zoom/lightbox steps are diagram-lightbox-only (removed chassis `diagram-zoom` copy path); point at facto-stack `examples/` and demo wiring.
+* Pin `@antora-supplemental/facto-stack` **v0.2.48** (examples on diagram-lightbox; build dir gitignore).
 * Pin `@antora-supplemental/facto-stack` **v0.2.47** (chassis-compose meta extension for soft-nav-context; chassis **d619558**).
 * Pin `@antora-supplemental/facto-stack` **v0.2.46** (Valentus 3 `valentus-*` namespace, search-chat **v0.1.20**, site-nav-tree **v0.6.9**, soft-nav-context from chassis **6433442**).
 * Hub UI bundle: rolling Valentus **v3** (`releases/download/v3/ui-bundle.zip` + `snapshot: true`).
