@@ -1,4 +1,5 @@
 = Theme & dark-mode products
+:page-aliases: docs::theme-products.adoc
 :navtitle: Theme products
 :description: Roles of valentus-theme, antora-dark-mode, and the retired antora-dark-theme name.
 

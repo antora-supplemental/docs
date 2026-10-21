@@ -2,6 +2,8 @@
 
 == Unreleased
 
+* **Titles:** ROOT index page title is now **Docs Home** (was Antora Supplemental Documentation); component title and `header_doc_title` read **Antora Supplemental Docs** (was bare Docs); nav label for the index page is **Overview**.
+* **Hub component `docs` -> `home`.** `docs/antora.yml` is now `name: home` / `title: Antora Supplemental Docs`; the hub landing moves from `/docs/` to `/home/` (other components stay at the site root). Playbook: `site.start_page: home:ROOT:index.adoc`, site-nav-tree `include`/`order` and `pageContextAntora.component` use `home`, `page-context-keyword-base` is `/home/keywords`. Hub index `:navtitle:` is **Overview**. Hub pages carry `:page-aliases: docs::...` so old `/docs/...` URLs redirect; see `DOMAIN.adoc` for the Cloudflare 301 rule and deploy checks. Vendor `site-nav-tree-current.js` **v0.6.13** (404 hydration starts at `/home/`).
 * Pin `@antora-supplemental/facto-stack` **v0.2.53** (page-edit **v0.3.0**, page-context **v0.7.1**, site-nav-tree **v0.6.12**, soft-nav **0.1.3** via chassis-compose **v0.1.3**). Rebuild Valentus **v3** UI bundle so `.page-context-source-line` CSS ships.
 * Vendor `site-nav-tree-current.js` **v0.6.12**; load it `defer` after SoftNav/context (script order). Remove duplicate hub `soft-nav.js` tag (chassis-compose injects once).
 * Vendor `site-nav-tree-current.js` **v0.6.11** (forest-base nav highlight matching; SoftNav cross-component forest nav in hub `soft-nav.js`).

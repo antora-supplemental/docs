@@ -1,4 +1,5 @@
 = Antora Deployment Strategies: Root vs. Docs
+:page-aliases: docs::antora-deployment.adoc
 :navtitle: Antora Deployment
 
 When documenting a single repository, there are two common ways to structure your Antora project: the **Root Strategy** and the **Subfolder Strategy**.
@@ -140,6 +141,14 @@ Your playbook keeps normal URLs (`https://github.com/org/private-repo.git`). Git
 | Clone other private repos (Antora content sources) | No — use a PAT and git config (or URL rewrite) |
 
 So: "GITHUB_TOKEN does it for me" is true for **deploy** and for **this** repo. For **private content sources** in an org, you need a PAT and the git config step. That's the distinction that causes the confusion and the long debugging sessions.
+
+== Hub component name: `home` (not `docs`)
+
+The Antora Supplemental hub publishes its own pages as component `home` (`docs/antora.yml` `name: home`, title *Antora Supplemental Docs*), so the hub lives at `https://docs.antora-supplemental.org/home/` rather than `/docs/`. Keep the folder `docs/` as the content `start_path`; only the component *name* sets the URL segment.
+
+* Playbook: `site.start_page: home:ROOT:index.adoc`, `siteNavTree.include`/`order` list `home`, `pageContextAntora.component: home`, `page-context-keyword-base: /home/keywords`.
+* Redirects: each moved page declares `:page-aliases: docs::<page>.adoc`; the default static redirect facility writes stubs at the old `/docs/...` URLs, so existing links keep working.
+* Other repos that `xref:docs:ROOT:...` the hub must switch to `xref:home:ROOT:...`.
 
 == Package manager run commands
 

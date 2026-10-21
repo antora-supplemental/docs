@@ -1,4 +1,5 @@
 = Proposals
+:page-aliases: docs::proposals/index.adoc
 :navtitle: Proposals
 :page-tags: proposal
 :description: Upstream and cross-org design proposals for Antora and the supplemental ecosystem.

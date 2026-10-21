@@ -8,3 +8,16 @@ Custom domain for this Antora docs hub.
 * Org-wide DNS: https://github.com/antora-supplemental/antora-supplemental.github.io/blob/main/DOMAIN.adoc
 
 GitHub Pages alternate URL remains `https://antora-supplemental.github.io/docs/`.
+
+== Hub URL layout (home component)
+
+* The hub aggregator component is **home** (`docs/antora.yml` `name: home`). Its landing page is `https://docs.antora-supplemental.org/home/`; `site.start_page` is `home:ROOT:index.adoc`.
+* Other components publish at the site root (`/antora-live/`, `/registry/`, `/instruction-flow/`). Only the hub component moved from `/docs/` to `/home/`.
+* The repo folder `docs/` (Antora `start_path: docs`) is unrelated to the component name.
+
+=== Legacy `/docs/` redirects
+
+* In repo: every hub page under `docs/modules/ROOT/pages` declares `:page-aliases: docs::<page>.adoc`. Antora (static redirect facility) emits an HTML redirect at the old `/docs/<page>/` URL pointing to `/home/<page>/`. New hub pages should add the same alias until the legacy window closes.
+* Not covered in repo: `/docs/keywords/*` (generated page-context keyword pages) and unknown deep links. Add one Cloudflare Redirect Rule on the zone for a real 301: when `http.host eq "docs.antora-supplemental.org"` and path starts with `/docs/`, redirect to `concat("/home/", substring(http.request.uri.path, 6))` (301, preserve query string).
+* GitHub Pages cannot serve server-side redirects; the Cloudflare rule and the alias pages together cover old links.
+* After the first deploy: purge the Cloudflare cache for the zone (`max-age` on hub assets is long), then check `/home/`, `/docs/` (redirect page), and `/antora-live/`.

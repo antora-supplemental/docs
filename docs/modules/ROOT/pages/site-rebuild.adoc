@@ -1,4 +1,5 @@
 = Site rebuild architecture (v1 / v2)
+:page-aliases: docs::site-rebuild.adoc
 :description: How antora-supplemental rebuilds aggregated docs without polling, and the path to incremental converts.
 
 This page is the canonical write-up for PRs and design discussions.

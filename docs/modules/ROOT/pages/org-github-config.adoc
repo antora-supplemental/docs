@@ -1,4 +1,5 @@
 = Organization GitHub configuration
+:page-aliases: docs::org-github-config.adoc
 :navtitle: Org GitHub config
 :description: Where antora-supplemental keeps public and private org config — .github vs .github-private.
 

@@ -1,4 +1,4 @@
-name: docs
+name: home
 title: Antora Supplemental Docs
 version: ~
 start_page: ROOT:index.adoc

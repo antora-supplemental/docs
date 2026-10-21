@@ -140,7 +140,7 @@
     if (!panel) return
     var menu = panel.querySelector('nav.nav-menu')
     if (!menu || menu.querySelector('li.nav-item')) return
-    var start = '/docs/'
+    var start = '/home/'
     var startAnchor = document.querySelector('article.doc a[href^="/"]')
     if (startAnchor && startAnchor.getAttribute('href')) start = startAnchor.getAttribute('href')
     else {

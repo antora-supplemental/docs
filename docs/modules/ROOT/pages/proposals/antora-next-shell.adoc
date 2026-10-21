@@ -1,4 +1,5 @@
 = Antora next — SolidStart shell and split artifact
+:page-aliases: docs::proposals/antora-next-shell.adoc
 :navtitle: Antora next shell
 :page-tags: proposal
 :description: Pattern C split artifact — build-time content compiler, SolidStart reader shell, asciidoctor-d convert engine, parallel semver; upstream contribution not a fork.

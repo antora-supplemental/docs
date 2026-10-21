@@ -1,4 +1,5 @@
 = SoftNav page TOC and hide-page nav entries
+:page-aliases: docs::proposals/soft-nav-page-toc.adoc
 :navtitle: SoftNav page TOC
 :page-tags: proposal
 :description: Rebuild the aside page TOC after SoftNav swaps; hide-page routable pages for detail views and performance.
@@ -128,7 +129,7 @@ Post in https://antora.zulipchat.com/#narrow/stream/203078-community/general[Ant
 ____
 SoftNav + Default UI: the aside page TOC goes stale after in-component soft navigation because `site.js` only builds it on full load. We documented a proposal (hide-page nav entries + TOC rebuild lifecycle) here:
 
-https://docs.antora-supplemental.org/docs/proposals/soft-nav-page-toc/
+https://docs.antora-supplemental.org/home/proposals/soft-nav-page-toc/
 
 Interim bolt-on: https://github.com/antora-supplemental/soft-nav-page-toc — feedback welcome on whether Default UI should export `buildPageToc()` and standardize `doc-nav:loaded`.
 ____

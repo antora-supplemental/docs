@@ -1,5 +1,6 @@
-= Antora Supplemental Documentation
-:navtitle: Portal
+= Docs Home
+:page-aliases: docs::index.adoc
+:navtitle: Overview
 
 This site aggregates documentation for projects in the antora-supplemental organization.
 It uses the link:https://github.com/antora-supplemental/valentus-theme[Valentus] rolling `v3` UI bundle with a green org brand overlay so the hub matches https://antora-supplemental.org/[antora-supplemental.org^].

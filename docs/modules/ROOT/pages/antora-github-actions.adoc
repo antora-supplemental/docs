@@ -1,3 +1,5 @@
+:page-aliases: docs::antora-github-actions.adoc
+
 === Antora on GitHub: Actions, Templates, and GitHub Pages
 
 This page explains how the Antora Supplemental organization structures GitHub Actions, templates, and workflows for building and deploying Antora documentation, with a focus on GitHub Pages.

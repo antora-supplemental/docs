@@ -1,4 +1,5 @@
 = Live docs architecture
+:page-aliases: docs::live-docs.adoc
 :description: Canonical short write-up for Antora Live — DB-backed concurrent authoring beside static Antora generate.
 :page-audience: Maintainers and contributors discussing multiplayer Antora authoring
 :page-usage-context: Org docs hub — link from PRs instead of pasting long design

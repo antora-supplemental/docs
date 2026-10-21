@@ -1,4 +1,5 @@
 = GitHub topics on docs hub playbooks
+:page-aliases: docs::hub-github-topics.adoc
 :navtitle: Hub GitHub topics
 :description: Tag hub playbook repos with the provider they depend on (facto-stack) — not the extensions, theme bundle, or maint tools the pack already supplies.
 

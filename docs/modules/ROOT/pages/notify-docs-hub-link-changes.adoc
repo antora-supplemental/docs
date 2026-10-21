@@ -1,4 +1,5 @@
 = Notify the docs hub of link changes
+:page-aliases: docs::notify-docs-hub-link-changes.adoc
 :navtitle: Hub link-cache invalidation
 :description: How content repos poke antora-supplemental/docs with repository_dispatch link-cache-invalidate and surgical link-validator invalidation.
 :page-audience: Hub maintainers and component-repo CI authors

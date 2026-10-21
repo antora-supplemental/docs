@@ -1,4 +1,5 @@
 = Demo data catalog for supplemental demos
+:page-aliases: docs::proposals/demo-data-catalog.adoc
 :navtitle: Demo data catalog
 :page-tags: proposal, demo, valentus, antora, demo-data, demo-pages
 :description: Where mock Antora content lives, how playbooks compose it, and how it relates to Valentus design tokens and extension fixtures.

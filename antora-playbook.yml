@@ -5,13 +5,13 @@
 
 site:
   title: Antora Supplemental
-  start_page: docs:ROOT:index.adoc
+  start_page: home:ROOT:index.adoc
   keys:
     header_logo: logo.svg
     dark_mode_navbar: light
     site_home_url: https://antora-supplemental.org/
     site_home_label: antora-supplemental home
-    header_doc_title: Docs
+    header_doc_title: Antora Supplemental Docs
     github_profile_url: https://github.com/antora-supplemental
   url: https://docs.antora-supplemental.org
   robots: |
@@ -70,12 +70,12 @@ antora:
         enabled: true
         filter: false
         # Forest allowlist - samples stay published but are not a sidebar root.
-        include: [docs, antora-live, instruction-flow, registry, dprint-asciidoc]
-        order: [docs, antora-live, instruction-flow, registry, dprint-asciidoc]
+        include: [home, antora-live, instruction-flow, registry, dprint-asciidoc]
+        order: [home, antora-live, instruction-flow, registry, dprint-asciidoc]
       softNavPageToc:
         injectScript: false
       pageContextAntora:
-        component: docs
+        component: home
         path: keywords
 
 asciidoc:
@@ -84,7 +84,7 @@ asciidoc:
     kroki-server-url: https://kroki.io
     kroki-fetch-diagram: true
     page-context-active: ""
-    page-context-keyword-base: "/docs/keywords"
+    page-context-keyword-base: "/home/keywords"
     source-highlighter: highlight.js
     icons: font
   extensions:

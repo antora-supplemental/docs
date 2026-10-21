@@ -1,4 +1,5 @@
 = Antora Dark Mode
+:page-aliases: docs::antora-dark-mode.adoc
 :navtitle: Antora Dark Mode
 
 Dark mode supplemental UI for Antora's default UI bundle: theme toggle, FOUC prevention, and CSS overrides.

@@ -1,4 +1,5 @@
 = Diagram engines (bake vs client)
+:page-aliases: docs::diagram-engines.adoc
 :navtitle: Diagram engines
 :description: Supported Antora diagram options — bake SVG at build (Kroki/Themed SVG), ship client Mermaid, hybrid per diagram, and diagram lightbox (zoom/pan).
 

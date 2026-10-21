@@ -1,4 +1,5 @@
 = Foundational chassis stack
+:page-aliases: docs::foundational-stack.adoc
 :navtitle: Foundational stack
 :description: Unthemed chassis packages (SoftNav, SoftNavContext, chassis-compose) and how Facto stack registers them.
 

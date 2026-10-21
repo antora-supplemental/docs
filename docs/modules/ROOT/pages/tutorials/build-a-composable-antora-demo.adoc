@@ -1,4 +1,5 @@
 = Build a composable Antora demo
+:page-aliases: docs::tutorials/build-a-composable-antora-demo.adoc
 :navtitle: Composable Antora demo
 :description: Step-by-step tutorial — compose demo-data fixtures, stack-local pages, Facto, and optional supplements into a published GitHub Pages demo.
 :page-tags: tutorial, demo, antora, demo-data, demo-pages, facto-stack
