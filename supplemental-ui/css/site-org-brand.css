@@ -103,3 +103,65 @@ html.dark-theme .navbar .button:hover,
 html.dark-theme .navbar .button.is-primary:hover {
   background-color: #234d32;
 }
+
+/*
+ * Theme toggle — square header control (matches GitHub icon btn).
+ * Rolling v3 ui-bundle still ships pre-rename site-dark-mode.js (.header.adt-header /
+ * adt-header-icon-btn), so the toggle often lacks valentus-header-icon-btn until the bundle
+ * is rebuilt. These rules load after bundle CSS and beat site-extra .theme-toggle padding.
+ */
+.header.valentus-header .navbar .navbar-end button.theme-toggle {
+  min-width: var(--valentus-header-ctrl, 2.5rem) !important;
+  min-height: var(--valentus-header-ctrl, 2.5rem) !important;
+  width: var(--valentus-header-ctrl, 2.5rem) !important;
+  height: var(--valentus-header-ctrl, 2.5rem) !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--valentus-radius-sm, 0.2rem);
+  font-size: inherit;
+  line-height: 1;
+  text-transform: none;
+  color: var(--valentus-header-bar-fg) !important;
+  background: transparent !important;
+  cursor: pointer;
+  transition: var(--valentus-transition, background-color 0.2s ease);
+}
+
+.header.valentus-header .navbar .navbar-end button.theme-toggle .theme-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.header.valentus-header .navbar .navbar-end button.theme-toggle:hover,
+.header.valentus-header .navbar .navbar-end button.theme-toggle:focus-visible {
+  background: var(--valentus-header-bar-hover) !important;
+}
+
+.header.valentus-header .navbar .navbar-end button.theme-toggle:focus {
+  outline: none;
+  background: transparent !important;
+}
+
+.header.valentus-header .navbar .navbar-end button.theme-toggle:focus-visible {
+  outline: 2px solid var(--valentus-header-bar-fg);
+  outline-offset: 2px;
+}
+
+html[data-dm-navbar="light"]:not(.dark-theme) .header.valentus-header .navbar .navbar-end button.theme-toggle:hover {
+  background: var(--valentus-header-bar-hover) !important;
+}
+
+html.dark-theme .header.valentus-header .navbar .navbar-end button.theme-toggle:hover {
+  background: var(--valentus-header-bar-hover) !important;
+}
