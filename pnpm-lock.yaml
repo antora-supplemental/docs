@@ -13,8 +13,8 @@ importers:
         version: file:../asciidoc-interactive
     devDependencies:
       '@antora-supplemental/facto-stack':
-        specifier: github:antora-supplemental/facto-stack#v0.2.62
-        version: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/1d466276c4a2b8a8d2857edc142ba3b6d2d6e062(@antora/site-generator@3.1.14)(@asciidoctor/core@2.2.9)
+        specifier: github:antora-supplemental/facto-stack#v0.2.64
+        version: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/18ebb254d0ca45161a2aed563aee0baab91263b6(@antora/site-generator@3.1.14)(@asciidoctor/core@2.2.9)
       '@antora-supplemental/serve':
         specifier: file:../antora-serve
         version: file:../antora-serve(@antora/playbook-builder@3.1.14)(@antora/site-generator@3.1.14)(@antora/user-require-helper@3.0.0)
@@ -104,9 +104,9 @@ packages:
       '@antora/site-generator':
         optional: true
 
-  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/1d466276c4a2b8a8d2857edc142ba3b6d2d6e062':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/1d466276c4a2b8a8d2857edc142ba3b6d2d6e062}
-    version: 0.2.62
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/18ebb254d0ca45161a2aed563aee0baab91263b6':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/18ebb254d0ca45161a2aed563aee0baab91263b6}
+    version: 0.2.64
     hasBin: true
 
   '@antora-supplemental/incremental@https://codeload.github.com/antora-supplemental/antora-incremental/tar.gz/09255e09c430d31cad5bbdce8e79cb23ee22d4b3':
@@ -226,9 +226,9 @@ packages:
     resolution: {path: packages/soft-nav-context, tarball: https://codeload.github.com/antora-supplemental/antora-ui-chassis/tar.gz/2518b319a80b6abb23c0c4f7ca05fba896d69c4a}
     version: 0.2.0
 
-  '@antora-supplemental/soft-nav-page-toc@https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/7a4df83de9bd9c7dcc7fb0ab44a49e1bac76430f':
-    resolution: {tarball: https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/7a4df83de9bd9c7dcc7fb0ab44a49e1bac76430f}
-    version: 0.1.7
+  '@antora-supplemental/soft-nav-page-toc@https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/a3c96d4a7a6f0781fc0e84c94aeb1d4d62408d9e':
+    resolution: {tarball: https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/a3c96d4a7a6f0781fc0e84c94aeb1d4d62408d9e}
+    version: 0.1.9
     engines: {node: '>=18'}
     peerDependencies:
       '@antora/site-generator': '>=3.1.0'
@@ -962,7 +962,7 @@ snapshots:
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
-  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/1d466276c4a2b8a8d2857edc142ba3b6d2d6e062(@antora/site-generator@3.1.14)(@asciidoctor/core@2.2.9)':
+  '@antora-supplemental/facto-stack@https://codeload.github.com/antora-supplemental/facto-stack/tar.gz/18ebb254d0ca45161a2aed563aee0baab91263b6(@antora/site-generator@3.1.14)(@asciidoctor/core@2.2.9)':
     dependencies:
       '@antora-supplemental/antora-local-content-sources': https://codeload.github.com/antora-supplemental/antora-local-content-sources/tar.gz/66a29aa524961b4038f31d37e1a37e8eb0970770
       '@antora-supplemental/antora-search-chat': https://codeload.github.com/antora-supplemental/antora-search-chat/tar.gz/3cac3e13fff94131b1214c5b3e340678c4a59d21(@antora/lunr-extension@1.0.0-alpha.13)
@@ -986,7 +986,7 @@ snapshots:
       '@antora-supplemental/page-edit': https://codeload.github.com/antora-supplemental/page-edit/tar.gz/95824e728723a13d5393cdefd180d26c08bc0c31(@antora/site-generator@3.1.14)
       '@antora-supplemental/playbook-pin-auditor': https://codeload.github.com/antora-supplemental/playbook-pin-auditor/tar.gz/b92d67faf6de20180a3fd77c1b821420d3f7ecfa
       '@antora-supplemental/site-nav-tree': https://codeload.github.com/antora-supplemental/site-nav-tree/tar.gz/43df10059ad95a25e7a740ca5394fcde91ca5314(@antora/site-generator@3.1.14)
-      '@antora-supplemental/soft-nav-page-toc': https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/7a4df83de9bd9c7dcc7fb0ab44a49e1bac76430f(@antora/site-generator@3.1.14)
+      '@antora-supplemental/soft-nav-page-toc': https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/a3c96d4a7a6f0781fc0e84c94aeb1d4d62408d9e(@antora/site-generator@3.1.14)
       '@antora-supplemental/stale-page': https://codeload.github.com/antora-supplemental/stale-page/tar.gz/5c24c9bf8d5755487dd8c9156e8c8c96c23d841a
       '@antora-supplemental/triage-ux-kit': https://codeload.github.com/antora-supplemental/triage-ux-kit/tar.gz/4b7888d2f18048e68e1176c9aca4abf7aa4bac40
       '@antora-supplemental/unversioned-component-urls': https://codeload.github.com/antora-supplemental/antora-unversioned-component-urls/tar.gz/98b806dbae2a655a37219cdd9fea9b31b95b04c0(@antora/site-generator@3.1.14)
@@ -1068,7 +1068,7 @@ snapshots:
 
   '@antora-supplemental/soft-nav-context@https://codeload.github.com/antora-supplemental/antora-ui-chassis/tar.gz/2518b319a80b6abb23c0c4f7ca05fba896d69c4a#path:packages/soft-nav-context': {}
 
-  '@antora-supplemental/soft-nav-page-toc@https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/7a4df83de9bd9c7dcc7fb0ab44a49e1bac76430f(@antora/site-generator@3.1.14)':
+  '@antora-supplemental/soft-nav-page-toc@https://codeload.github.com/antora-supplemental/soft-nav-page-toc/tar.gz/a3c96d4a7a6f0781fc0e84c94aeb1d4d62408d9e(@antora/site-generator@3.1.14)':
     optionalDependencies:
       '@antora/site-generator': 3.1.14
 
