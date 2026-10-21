@@ -41,7 +41,7 @@ How-to details: xref:antora-deployment.adoc#auto-rebuild-when-content-sources-or
 
 == v2 — Dependency manifest + dirty set
 
-Package: https://github.com/antora-supplemental/antora-incremental[`@antora-supplemental/incremental`].
+Package: https://github.com/antora-supplemental/antora-incremental[`@antora-supplemental/incremental`] (hub playbooks on `@antora-supplemental/facto-stack` get it from the pack — override with `incremental:` on the single pack require).
 
 * **v2a:** Extension writes `build/site/.antora-deps.json` on every full publish (includes / xrefs / nav / aliases / sources).
 * **v2b:** `antora-dirty` CLI → dirty page set from changed paths + manifest.

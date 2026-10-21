@@ -15,7 +15,7 @@ Antora docs **hub** repositories (playbooks that publish a site) use GitHub **re
 | Provided by facto-stack (do not pin or tag in the hub)
 | Why
 
-| Extensions: page-context, site-nav-tree, soft-nav-page-toc, nav-typology(+diataxis), link-validator, linkinator, page-edit, antora-search-chat, build-stack, extension-lister, orphan-finder, unversioned-component-urls, Lunr
+| Extensions: incremental, page-context, site-nav-tree, soft-nav-page-toc, nav-typology(+diataxis), link-validator, linkinator, page-edit, antora-search-chat, build-stack, extension-lister, orphan-finder, unversioned-component-urls, Lunr
 | Pack `dependencies`; the pack registers them and merges AsciiDoc extensions and attributes into the playbook. Bumping the pack bumps them.
 
 | Maint CLIs: orphan-finder, nav-drift, stale-page, playbook-pin-auditor, deep-link-contracts
@@ -30,7 +30,7 @@ Antora docs **hub** repositories (playbooks that publish a site) use GitHub **re
 == What a hub still owns
 
 * **`supplemental-ui` copies.** Antora does not merge extension UI automatically. The hub keeps its own copies of partials, helpers, CSS, and `soft-nav.js`. They are hub-owned files, not a dependency pin. Re-sync them from the member repos when a member changes its `ui/` files.
-* **Non-pack extensions** the hub genuinely needs (for example `incremental` or a local `./lib/*.js`). Those are direct and may carry their own topic.
+* **Non-pack extensions** the hub genuinely needs (for example a local `./lib/*.js`). Those are direct and may carry their own topic.
 * **Playbook config:** `siteNavTree.include`, `lunr`, `softNavPageToc`, `pageContextAntora`, …
 
 == Topics to apply

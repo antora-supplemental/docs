@@ -11,11 +11,10 @@
   },
   "packageManager": "pnpm@10.28.1",
   "dependencies": {
-    "@antora-supplemental/incremental": "github:antora-supplemental/antora-incremental",
     "@antora-supplemental/instruction-flow": "file:../asciidoc-interactive"
   },
   "devDependencies": {
-    "@antora-supplemental/facto-stack": "github:antora-supplemental/facto-stack#v0.2.49",
+    "@antora-supplemental/facto-stack": "github:antora-supplemental/facto-stack#v0.2.50",
     "@antora-supplemental/serve": "file:../antora-serve",
     "antora": "^3.1.14"
   }
