@@ -85,6 +85,7 @@ Suggested for antora-next packages:
 . Compiler POC: git source → manifest JSON + static export consumed by the SolidStart route tree.
 . asciidoctor-d: IPC or watch-friendly CLI contract; incremental block API on roadmap.
 . Document parallel semver and consumer pin rules alongside skill `antora-extension-consumers`.
+. Playbook **multi UI bundle** merge + extension UI auto-import (see https://github.com/antora-supplemental/antora-solidstart/blob/main/docs/playbook-ui-bundles.adoc[playbook-ui-bundles.adoc^] in antora-solidstart) — replaces hand-copying extension `ui/` into hub `supplemental-ui/`.
 
 == Related
 
