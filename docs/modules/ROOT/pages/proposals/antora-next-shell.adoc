@@ -3,9 +3,14 @@
 :page-tags: proposal
 :description: Pattern C split artifact — build-time content compiler, SolidStart reader shell, asciidoctor-d convert engine, parallel semver; upstream contribution not a fork.
 :page-audience: Antora maintainers, supplemental architects, agents planning a next-gen docs platform
-:page-usage-context: Upstream discussion, Zulip, and agent skill anchor for antora-next work
+:page-usage-context: Upstream discussion, Zulip, and agent skill anchor for antora-solidstart work (deprecated alias antora-next)
 :page-orig-author: Ryan Johnson
 :page-last-author: Composer on behalf of Ryan Johnson
+
+== Working implementation
+
+**Product name:** `antora-solidstart` (repo https://github.com/antora-supplemental/antora-solidstart[antora-solidstart^] on GitHub).
+This proposal page title still says *Antora next* for upstream discussion continuity; agents and new code should use **antora-solidstart**.
 
 == Summary
 
@@ -75,8 +80,9 @@ Suggested for antora-next packages:
 
 == Near-term milestones (draft)
 
-. Hub proposal (this page) + agent skill `antora-next` in dev-centr/agent-rules.
-. Compiler POC: git source → manifest JSON + static export consumed by a minimal SolidStart route tree.
+. Hub proposal (this page) + agent skill `antora-solidstart` in dev-centr/agent-rules (`antora-next` deprecated alias).
+. https://github.com/antora-supplemental/antora-solidstart[antora-solidstart^] — initial SolidStart reader shell spike (manifest route tree TBD).
+. Compiler POC: git source → manifest JSON + static export consumed by the SolidStart route tree.
 . asciidoctor-d: IPC or watch-friendly CLI contract; incremental block API on roadmap.
 . Document parallel semver and consumer pin rules alongside skill `antora-extension-consumers`.
 

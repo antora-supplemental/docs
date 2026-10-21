@@ -2,7 +2,7 @@
 
 == Unreleased
 
-* xref:proposals/antora-next-shell.adoc[Antora next shell proposal] — Pattern C split artifact, SolidStart reader, asciidoctor-d via IPC/CLI, parallel semver, upstream contribution not fork; links site-rebuild, live-docs, SoftNavContext ARCHITECTURE.
+* xref:proposals/antora-next-shell.adoc[Antora next shell proposal] — Pattern C split artifact, SolidStart reader, asciidoctor-d via IPC/CLI, parallel semver, upstream contribution not fork; links site-rebuild, live-docs, SoftNavContext ARCHITECTURE; working name **antora-solidstart** (https://github.com/antora-supplemental/antora-solidstart[repo^]); agent skill `antora-solidstart` (`antora-next` deprecated alias).
 * xref:foundational-stack.adoc[Foundational chassis stack] — documents `chassis-compose`, `soft-nav-context`, and minimal Default UI example.
 * xref:diagram-engines.adoc[Diagram engines]: zoom/lightbox steps are diagram-lightbox-only (removed chassis `diagram-zoom` copy path); point at facto-stack `examples/` and demo wiring.
 * Pin `@antora-supplemental/facto-stack` **v0.2.49** (SoftNavSignals, chassis-compose @ `chassis-v0.1.1`, injected soft-nav).
