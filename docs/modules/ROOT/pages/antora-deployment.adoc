@@ -170,6 +170,7 @@ Regardless of strategy, deployment is the same:
 
 Aggregated Antora sites should rebuild when a **content source** or **shared extension/UI** changes — without polling.
 Use GitHub `repository_dispatch` on the **site** repo, fired with the `gh` CLI (agent-friendly) or a tiny optional workflow in the source repo.
+Agents wiring a new hub should load Dev-Centr skill `subscribe-docs-hub-rebuild` (canonical under `dev-centr/agent-rules/skills/`) for the subscriber checklist and what not to run at scaffold time.
 
 This hub listens for:
 
