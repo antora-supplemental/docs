@@ -28,7 +28,7 @@ content source push ──► gh api …/dispatches (docs-source-updated)
 
 * **Subscriber (hub):** `antora-supplemental/docs` listens for `repository_dispatch` types `docs-source-updated` and `extension-updated` (see deploy workflow).
 * **Notify (preferred):** `gh api repos/antora-supplemental/docs/dispatches …` — agent-friendly, no extra CI theater.
-* **Notify (optional auto):** copy `notify-docs-hub.yml` from https://github.com/antora-supplemental/antora-workflow-templates[antora-workflow-templates] into a content source; secret `DOCS_DISPATCH_TOKEN`.
+* **Notify (optional auto):** copy workflows from https://github.com/antora-supplemental/antora-workflow-templates[antora-workflow-templates] — `notify-docs-hub.yml` for content sources (`docs-source-updated`), `notify-docs-hub-extension.yml` for extensions/themes/compose packs (`extension-updated`); org secret `DOCS_DISPATCH_TOKEN`. Bulk install: `node scripts/install-notify-docs-hub-extension.mjs` in that repo (manifest `notify-extension-repos.json`).
 * **Local author loop:** https://github.com/antora-supplemental/antora-serve[`@antora-supplemental/serve`] — watch local worktrees, full regenerate, live reload.
 
 How-to details: xref:antora-deployment.adoc#auto-rebuild-when-content-sources-or-extensions-update[Deployment: auto-rebuild].
