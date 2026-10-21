@@ -2,6 +2,8 @@
 
 == Unreleased
 
+* Pin `@antora-supplemental/facto-stack` **v0.2.46** (Valentus 3 `valentus-*` namespace, search-chat **v0.1.20**, site-nav-tree **v0.6.9**, soft-nav-context from chassis **6433442**).
+* Hub UI bundle: rolling Valentus **v3** (`releases/download/v3/ui-bundle.zip` + `snapshot: true`).
 * Pin `@antora-supplemental/facto-stack` **v0.2.40** (search bar stays on screen above the footer).
 * `pnpm antora` installs when the lockfile is newer than node_modules (git tag bumps). It does not move the facto-stack pin by itself; pull the repo first.
 * Pin `@antora-supplemental/facto-stack` **v0.2.39** (desktop disk-search dialog).

@@ -72,7 +72,7 @@ Bake (Kroki/Themed SVG) vs client Mermaid is a **supported** supplemental option
 == About The Project
 
 Documentation hub for the antora-supplemental organization, built with Antora.
-The UI uses the link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] rolling `v2` release bundle (`ui-bundle.zip`, refreshed each build via `snapshot: true`) plus a local green brand overlay (`supplemental-ui/`: `site-org-brand.css` and `img/logo.svg`) so this portal matches the org welcome-site vibe while staying on Valentus 2.x chrome.
+The UI uses the link:https://github.com/antora-supplemental/valentus-theme[valentus-theme] rolling `v3` release bundle (`ui-bundle.zip`, refreshed each build via `snapshot: true`) plus a local green brand overlay (`supplemental-ui/`: `site-org-brand.css` and `img/logo.svg`) so this portal matches the org welcome-site vibe while staying on Valentus 3.x chrome.
 
 ++++
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
