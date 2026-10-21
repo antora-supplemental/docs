@@ -1,0 +1,89 @@
+= Antora next — SolidStart shell and split artifact
+:navtitle: Antora next shell
+:page-tags: proposal
+:description: Pattern C split artifact — build-time content compiler, SolidStart reader shell, asciidoctor-d convert engine, parallel semver; upstream contribution not a fork.
+:page-audience: Antora maintainers, supplemental architects, agents planning a next-gen docs platform
+:page-usage-context: Upstream discussion, Zulip, and agent skill anchor for antora-next work
+:page-orig-author: Ryan Johnson
+:page-last-author: Composer on behalf of Ryan Johnson
+
+== Summary
+
+Antora 3 today is **Node.js** static generate: git content → `@asciidoctor/core` (Asciiidoctor.js) → Handlebars UI bundle → CDN HTML.
+**Asciidoctor** (Ruby) and **AsciidoctorJ** (JVM) are separate stacks; Java is not an Antora dependency.
+
+This proposal describes **Pattern C — split artifact**:
+
+. A **build-time content compiler** (Node orchestrator today; successor over time) turns git sources into a **manifest** — per-page body HTML (or structured blocks), `page-meta.json`, global `nav.json`, xref maps, search index data.
+. A **SolidStart** app is the **reader shell** — file-based routes, SSR/API for auth and tooling, Solid layout chrome; page bodies load from the manifest (`{@html}` or structured renderers).
+. **asciidoctor-d** (`dlang-supplemental/asciidoctor-d`) is the **convert engine**, invoked via **CLI or IPC** from the orchestrator — not embedded inside Vinxi.
+
+Production readers stay **static or SSR from the manifest**; dev uses `solidstart dev` plus a watched compiler (extend ideas from `@antora-supplemental/serve` and incremental dirty-set).
+
+**Intent:** pursue a **full upstream-style rewrite vision** and pull the ecosystem forward — **not** a long-lived git fork of https://gitlab.com/antora/antora[antora/antora^].
+Ship parallel product lines in the **same repos** with explicit semver majors or npm scopes until cutover.
+
+== What stays on the legacy line
+
+* Shipped hubs, facto-stack, Valentus UI bundles, and Antora 3 extensions remain the **default** until a task explicitly targets **antora-next**.
+* xref:site-rebuild.adoc[Site rebuild (v1/v2)] — push-notify full generate and incremental dirty-set — applies to **static Antora 3** hubs.
+* xref:live-docs.adoc[Live docs] — DB-backed concurrent **authoring** beside git publish; not the same product as replacing the static reader shell.
+
+== Relationship to SoftNav
+
+Static Antora + https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/soft-nav-context[SoftNavContext^] patches chrome on pre-baked HTML (transport → signals → extension hooks).
+See https://github.com/antora-supplemental/antora-ui-chassis/blob/main/packages/soft-nav-context/ARCHITECTURE.adoc[SoftNavContext ARCHITECTURE.adoc^].
+
+A SolidStart shell **subsumes** persistent layout and routing; SoftNav-style region swap becomes optional migration glue on legacy static sites, not the end-state for antora-next.
+
+== Node vs D split
+
+[cols="1,1"]
+|===
+| Node / TypeScript (SolidStart, orchestrator) | D (asciidoctor-d)
+
+| HTTP, auth, git fetch, playbook/model, extension hooks (new TS protocol)
+| AsciiDoc → HTML (CLI/lib); LSP/preview (today via zed-asciidoc)
+
+| Watch, dirty graph, manifest emit, CI (`pnpm` + optional `dub` artifact)
+| Incremental block convert + IPC server (roadmap — needed for subsection hot reload)
+
+| Diagram orchestration (Kroki, client Mermaid) at build or sidecar
+| Optional long-lived diagram render daemon (future)
+|===
+
+SolidStart does **not** run D natively; the orchestrator spawns or sockets to the compiler — same boundary as Antora spawning Asciidoctor today.
+
+== Parallel semver in same repos
+
+Hive precedents:
+
+* Valentus `VALENTUS_SEMVER+antora.N` and `supported-lines.json`
+* `dprint-plugin-asciidoc` — one git tag, Rust WASM GitHub release + npm package
+
+Suggested for antora-next packages:
+
+* Keep current `@antora-supplemental/*` lines on **Antora 3** semver until APIs change.
+* Introduce **`@antora-next/*`**, **`/next` entry points**, or **2.x majors** for SolidStart-native compiler and shell APIs in the **same git repo**.
+* Playbooks declare runtime explicitly (for example `runtime: antora-3` vs `runtime: antora-next-v1`); do not assume Antora 3 extension `require:` blocks work on the next line.
+
+== Upstream and org stance
+
+* antora-supplemental philosophy: **complement** upstream Antora, not a soft fork (see org news *Supplemental, not a fork*).
+* Antora Live non-goal: replace or fork Antora core — Live stays **authoring**; this proposal is **reader + compile pipeline**.
+* Contribution path: new product name, manifest contract, and incremental milestones proposed to Antora maintainers (GitLab / Zulip) rather than a divergent `antora/antora` fork.
+
+== Near-term milestones (draft)
+
+. Hub proposal (this page) + agent skill `antora-next` in dev-centr/agent-rules.
+. Compiler POC: git source → manifest JSON + static export consumed by a minimal SolidStart route tree.
+. asciidoctor-d: IPC or watch-friendly CLI contract; incremental block API on roadmap.
+. Document parallel semver and consumer pin rules alongside skill `antora-extension-consumers`.
+
+== Related
+
+* xref:site-rebuild.adoc[Site rebuild (v1/v2)]
+* xref:live-docs.adoc[Live docs]
+* xref:foundational-stack.adoc[Foundational chassis stack]
+* https://github.com/dlang-supplemental/asciidoctor-d[asciidoctor-d^]
+* https://github.com/antora-supplemental/antora-extensions-registry[antora-extensions-registry^] (SolidStart in org — registry app, not the docs reader shell)
