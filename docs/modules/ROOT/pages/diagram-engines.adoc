@@ -87,9 +87,9 @@ Hub `site-mermaid.js` collects `.mermaid-client` / `pre.mermaid` and re-runs on 
 == Diagram zoom / lightbox
 
 .Enable
-. Prefer `@antora-supplemental/diagram-lightbox` (injects `site-diagram-lightbox.js/css`).
-. Legacy only: copy chassis link:https://github.com/antora-supplemental/antora-ui-chassis/tree/main/packages/diagram-zoom[`diagram-zoom`] assets into `supplemental-ui/` (deprecated; do not start new hubs on `diagram-zoom`).
-. Link the stylesheet in `head-meta.hbs`; load the script after SoftNav in the footer partial.
+. `@antora-supplemental/diagram-lightbox` (injects `site-diagram-lightbox.js/css` and Handlebars partials).
+. Include `{{> diagram-lightbox-styles}}` in head; `{{> diagram-lightbox-scripts}}` after SoftNav in the footer partial.
+. Example wiring: link:https://github.com/antora-supplemental/facto-stack/tree/main/examples[facto-stack `examples/`^] and link:https://github.com/antora-supplemental/facto-stack/tree/main/demo[facto-stack demo^].
 . No AsciiDoc role required — attaches to `.doc .imageblock` and client Mermaid hosts.
 
 In-article: zoom in/out/reset + expand. Lightbox: drag-pan, wheel-zoom, Esc/close. Uses `--valentus-*` tokens.
