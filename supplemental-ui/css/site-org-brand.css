@@ -28,6 +28,8 @@
   --valentus-accent-soft: var(--as-accent-soft);
   --valentus-border: var(--as-border);
   --soft-nav-context: var(--as-paper-deep);
+  /* Opaque bar surface. v3 ui-bundle omits --valentus-chrome (lost in the adt->valentus rename), so define it here. */
+  --valentus-chrome: var(--as-paper);
   --valentus-chrome-border: var(--as-border);
   --valentus-nav-bg: transparent;
   --valentus-shadow-float: 0 0.35rem 1rem rgba(13, 26, 18, 0.1);
@@ -65,6 +67,8 @@ html.dark-theme {
   --valentus-accent-soft: var(--as-accent-soft);
   --valentus-border: var(--as-border);
   --soft-nav-context: var(--as-paper-deep);
+  /* Opaque bar surface. v3 ui-bundle omits --valentus-chrome (lost in the adt->valentus rename), so define it here. */
+  --valentus-chrome: var(--as-paper);
   --valentus-chrome-border: var(--as-border);
   --valentus-nav-bg: transparent;
   --valentus-shadow-float: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.45);
