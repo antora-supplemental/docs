@@ -36,6 +36,12 @@ content:
     - url: https://github.com/antora-supplemental/antora-live.git
       branches: [main, master]
       start_path: docs
+    - url: https://github.com/antora-supplemental/related-docs.git
+      branches: [main, master]
+      start_path: docs
+    - url: https://github.com/antora-supplemental/link-registry.git
+      branches: [main, master]
+      start_path: docs
     - url: .
       branches: HEAD
       start_path: docs
@@ -70,8 +76,8 @@ antora:
         enabled: true
         filter: false
         # Forest allowlist - samples stay published but are not a sidebar root.
-        include: [home, antora-live, instruction-flow, registry, dprint-asciidoc]
-        order: [home, antora-live, instruction-flow, registry, dprint-asciidoc]
+        include: [home, antora-live, instruction-flow, registry, dprint-asciidoc, related-docs, link-registry]
+        order: [home, antora-live, instruction-flow, registry, dprint-asciidoc, related-docs, link-registry]
       softNavPageToc:
         injectScript: false
       pageContextAntora:

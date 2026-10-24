@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* **New components:** wire `related-docs` and `link-registry` docs into `content.sources` and the site-nav-tree forest; facto-stack **v0.2.67** (resolved via `#v0.2`) adds the link-registry extension.
 * Float `@antora-supplemental/facto-stack` on rolling minor git pin **`#v0.2`** (resolves **v0.2.64** today; patch bumps without editing `package.json`).
 * Pin `@antora-supplemental/facto-stack` **v0.2.64** — `data-page-toc-root` on body zone; `soft-nav-page-toc` **v0.1.9** + hub/vendor `site-page-toc.js` until Valentus **v3.0.8** ui-bundle rebuild.
 * Pin `@antora-supplemental/facto-stack` **v0.2.63** — `soft-nav-page-toc` **v0.1.8** restores right-rail page TOC on zoned `article.hbs` (e.g. `/registry/`).
