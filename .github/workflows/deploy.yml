@@ -86,7 +86,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Restore link check cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .link-check-cache.json
           key: link-check-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', '.antora-link-suppressions.yml') }}
