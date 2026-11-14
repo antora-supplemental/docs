@@ -1,11 +1,11 @@
 = Private docs login
-:description: Run the Antora Private Docs Site issuer, create the GitHub App and the GitLab application, and register a relying party. Cloudflare Access is one OpenID Connect client.
+:description: Run the Antora Private Docs Login issuer, create the GitHub App and the GitLab application, and register a relying party. Cloudflare Access is one OpenID Connect client.
 :page-audience: Operators who put a login in front of private documentation
 :page-usage-context: Install the shared GitHub App or opt a GitLab group in, run the issuer, and point a relying party at it
 :page-orig-author: Grok 4.7 on behalf of Ryan Johnson
 :page-last-author: Grok 4.7 on behalf of Ryan Johnson
 
-Antora Private Docs Site is one OpenID Connect issuer for private documentation.
+Antora Private Docs Login is one OpenID Connect issuer for private documentation.
 A GitHub organization opts in by installing one GitHub App.
 A GitLab group opts in by inviting a configured user.
 The issuer runs as a normal Node process.
@@ -40,7 +40,7 @@ The default name is `groups`.
 
 == Create the GitHub App
 
-The app name is **Antora Private Docs Site**.
+The app name is **Antora Private Docs Login**.
 The manifest posts to the antora-supplemental organization.
 Permissions are organization members, read.
 The manifest does not ask for repository contents, administration, or email.
@@ -63,7 +63,7 @@ A personal email address does not grant access.
 == Create the GitLab application
 
 GitLab does not ship GitHub App installations.
-One group-owned OAuth application uses the same name, **Antora Private Docs Site**.
+One group-owned OAuth application uses the same name, **Antora Private Docs Login**.
 `read_api` is the scope, so the issuer can see group members.
 Do not enable `api`, repository write, or email.
 
