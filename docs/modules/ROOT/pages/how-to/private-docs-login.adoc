@@ -1,0 +1,125 @@
+= Private docs login
+:description: Run the Antora Private Docs Site issuer, create the GitHub App and the GitLab application, and register a relying party. Cloudflare Access is one OpenID Connect client.
+:page-audience: Operators who put a login in front of private documentation
+:page-usage-context: Install the shared GitHub App or opt a GitLab group in, run the issuer, and point a relying party at it
+:page-orig-author: Grok 4.7 on behalf of Ryan Johnson
+:page-last-author: Grok 4.7 on behalf of Ryan Johnson
+
+Antora Private Docs Site is one OpenID Connect issuer for private documentation.
+A GitHub organization opts in by installing one GitHub App.
+A GitLab group opts in by inviting a configured user.
+The issuer runs as a normal Node process.
+The listen address and the public issuer URL are configuration.
+
+Source: https://github.com/antora-supplemental/private-docs-login[private-docs-login^].
+
+Registering a relying party, including Cloudflare Access, does not edit an identity provider that is already serving a hostname.
+Switching a live team is a separate change.
+
+== Run the issuer
+
+. Copy `config/issuer.example.sdl` to `config/issuer.sdl` in a checkout of the repository. `config/issuer.sdl` is gitignored.
+. Create a signing key and set `ANTORA_PRIVATE_DOCS_SIGNING_KEY_PATH` to the PEM file. Do not commit the PEM.
++
+[source,shell]
+----
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out signing.pem
+----
+. Set the other names in link:https://github.com/antora-supplemental/private-docs-login/blob/main/docs/environment-variables.adoc[the environment registry]. Values stay in the environment.
+. Start the process. This window shows it. The listen line is the address. Ctrl+C stops it.
++
+[source,shell]
+----
+node bin/antora-private-docs.mjs serve --config config/issuer.sdl
+----
+
+`issuer` in the config is the public URL relying parties use.
+`listen` is only where the process binds.
+`groups-claim` is the ID token claim that lists opted-in organizations and groups.
+The default name is `groups`.
+
+== Create the GitHub App
+
+The app name is **Antora Private Docs Site**.
+The manifest posts to the antora-supplemental organization.
+Permissions are organization members, read.
+The manifest does not ask for repository contents, administration, or email.
+
+[source,shell]
+----
+node bin/antora-private-docs.mjs github-manifest --config config/issuer.sdl
+----
+
+Open `http://127.0.0.1:8765/`.
+The form posts to `https://github.com/organizations/antora-supplemental/settings/apps/new`.
+Approve the manifest in GitHub.
+The command writes the client secret and the private key under `var/`, which is gitignored, and does not print them.
+
+An organization owner then installs the app.
+The install URL uses the slug GitHub assigns, by default `https://github.com/apps/antora-private-docs-site/installations/new`.
+A person who belongs to no organization that installed this app sees a page that says an owner must install it.
+A personal email address does not grant access.
+
+== Create the GitLab application
+
+GitLab does not ship GitHub App installations.
+One group-owned OAuth application uses the same name, **Antora Private Docs Site**.
+`read_api` is the scope, so the issuer can see group members.
+Do not enable `api`, repository write, or email.
+
+The instance URL is config.
+`https://gitlab.com` in the example is one host.
+A self-managed GitLab replaces that URL.
+On gitlab.com, the group `antora-supplemental` was not present when this page was written.
+Create the group, then open:
+
+https://gitlab.com/groups/antora-supplemental/-/settings/applications
+
+The setup command prints that URL from the config, and says when the group is missing:
+
+[source,shell]
+----
+node bin/antora-private-docs.mjs gitlab-setup --config config/issuer.sdl
+----
+
+Redirect URI: `{issuer}/gitlab/callback`.
+Confidential: yes.
+
+A group opts in when an owner invites the user named in `opt-in-username` (the example uses `antora-private-docs`).
+Guest access is enough.
+A group the person belongs to, which has not invited that user, is left out of the token.
+If none of their groups have opted in, sign-in stops on a page that tells an owner to send the invite.
+
+== What the ID token contains
+
+Each groups value is prefixed so a relying party can tell the forges apart:
+
+* `github:<host>:<org-login>`
+* `gitlab:<host>:<group full path>`
+
+The `forge` claim is `github` or `gitlab`, the adapter that handled this login.
+One login uses one forge.
+The claim name for the list is `groups-claim` in config.
+
+== Register a relying party
+
+Add a `client` block.
+The id, the secret's environment name, and the exact redirect URIs are config.
+A redirect that is not listed is refused.
+
+Cloudflare Access is one client, added as generic OpenID Connect, not as the stock GitHub identity provider:
+
+* Auth URL: `{issuer}/authorize`
+* Token URL: `{issuer}/token`
+* Certificate URL: `{issuer}/jwks`
+* Scopes: `openid`
+* Group claim name: the configured claim, default `groups`
+
+The example config uses client id `cloudflare-access` and a placeholder redirect on `<team-name>.cloudflareaccess.com`.
+The Allow policy matches a prefixed value such as `github:github.com:example-org` or `gitlab:gitlab.com:example-group`.
+
+A generic relying party is the same kind of entry.
+The example client id is `generic-rp`, with redirect `https://rp.example/callback`.
+
+Another runtime can sit in front of this protocol later.
+This repository does not ship that adapter.

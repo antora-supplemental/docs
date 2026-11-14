@@ -9,6 +9,7 @@
 * xref:hub-github-topics.adoc[Hub GitHub topics]
 * xref:antora-dark-mode.adoc[Antora Dark Mode]
 * xref:antora-deployment.adoc[Antora Deployment]
+* xref:how-to/private-docs-login.adoc[Private docs login]
 * xref:notify-docs-hub-link-changes.adoc[Hub link-cache invalidation]
 * xref:antora-github-actions.adoc[Antora on GitHub]
 * xref:org-github-config.adoc[Org GitHub config]
