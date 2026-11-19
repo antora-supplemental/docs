@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* **How login works.** The private-docs how-to states the login contract before setup: one published GitHub App, the issuer callback, relying-party clients, and when to host a separate issuer.
 * **Login display name.** The private-docs how-to names the GitHub App and the GitLab application Antora Private Docs Login.
 * **Private docs login.** How-to for Antora Private Docs Login: one OpenID Connect issuer, a GitHub App install, and a GitLab group opt-in. Cloudflare Access is one generic OIDC client.
 * **New components:** wire `related-docs` and `link-registry` docs into `content.sources` and the site-nav-tree forest; facto-stack **v0.2.67** (resolved via `#v0.2`) adds the link-registry extension.

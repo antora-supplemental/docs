@@ -3,7 +3,8 @@
 :page-audience: Operators who put a login in front of private documentation
 :page-usage-context: Install the shared GitHub App or opt a GitLab group in, run the issuer, and point a relying party at it
 :page-orig-author: Grok 4.7 on behalf of Ryan Johnson
-:page-last-author: Grok 4.7 on behalf of Ryan Johnson
+:page-last-author: name=Ryan Johnson; harness=Cursor; model=grok-4.7
+:page-last-edited: 2026-11-19
 
 Antora Private Docs Login is one OpenID Connect issuer for private documentation.
 A GitHub organization opts in by installing one GitHub App.
@@ -12,6 +13,48 @@ The issuer runs as a normal Node process.
 The listen address and the public issuer URL are configuration.
 
 Source: https://github.com/antora-supplemental/private-docs-login[private-docs-login^].
+
+== How login works
+
+The login works like this:
+
+. The private site sends the reader to the issuer.
+. The issuer sends the reader to GitHub, using the one published app.
+. GitHub comes back to the issuer only.
+. The issuer checks that the organization has installed the app and that this person is a member, then sends the reader back to the site.
+. The site admits the reader only if the token names that organization.
+
+One published app can gate many organizations' private sites.
+Each site asks for its own organization.
+Members of one organization are not admitted to another organization's docs.
+
+The GitHub App has one callback, on the issuer.
+Customer docs URLs are not entered in the GitHub App settings.
+
+A docs site is a relying-party client of the issuer.
+The redirect URI is registered with the issuer.
+That list is not the GitHub App.
+
+An outside organization installs the published app.
+That organization does not register a new GitHub App, and does not fork the repository, to use the hosted issuer.
+
+== Run your own issuer
+
+An organization cannot install the publisher's marketplace app and point it at an issuer they host.
+GitHub only calls the callback URL registered on the app, which is the publisher's host.
+
+Hosting an issuer means hosting a GitHub App for that issuer.
+
+The reusable distribution is: the publisher runs the issuer, the organization installs the app, and the organization registers its site as a client.
+
+Run your own issuer when you do not want reader logins, membership checks, or client registration to pass through the publisher.
+The reasons are trust, privacy, availability, data residency, or a policy that the identity provider must be yours.
+Run your own when the GitHub callback has to be on your domain.
+Run your own for GitHub Enterprise Server, where this marketplace app cannot be installed.
+Run your own when you need to change claims, forges, or token rules yourself.
+If the publisher's issuer is down, every private site that depends on it cannot sign readers in.
+
+You do not need your own issuer when you trust the publisher's issuer, and organization membership gating your own site is enough.
 
 Registering a relying party, including Cloudflare Access, does not edit an identity provider that is already serving a hostname.
 Switching a live team is a separate change.
