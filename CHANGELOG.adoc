@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* **Login provider.** The private-docs how-to presents this as a login provider for private documentation sites that use OpenID Connect. An Antora site behind Cloudflare Access, or another OpenID Connect relying party, is one example. The GitHub App name is unchanged.
 * **Repository home.** The private-docs-login source repository is https://github.com/dev-centr/private-docs-login[dev-centr/private-docs-login^]. This how-to stays on the hub. Its source links follow the repository.
 * **Membership broker.** The private-docs how-to says the service brokers GitHub and GitLab membership for private documentation sites, before the login steps.
 * **How login works.** The private-docs how-to states the login contract before setup: one published GitHub App, the issuer callback, relying-party clients, and when to host a separate issuer.
