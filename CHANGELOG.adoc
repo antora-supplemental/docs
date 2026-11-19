@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* **Repository home.** The private-docs-login source repository is https://github.com/dev-centr/private-docs-login[dev-centr/private-docs-login^]. This how-to stays on the hub. Its source links follow the repository.
 * **Membership broker.** The private-docs how-to says the service brokers GitHub and GitLab membership for private documentation sites, before the login steps.
 * **How login works.** The private-docs how-to states the login contract before setup: one published GitHub App, the issuer callback, relying-party clients, and when to host a separate issuer.
 * **Login display name.** The private-docs how-to names the GitHub App and the GitLab application Antora Private Docs Login.

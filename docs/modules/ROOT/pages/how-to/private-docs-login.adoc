@@ -13,7 +13,7 @@ A GitLab group opts in by inviting a configured user.
 The issuer runs as a normal Node process.
 The listen address and the public issuer URL are configuration.
 
-Source: https://github.com/antora-supplemental/private-docs-login[private-docs-login^].
+Source: https://github.com/dev-centr/private-docs-login[private-docs-login^].
 
 == How login works
 
@@ -69,7 +69,7 @@ Switching a live team is a separate change.
 ----
 openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out signing.pem
 ----
-. Set the other names in link:https://github.com/antora-supplemental/private-docs-login/blob/main/docs/environment-variables.adoc[the environment registry]. Values stay in the environment.
+. Set the other names in link:https://github.com/dev-centr/private-docs-login/blob/main/docs/environment-variables.adoc[the environment registry]. Values stay in the environment.
 . Start the process. This window shows it. The listen line is the address. Ctrl+C stops it.
 +
 [source,shell]
