@@ -2,6 +2,7 @@
 
 == Unreleased
 
+* **Issuer article title.** The private-docs referral names the Dev-Centr article https://docs.devcentr.org/tools/private-docs-login/how-to/[How to host the issuer^].
 * **Private docs login how-to.** This page refers to the Dev-Centr how-to at https://docs.devcentr.org/tools/private-docs-login/how-to/[How to run it^]. The full instructions are not copied here. The playbook serves that URL. The page is published on the next Dev-Centr docs build.
 * **Login provider.** The private-docs how-to presents this as a login provider for private documentation sites that use OpenID Connect. An Antora site behind Cloudflare Access, or another OpenID Connect relying party, is one example. The GitHub App name is unchanged.
 * **Repository home.** The private-docs-login source repository is https://github.com/dev-centr/private-docs-login[dev-centr/private-docs-login^].

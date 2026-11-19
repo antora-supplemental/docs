@@ -20,6 +20,6 @@ endif::[]
 Private docs login is a login provider for private documentation sites that use OpenID Connect.
 GitHub and GitLab organization members sign in through their org's installation.
 
-The how-to is published on the Dev-Centr docs site: https://docs.devcentr.org/tools/private-docs-login/how-to/[How to run it^].
+The how-to is published on the Dev-Centr docs site: https://docs.devcentr.org/tools/private-docs-login/how-to/[How to host the issuer^].
 
 Source: https://github.com/dev-centr/private-docs-login[private-docs-login^].
