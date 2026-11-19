@@ -7,6 +7,7 @@
 :page-last-edited: 2026-11-19
 
 Antora Private Docs Login is one OpenID Connect issuer for private documentation.
+It brokers GitHub and GitLab membership for private documentation sites.
 A GitHub organization opts in by installing one GitHub App.
 A GitLab group opts in by inviting a configured user.
 The issuer runs as a normal Node process.
